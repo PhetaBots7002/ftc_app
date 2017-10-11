@@ -29,30 +29,30 @@ public class MyBotHardwareSetup {
     */
 
     //motors
-    public DcMotor motorLeft = null;
-    public DcMotor motorRight = null;
-    public DcMotor motorArm = null;
-
+    public DcMotor motorFL = null;
+    public DcMotor motorFR = null;
+    public DcMotor motorBL = null;
+    public DcMotor motorBR = null;
     //servos
-    public Servo servoHandL = null;
+/*    public Servo servoHandL = null;
     public Servo servoHandR = null;
     public Servo crServo    = null;
 
     //sensors
     public GyroSensor gyro  = null;
-
+*/
     /* local OpMode members. */
     HardwareMap hwMap        = null;
 
     //Create and set default servo positions & MOTOR STOP variables.
     //Possible servo values: 0.0 - 1.0  For CRServo 0.5=stop greater or less than will spin in that direction
-    final static double CLOSED = 0.2;
-    final static double OPEN = 0.8;
+//    final static double CLOSED = 0.2;
+//    final static double OPEN = 0.8;
     final static double MOTOR_STOP = 0.0; // sets motor power to zero
     //CR servo variables
-    double SpinLeft = 0.1;
-    double SpinRight = 0.6;
-    double STOP = 0.5;
+//    double SpinLeft = 0.1;
+//    double SpinRight = 0.6;
+//    double STOP = 0.5;
 
    /* Constructor   // this is not required as JAVA does it for you, but useful if you want to add
     * function to this method when called in OpModes.
@@ -69,31 +69,30 @@ public class MyBotHardwareSetup {
          * MOTOR SECTION
          ************************************************************/
         // Define Motors to match Robot Configuration File
-        motorLeft = hwMap.dcMotor.get("motorL");
-        motorRight = hwMap.dcMotor.get("motorR");
-        motorArm = hwMap.dcMotor.get("motorArm");
-
+        motorFL = hwMap.dcMotor.get("motorFL");
+        motorFR = hwMap.dcMotor.get("motorFR");
+        motorBL = hwMap.dcMotor.get("motorBL");
+        motorBR = hwMap.dcMotor.get("motorBR");
         // Set the drive motor directions:
-        motorLeft.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
-        motorRight.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
-        motorArm.setDirection(DcMotor.Direction.FORWARD); // Can change based on motor configuration
-
+        motorFL.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
+        motorFR.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
+        motorBL.setDirection(DcMotor.Direction.FORWARD); // Can change based on motor configuration
+        motorBR.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         //Keep the motors from moving during initialize.
-        motorLeft.setPower(MOTOR_STOP);
-        motorRight.setPower(MOTOR_STOP);
-        motorArm.setPower(MOTOR_STOP);
-
+        motorFL.setPower(MOTOR_STOP);
+        motorFR.setPower(MOTOR_STOP);
+        motorBL.setPower(MOTOR_STOP);
+        motorBR.setPower(MOTOR_STOP);
         // Set motors to run USING or WITHOUT encoders
         // Depending upon your configuration and use
-        motorArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+/*        motorArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
+ */
         /************************************************************
          * SERVO SECTION
-         ************************************************************/
         // Define Motors to match Robot Configuration File
-        servoHandL = hwMap.servo.get("servoHandL");
+ /*       servoHandL = hwMap.servo.get("servoHandL");
         servoHandR = hwMap.servo.get("servoHandR");
         crServo    = hwMap.servo.get("crServo");
 
@@ -103,12 +102,12 @@ public class MyBotHardwareSetup {
 
         //Continous Rotation Servo
         crServo.setPosition(STOP);
-
+*/
         /************************************************************
          * SENSOR SECTION
          ************************************************************/
         //Define sensors
-        gyro = hwMap.gyroSensor.get("gyro");
+//        gyro = hwMap.gyroSensor.get("gyro");
    }
 
 }
