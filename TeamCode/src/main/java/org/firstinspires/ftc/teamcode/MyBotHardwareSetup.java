@@ -69,20 +69,30 @@ public class MyBotHardwareSetup {
          * MOTOR SECTION
          ************************************************************/
         // Define Motors to match Robot Configuration File
-        motorFL = hwMap.dcMotor.get("motorFL");
-        motorFR = hwMap.dcMotor.get("motorFR");
-        motorBL = hwMap.dcMotor.get("motorBL");
-        motorBR = hwMap.dcMotor.get("motorBR");
+        motorFL = hwMap.dcMotor.get("FL");
+        motorFR = hwMap.dcMotor.get("FR");
+        motorBL = hwMap.dcMotor.get("BL");
+        motorBR = hwMap.dcMotor.get("BR");
         // Set the drive motor directions:
         motorFL.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         motorFR.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         motorBL.setDirection(DcMotor.Direction.FORWARD); // Can change based on motor configuration
         motorBR.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         //Keep the motors from moving during initialize.
-        motorFL.setPower(MOTOR_STOP);
-        motorFR.setPower(MOTOR_STOP);
-        motorBL.setPower(MOTOR_STOP);
-        motorBR.setPower(MOTOR_STOP);
+
+        double r = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
+        double robotAngle = Math.atan2(gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4;
+        double rightX = gamepad1.right_stick_x;
+        final double v1 = r * Math.cos(robotAngle) + rightX;
+        final double v2 = r * Math.sin(robotAngle) - rightX;
+        final double v3 = r * Math.sin(robotAngle) + rightX;
+        final double v4 = r * Math.cos(robotAngle) - rightX;
+
+
+        motorFL.setPower(v1);
+        motorFR.setPower(v2);
+        motorBL.setPower(v3)
+        motorBR.setPower(v4);
         // Set motors to run USING or WITHOUT encoders
         // Depending upon your configuration and use
 /*        motorArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

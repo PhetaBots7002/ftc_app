@@ -56,6 +56,7 @@ public class MyBot_TeleOp extends LinearOpMode {
     org.firstinspires.ftc.teamcode.MyBotHardwareSetup r = new org.firstinspires.ftc.teamcode.MyBotHardwareSetup(); //set up remote to robot hardware configuration
 
     @Override
+
     public void runOpMode() throws InterruptedException {
         //adds feedback telemetry to DS
         telemetry.addData("Status", "Initialized");
@@ -68,7 +69,7 @@ public class MyBot_TeleOp extends LinearOpMode {
          r.motorFL  = hardwareMap.dcMotor.get("FL");
          r.motorFR = hardwareMap.dcMotor.get("FR");
          r.motorBL = hardwareMap.dcMotor.get("BL");
-         r.motorBR = hardwareMap.dcMotor.get("BR"); //assuming a pushBot configuration of two servo grippers
+         r.motorBR = hardwareMap.dcMotor.get("BR");
 
         // eg: Set the drive motor directions:
         // "Reverse" the motor that runs backwards when connected directly to the battery
@@ -77,9 +78,9 @@ public class MyBot_TeleOp extends LinearOpMode {
          r.motorBL.setDirection(DcMotor.Direction.FORWARD); // Can change based on motor configuration
          r.motorBR.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
 
+
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-
 
         /************************
          * TeleOp Code Below://
