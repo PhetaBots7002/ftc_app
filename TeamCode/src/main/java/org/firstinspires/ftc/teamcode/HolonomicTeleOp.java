@@ -1,9 +1,10 @@
-package org.firstinspires.ftc.teamcode.ExampleCode;
+package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.teamcode.ExampleCode.HardwareSetupHolonomicExample;
 
 
 /**
@@ -28,15 +29,15 @@ import com.qualcomm.robotcore.util.Range;
           X       X
 */
 @TeleOp(name = "Concept: HolonomicDrivetrain", group = "Concept")
-@Disabled
-public class HolonomicExample extends OpMode {
+//@Disabled
+public class HolonomicTeleOp extends OpMode {
 
-    HardwareSetupHolonomicExample robot     =   new HardwareSetupHolonomicExample();
+    HardwareSetupHolonomicExample r     =   new HardwareSetupHolonomicExample();
 
     /**
      * Constructor
      */
-    public HolonomicExample() {
+    public HolonomicTeleOp() {
 
     }
 
@@ -47,7 +48,7 @@ public class HolonomicExample extends OpMode {
        * that the names of the devices must match the names used when you
        * configured your robot and created the configuration file.
        */
-        robot.init(hardwareMap);  //Initialize hardware from the HardwareHolonomic Setup
+        r.init(hardwareMap);  //Initialize hardware from the HardwareHolonomic Setup
     }
 
     @Override
@@ -75,10 +76,10 @@ public class HolonomicExample extends OpMode {
         BackRight = Range.clip(BackRight, -1, 1);
 
         // write the values to the motors
-        robot.motorFrontRight.setPower(FrontRight);
-        robot.motorFrontLeft.setPower(FrontLeft);
-        robot.motorBackLeft.setPower(BackLeft);
-        robot.motorBackRight.setPower(BackRight);
+        r.motorFrontRight.setPower(FrontRight);
+        r.motorFrontLeft.setPower(FrontLeft);
+        r.motorBackLeft.setPower(BackLeft);
+        r.motorBackRight.setPower(BackRight);
 
       /*
        * Telemetry for debugging
