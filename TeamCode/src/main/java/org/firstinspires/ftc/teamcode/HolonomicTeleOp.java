@@ -32,7 +32,7 @@ import org.firstinspires.ftc.teamcode.ExampleCode.HardwareSetupHolonomicExample;
 //@Disabled
 public class HolonomicTeleOp extends OpMode {
 
-    HardwareSetupHolonomicExample r     =   new HardwareSetupHolonomicExample();
+    HardwareSetupHolonomic r     =   new HardwareSetupHolonomic();
 
     /**
      * Constructor
