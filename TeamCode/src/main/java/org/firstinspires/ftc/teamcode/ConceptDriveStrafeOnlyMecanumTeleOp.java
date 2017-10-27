@@ -4,14 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.HardwareSetupMecanum;
-
 /**
  *
- * Created by Maddie, FTC Team 4962, The Rockettes
- * version 1.0 Aug 11, 2016
- * This is an Iterative vs Linear program
- * for TeleOp control with a single controller
+ * Attempting to modify code to eliminate diagonal motion from joysticks
  */
 
 /*
@@ -28,16 +23,16 @@ import org.firstinspires.ftc.teamcode.HardwareSetupMecanum;
         X           X
           X       X
 */
-@TeleOp(name = "HolonomicTeleOp", group = "Examples")
+@TeleOp(name = "Concept: TeleOp DriveStrafe", group = "Concept")
 //@Disabled
-public class HolonomicTeleOp extends OpMode {
+public class ConceptDriveStrafeOnlyMecanumTeleOp extends OpMode {
 
     HardwareSetupMecanum r     =   new HardwareSetupMecanum();
 
     /**
      * Constructor
      */
-    public HolonomicTeleOp() {
+    public ConceptDriveStrafeOnlyMecanumTeleOp() {
 
     }
 

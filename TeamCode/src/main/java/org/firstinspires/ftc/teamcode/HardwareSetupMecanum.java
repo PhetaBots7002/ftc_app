@@ -6,20 +6,13 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 
 /**
- * Created by TeameurekaRobotics on 12/30/2016
+ * Mecanum Chassis Hardware configuration
  *
- * This file contains an example Hardware Setup Class for a 4 motor Holonomic drive.
- *
- * It can be customized to match the configuration of your Bot by adding/removing hardware, and then used to instantiate
- * your bot hardware configuration in all your OpModes. This will clean up OpMode code by putting all
- * the configuration here, needing only a single instantiation inside your OpModes and avoid having to change configuration
- * in all OpModes when hardware is changed on robot.
- *
- * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
+ * OUR MAIN Bot Hardware setup
  *
  */
 
-public class HardwareSetupHolonomic {
+public class HardwareSetupMecanum {
 
    /* Declare Public OpMode members.
     *these are the null statements to make sure nothing is stored in the variables.
@@ -52,7 +45,7 @@ public class HardwareSetupHolonomic {
    /* Constructor   // this is not required as JAVA does it for you, but useful if you want to add
     * function to this method when called in OpModes.
     */
-    public HardwareSetupHolonomic() {
+    public HardwareSetupMecanum() {
     }
 
     //Initialize standard Hardware interfaces
@@ -70,12 +63,6 @@ public class HardwareSetupHolonomic {
         motorBackRight = hwMap.dcMotor.get("motorBR");
 
         // Set the drive motor directions:
-/*      motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
-        motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
-        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
-        motorBackRight.setDirection(DcMotor.Direction.REVERSE);
-*/
-
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         //motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);

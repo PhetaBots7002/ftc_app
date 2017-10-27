@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.ExampleCode.MyBotHardwareSetup;
  *  Created by TeameurekaRobotics on 12/30/2016
  *
  * This file contains an minimal example of a Linear Tele "OpMode".
- * The hardware configuration uses MyBotHardwareSetup.java
+ * The hardware configuration uses MyBotHardwareSetup.java located in the ExampleCode folder
  *
  * This particular OpMode just executes a basic Tank Drive, an Arm motor and 2 Servos similar to a PushBot
  * It includes all the skeletal structure that a linear OpModes contain.
@@ -23,7 +23,7 @@ import org.firstinspires.ftc.teamcode.ExampleCode.MyBotHardwareSetup;
 @Disabled
 public class TestHardwareTeleOp extends LinearOpMode {
 
-    MyBotHardwareSetup r = new MyBotHardwareSetup(); //set up remote to robot hardware configuration
+    MyBotHardwareSetup r = new MyBotHardwareSetup(); //hardware configuration uses MyBotHardwareSetup.java located in the ExampleCode folder
 
     @Override
     public void runOpMode() throws InterruptedException {
