@@ -28,6 +28,7 @@ import org.firstinspires.ftc.teamcode.ExampleCode.HardwareSetupHolonomicExample;
         X           X
           X       X
 */
+@TeleOp(name = "Concept: HolonomicDrivetrain", group = "Concept")
 //@Disabled
 public class HolonomicTeleOp extends OpMode {
 
