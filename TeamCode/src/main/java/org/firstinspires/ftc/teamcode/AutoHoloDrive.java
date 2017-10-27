@@ -1,8 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.ExampleCode.HardwareSetupHolonomicExample;
 
@@ -28,15 +32,17 @@ import org.firstinspires.ftc.teamcode.ExampleCode.HardwareSetupHolonomicExample;
         X           X
           X       X
 */
+
+@Autonomous(name="AutoHoloTime", group="Time")  // @TeleOp(...) is the other common choice
 //@Disabled
-public class HolonomicTeleOp extends OpMode {
+public class AutoHoloDrive extends OpMode {
 
     HardwareSetupHolonomic r     =   new HardwareSetupHolonomic();
 
     /**
      * Constructor
      */
-    public HolonomicTeleOp() {
+    public AutoHoloDrive() {
 
     }
 
@@ -96,6 +102,9 @@ public class HolonomicTeleOp extends OpMode {
     public void stop() {
 
     }
+    double drive = .5;
+    double strafe =.5;
+    double spin = .5;
 
     /*
      * This method scales the joystick input so for low joystick values, the
