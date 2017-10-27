@@ -70,11 +70,18 @@ public class HardwareSetupHolonomic {
         motorBackRight = hwMap.dcMotor.get("motorBR");
 
         // Set the drive motor directions:
+<<<<<<< HEAD:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/HardwareSetupHolonomic.java
 /*      motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
         motorBackRight.setDirection(DcMotor.Direction.REVERSE);
 */
+=======
+        motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
+        //motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
+        motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
+        //motorBackRight.setDirection(DcMotor.Direction.REVERSE);
+>>>>>>> refs/remotes/TeameurekaRobotics/master:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/ExampleCode/HardwareSetupHolonomicExample.java
 
         //Keep the motors from moving during initialize.
         motorFrontLeft.setPower(MOTOR_STOP);

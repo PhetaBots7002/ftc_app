@@ -12,6 +12,7 @@ import org.firstinspires.ftc.teamcode.ExampleCode.HardwareSetupHolonomicExample;
  * Created by Maddie, FTC Team 4962, The Rockettes
  * version 1.0 Aug 11, 2016
  * This is an Iterative vs Linear program
+ * for TeleOp control with a single controller
  */
 
 /*
@@ -28,7 +29,7 @@ import org.firstinspires.ftc.teamcode.ExampleCode.HardwareSetupHolonomicExample;
         X           X
           X       X
 */
-@TeleOp(name = "Concept: HolonomicDrivetrain", group = "Concept")
+@TeleOp(name = "Example: HolonomicTeleOp", group = "Examples")
 //@Disabled
 public class HolonomicTeleOp extends OpMode {
 
