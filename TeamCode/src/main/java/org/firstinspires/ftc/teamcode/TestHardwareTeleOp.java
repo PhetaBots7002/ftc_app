@@ -23,7 +23,9 @@ import org.firstinspires.ftc.teamcode.ExampleCode.MyBotHardwareSetup;
 @Disabled
 public class TestHardwareTeleOp extends LinearOpMode {
 
-    MyBotHardwareSetup r = new MyBotHardwareSetup(); //hardware configuration uses MyBotHardwareSetup.java located in the ExampleCode folder
+    MyBotHardwareSetup r = new MyBotHardwareSetup();
+    //hardware configuration uses MyBotHardwareSetup.java located in the ExampleCode folder
+    //this hardware setup file is NOT editable.
 
     @Override
     public void runOpMode() throws InterruptedException {
