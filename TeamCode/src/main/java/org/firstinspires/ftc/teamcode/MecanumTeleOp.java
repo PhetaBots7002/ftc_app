@@ -28,16 +28,16 @@ import org.firstinspires.ftc.teamcode.HardwareSetupMecanum;
         X           X
           X       X
 */
-@TeleOp(name = "HolonomicTeleOp", group = "Examples")
+@TeleOp(name = "MecanumTeleOp", group = "Drive")
 //@Disabled
-public class HolonomicTeleOp extends OpMode {
+public class MecanumTeleOp extends OpMode {
 
     HardwareSetupMecanum r     =   new HardwareSetupMecanum();
 
     /**
      * Constructor
      */
-    public HolonomicTeleOp() {
+    public MecanumTeleOp() {
 
     }
 
@@ -48,11 +48,15 @@ public class HolonomicTeleOp extends OpMode {
        * that the names of the devices must match the names used when you
        * configured your robot and created the configuration file.
        */
-        r.init(hardwareMap);  //Initialize hardware from the HardwareHolonomic Setup
+        r.init(hardwareMap);  //Initialize hardware from the Hardware Setup
     }
 
     @Override
     public void loop() {
+        // Display gamepad values to DS
+
+        r.motorLift.setPower(gamepad2.left_stick_y/2);
+        r.servoClamp.setPower(gamepad2.right_stick_x);
 
 
         // left stick controls direction

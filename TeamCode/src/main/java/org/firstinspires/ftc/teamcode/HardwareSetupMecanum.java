@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -19,13 +20,14 @@ public class HardwareSetupMecanum {
     */
 
     //motors
-    public DcMotor motorFrontRight = null;
     public DcMotor motorFrontLeft = null;
-    public DcMotor motorBackRight = null;
+    public DcMotor motorFrontRight = null;
     public DcMotor motorBackLeft = null;
+    public DcMotor motorBackRight = null;
 
+    public DcMotor motorLift = null;
     //servos
-        //Add servos here
+    public CRServo servoClamp = null;
 
     //sensors
         //Add sensors here
@@ -38,7 +40,9 @@ public class HardwareSetupMecanum {
     //final static double CLOSED = 0.2;
     //final static double OPEN = 0.8;
     final static double MOTOR_STOP = 0.0; // sets motor power to zero
-
+    final static double SERVO_STOP = 0.5;
+    final static double OPEN = 1;
+    final static double CLOSE = 0;
     //CR servo variables
         //Add servo variable here
 
@@ -57,10 +61,14 @@ public class HardwareSetupMecanum {
          * MOTOR SECTION
          ************************************************************/
         // Define Motors to match Robot Configuration File
-        motorFrontLeft = hwMap.dcMotor.get("motorFL");
-        motorFrontRight = hwMap.dcMotor.get("motorFR");
-        motorBackLeft = hwMap.dcMotor.get("motorBL");
-        motorBackRight = hwMap.dcMotor.get("motorBR");
+        motorFrontLeft = hwMap.dcMotor.get("FL");
+        motorFrontRight = hwMap.dcMotor.get("FR");
+        motorBackLeft = hwMap.dcMotor.get("BL");
+        motorBackRight = hwMap.dcMotor.get("BR");
+
+        motorLift = hwMap.dcMotor.get("Lift");
+
+        servoClamp = hwMap.crservo.get("Clamp");
 
         // Set the drive motor directions:
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
@@ -74,11 +82,12 @@ public class HardwareSetupMecanum {
         motorBackLeft.setPower(MOTOR_STOP);
         motorBackRight.setPower(MOTOR_STOP);
 
+        motorLift.setPower(MOTOR_STOP);
         /************************************************************
          * SERVO SECTION
          ************************************************************/
+        servoClamp.setPower(SERVO_STOP);
 
-            //Add servo configuration
 
         /************************************************************
          * SENSOR SECTION
