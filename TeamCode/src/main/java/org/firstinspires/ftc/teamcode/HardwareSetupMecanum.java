@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 
 /**
@@ -27,7 +28,7 @@ public class HardwareSetupMecanum {
 
     public DcMotor motorLift = null;
     //servos
-    public CRServo servoClamp = null;
+    public Servo servoClamp    = null;
 
     //sensors
         //Add sensors here
@@ -43,7 +44,12 @@ public class HardwareSetupMecanum {
     final static double SERVO_STOP = 0.5;
     final static double OPEN = 1;
     final static double CLOSE = 0;
+
     //CR servo variables
+    double SpinLeft = 0.0;
+    double SpinRight = 0.7;
+    double STOP = 0.5;
+
         //Add servo variable here
 
    /* Constructor   // this is not required as JAVA does it for you, but useful if you want to add
@@ -68,7 +74,7 @@ public class HardwareSetupMecanum {
 
         motorLift = hwMap.dcMotor.get("Lift");
 
-        servoClamp = hwMap.crservo.get("Clamp");
+        servoClamp = hwMap.servo.get("Clamp");
 
         // Set the drive motor directions:
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
@@ -86,7 +92,7 @@ public class HardwareSetupMecanum {
         /************************************************************
          * SERVO SECTION
          ************************************************************/
-        servoClamp.setPower(SERVO_STOP);
+        servoClamp.setPosition(STOP);
 
 
         /************************************************************

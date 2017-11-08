@@ -55,8 +55,8 @@ public class MecanumTeleOp extends OpMode {
     public void loop() {
         // Display gamepad values to DS
 
-        r.motorLift.setPower(gamepad2.left_stick_y/2);
-        r.servoClamp.setPower(gamepad2.right_stick_x);
+
+
 
 
         // left stick controls direction
@@ -65,6 +65,24 @@ public class MecanumTeleOp extends OpMode {
         float gamepad1LeftY = -gamepad1.left_stick_y;
         float gamepad1LeftX = gamepad1.left_stick_x;
         float gamepad1RightX = gamepad1.right_stick_x;
+
+
+
+        r.motorLift.setPower(-gamepad2.left_stick_y*0.75);
+
+        //CR Servo commands
+        if(gamepad2.x) //button x will spinLeft
+        {
+            r.servoClamp.setPosition(r.SpinLeft);
+        }
+        else if (gamepad2.b) //button y will spinRight
+        {
+            r.servoClamp.setPosition(r.SpinRight);
+        }
+        else
+        {
+            r.servoClamp.setPosition(r.STOP);
+        }
 
         // holonomic formulas
 
