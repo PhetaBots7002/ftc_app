@@ -75,7 +75,7 @@ import org.firstinspires.ftc.teamcode.HardwareSetupMecanum;
  * is explained in {@link ConceptVuforiaNavigation}.
  */
 
-@Autonomous(name="Concept: VuMark Id", group ="Concept")
+@Autonomous(name="VuforiaAutonomous", group ="Phetabot")
 //@Disabled
 public class ConceptVuMarkIdentification extends LinearOpMode {
 
@@ -193,8 +193,8 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
             }//If UNKNOWN
 
             // If the Pattern is found and Identified as CENTER, RIGHT, or LEFT; To run those programs.
-
-
+            //THIS IS WHERE TEH CODES GO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             if (vuMark != RelicRecoveryVuMark.CENTER) {
                 telemetry.addData("VuMark", "%s visible", vuMark);
                 telemetry.update();
@@ -252,7 +252,7 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
 
             telemetry.update();
         }//Whilr OpMode Active
-
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }//run OpMode
 
 

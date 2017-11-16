@@ -1,18 +1,20 @@
 package org.firstinspires.ftc.teamcode;
 
-
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+/*
+ * Concept code from FUSION by Dan
+ * for using encoders with Holonomic drive
+ */
 
-
-
-
+@TeleOp(name = "MecanumTeleOp", group = "Drive")
+@Disabled
 public abstract class DansEncoderCode extends LinearOpMode{
 
     HardwareSetupMecanum r = new HardwareSetupMecanum();

@@ -14,29 +14,30 @@
 */
 package org.firstinspires.ftc.teamcode;
 
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.ExampleCode.HardwareSetupHolonomicExample;
+import org.firstinspires.ftc.teamcode.HardwareSetupMecanum;
 
-@Autonomous(name="Concept: Mecanum AutoByTime", group="Concept")
+@Autonomous(name="Mecanum AutoByTime", group="Phetabot")
 //@Disabled
-public class MecanumAutonmousDriveByTime extends LinearOpMode {
+public class ARed1 extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
 
     /* Define Hardware setup */
-    HardwareSetupHolonomicExample robot     =   new HardwareSetupHolonomicExample();
+    HardwareSetupMecanum r     =   new HardwareSetupMecanum();
     /**
      * Constructor
      */
-    public MecanumAutonmousDriveByTime() {
+    public ARed1() {
     }
 
     @Override
     public void runOpMode() throws InterruptedException {
-        robot.init(hardwareMap);  //Initialize hardware from the HardwareHolonomic Setup
+        r.init(hardwareMap);  //Initialize hardware from the HardwareHolonomic Setup
 
         //adds feedback telemetry to DS
         telemetry.addData("Status", "Initialized");
@@ -47,8 +48,8 @@ public class MecanumAutonmousDriveByTime extends LinearOpMode {
         runtime.reset();
 
         /************************
-         * Autonomous Code Below://
-         *************************/
+         * Autonomous Code Below://!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         *************************///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         DriveForwardTime(DRIVE_POWER, 1000);
         StopDrivingTime(1000);
         DriveForwardTime(-DRIVE_POWER, 1000); //neg power drives backwards
@@ -59,23 +60,10 @@ public class MecanumAutonmousDriveByTime extends LinearOpMode {
         StrafeRight(DRIVE_POWER, 1000);
         StopDrivingTime(1000);
 
-/* currently no Servo configured on bot
-        RaiseArm();
-*/
-        SpinRight(DRIVE_POWER, 2000);
-        StopDrivingTime(1000);
-        SpinRight(DRIVE_POWER/2, 2000);
-        StopDrivingTime(1000);
-
-        SpinLeft(DRIVE_POWER, 2000);
-        StopDrivingTime(1000);
-        SpinLeft(DRIVE_POWER/2, 2000);
-        StopDrivingTime(1000);
-
         StopDriving();
 
     }//runOpMode
-
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     /** Below: Basic Drive Methods used in Autonomous code...**/
     //set Drive Power variable
     double DRIVE_POWER = 1.0;
@@ -83,10 +71,10 @@ public class MecanumAutonmousDriveByTime extends LinearOpMode {
     public void DriveForward(double power)
     {
         // write the values to the motors
-        robot.motorFrontRight.setPower(power);//still need to test motor directions for desired movement
-        robot.motorFrontLeft.setPower(power);
-        robot.motorBackRight.setPower(power);
-        robot.motorBackLeft.setPower(power);
+        r.motorFrontRight.setPower(power);//still need to test motor directions for desired movement
+        r.motorFrontLeft.setPower(-power);
+        r.motorBackRight.setPower(power);
+        r.motorBackLeft.setPower(-power);
     }
 
     public void DriveForwardTime(double power, long time) throws InterruptedException
@@ -105,17 +93,17 @@ public class MecanumAutonmousDriveByTime extends LinearOpMode {
         DriveForwardTime(0, time);
     }
 
-    public void StrafeLeft(double power, long time) throws InterruptedException
+    public void StrafeLeft(double power, long time) throws InterruptedException// Robot Slides to the left
     {
         // write the values to the motors
-        robot.motorFrontRight.setPower(power);
-        robot.motorFrontLeft.setPower(-power);
-        robot.motorBackRight.setPower(-power);
-        robot.motorBackLeft.setPower(power);
+        r.motorFrontRight.setPower(power);
+        r.motorFrontLeft.setPower(power);
+        r.motorBackRight.setPower(-power);
+        r.motorBackLeft.setPower(-power);
         Thread.sleep(time);
     }
 
-    public void StrafeRight(double power, long time) throws InterruptedException
+    public void StrafeRight(double power, long time) throws InterruptedException// Robot Slides to the Right
     {
         StrafeLeft(-power, time);
     }
@@ -123,10 +111,10 @@ public class MecanumAutonmousDriveByTime extends LinearOpMode {
     public void SpinRight (double power, long time) throws InterruptedException
     {
         // write the values to the motors
-        robot.motorFrontRight.setPower(-power);
-        robot.motorFrontLeft.setPower(power);
-        robot.motorBackRight.setPower(-power);
-        robot.motorBackLeft.setPower(power);
+        r.motorFrontRight.setPower(-power);
+        r.motorFrontLeft.setPower(-power);
+        r.motorBackRight.setPower(-power);
+        r.motorBackLeft.setPower(-power);
         Thread.sleep(time);
     }
 
@@ -138,16 +126,16 @@ public class MecanumAutonmousDriveByTime extends LinearOpMode {
 
 /*** Currently no Servo configured in Holonomic Hardware setup
 
-    public void RaiseArm()
-    {
-        robot.armServo.setPosition(.8); //note: uses servo instead of motor.
-    }
+ public void RaiseArm()
+ {
+ r.armServo.setPosition(.8); //note: uses servo instead of motor.
+ }
 
-    public void LowerArm()
-    {
-        robot.armServo.setPosition(.2);
-    }
-*/
+ public void LowerArm()
+ {
+ r.armServo.setPosition(.2);
+ }
+ */
 
 
 }//TestAutoDriveByTime

@@ -1,22 +1,13 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.HardwareSetupMecanum;
 
-/**
- *
- * Created by Maddie, FTC Team 4962, The Rockettes
- * version 1.0 Aug 11, 2016
- * This is an Iterative vs Linear program
- * for TeleOp control with a single controller
- */
-
 /*
-   Holonomic concepts from:
-   http://www.vexforum.com/index.php/12370-holonomic-drives-2-0-a-video-tutorial-by-cody/0
    Robot wheel mapping:
           X FRONT X
         X           X
@@ -28,7 +19,7 @@ import org.firstinspires.ftc.teamcode.HardwareSetupMecanum;
         X           X
           X       X
 */
-@TeleOp(name = "MecanumTeleOp", group = "Drive")
+@TeleOp(name = "MecanumTeleOp", group = "Phetabot")
 //@Disabled
 public class MecanumTeleOp extends OpMode {
 
@@ -44,52 +35,27 @@ public class MecanumTeleOp extends OpMode {
     @Override
     public void init() {
       /*
-       * Use the hardwareMap to get the dc motors and servos by name. Note
-       * that the names of the devices must match the names used when you
-       * configured your robot and created the configuration file.
+        Uses HardwareSetupMecanum and Initializes.
        */
         r.init(hardwareMap);  //Initialize hardware from the Hardware Setup
     }
 
     @Override
     public void loop() {
-        // Display gamepad values to DS
+//First Person View Drive
+            // left stick controls direction
+            // right stick X controls rotation
 
-
-
-
-
-        // left stick controls direction
-        // right stick X controls rotation
-
-        float gamepad1LeftY = -gamepad1.left_stick_y;
+            float gamepad1LeftY = -gamepad1.left_stick_y;
         float gamepad1LeftX = gamepad1.left_stick_x;
         float gamepad1RightX = gamepad1.right_stick_x;
 
-
-
-        r.motorLift.setPower(-gamepad2.left_stick_y*0.75);
-
-        //CR Servo commands
-        if(gamepad2.x) //button x will spinLeft
-        {
-            r.servoClamp.setPosition(r.SpinLeft);
-        }
-        else if (gamepad2.b) //button y will spinRight
-        {
-            r.servoClamp.setPosition(r.SpinRight);
-        }
-        else
-        {
-            r.servoClamp.setPosition(r.STOP);
-        }
-
         // holonomic formulas
 
-        float FrontLeft = -gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
+        float FrontLeft = -gamepad1LeftY - gamepad1LeftX - gamepad1RightX;  // neg gamepad1LeftY values for LeftMotors reverses direction of opposing motors
         float FrontRight = gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
         float BackRight = gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
-        float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
+        float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightX;   // neg gamepad1LeftY values for LeftMotors reverses direction of opposing motors
 
         // clip the right/left values so that the values never exceed +/- 1
         FrontRight = Range.clip(FrontRight, -1, 1);
@@ -103,15 +69,82 @@ public class MecanumTeleOp extends OpMode {
         r.motorBackLeft.setPower(BackLeft);
         r.motorBackRight.setPower(BackRight);
 
+
+        //Lift commands, if encoder clicks more than 0, then can lift with left_stick_y.
+        //If encoder clicks greater than 1500, than dont move.
+
+        if (gamepad2.right_bumper && r.motorLift.getCurrentPosition() > 0.0) //bumper pressed AND encoder greater that lower limit
+        {
+            r.motorLift.setPower(-gamepad2.right_trigger / 2.0); // let trigger run -motor UP
+        }
+//
+        else if (!gamepad2.right_bumper && r.motorLift.getCurrentPosition() < 5100.0) //bumper NOT pressed AND encoder less than Max limit
+        {
+            r.motorLift.setPower(gamepad2.right_trigger / 2.0); //let trigger run +motor DOWN
+        }
+
+        else
+        {
+            r.motorLift.setPower(0.0); // else not trigger, then set to off or some value of 'hold' power
+        }
+
+
+ //CR Servo commands
+        if(gamepad2.b) //button b will spinLeft open
+        {
+            r.servoClamp.setPosition(r.SpinLeft);
+        }
+        else if (gamepad2.x) //button x will spinRight close
+        {
+            r.servoClamp.setPosition(r.SpinRight);
+        }
+        else
+        {
+            r.servoClamp.setPosition(r.STOP);
+        }
+
+//BallKnocker Extention and Retraction.
+  /*      if (gamepad2.dpad_right)
+        {
+            r.servo1.setPosition(r.SpinLeft);
+            r.servo2.setPosition(r.SpinRight);
+        }
+        else if (gamepad2.dpad_left)
+        {
+            r.servo1.setPosition(r.SpinRight);
+            r.servo2.setPosition(r.SpinLeft);
+        }
+        else
+        {
+            r.servo1.setPosition(r.STOP);
+            r.servo2.setPosition(r.STOP);
+        }
+// Thingy Flips down and back up
+        if (gamepad2.dpad_down)
+        {
+            r.servo180.setPosition(0.25);
+        }
+        if (gamepad2.dpad_up)
+        {
+            r.servo180.setPosition(1);
+        }
+    */
+
+
+
       /*
        * Telemetry for debugging
        */
-        telemetry.addData("Text", "*** Robot Data***");
+       /* telemetry.addData("Text", "*** Robot Data***");
         telemetry.addData("Joy XL YL XR",  String.format("%.2f", gamepad1LeftX) + " " + String.format("%.2f", gamepad1LeftY) + " " +  String.format("%.2f", gamepad1RightX));
         telemetry.addData("f left pwr",  "front left  pwr: " + String.format("%.2f", FrontLeft));
         telemetry.addData("f right pwr", "front right pwr: " + String.format("%.2f", FrontRight));
         telemetry.addData("b right pwr", "back right pwr: " + String.format("%.2f", BackRight));
         telemetry.addData("b left pwr", "back left pwr: " + String.format("%.2f", BackLeft));
+       */
+        // Display running time and Encoder value
+        telemetry.addData("Encoder Clicks", + r.motorLift.getCurrentPosition());
+        telemetry.update();
 
     }
 
