@@ -50,16 +50,19 @@ public class ABlue1 extends LinearOpMode {
         /************************
          * Autonomous Code Below://!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
          *************************///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        DriveForwardTime(DRIVE_POWER, 1000);
-        StopDrivingTime(1000);
-        DriveForwardTime(-DRIVE_POWER, 1000); //neg power drives backwards
-        StopDrivingTime(1000);
+        DriveForwardTime(DRIVE_POWER, 2000);
+        StopDrivingTime(500);
 
-        StrafeLeft(DRIVE_POWER, 1000);
-        StopDrivingTime(1000);
-        StrafeRight(DRIVE_POWER, 1000);
-        StopDrivingTime(1000);
+        SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
+        StopDrivingTime(500);
 
+        DriveForwardTime(DRIVE_POWER, 600);
+        StopDrivingTime(500);
+
+        Drop(0.2, 500);
+        StopDrivingTime(500);
+
+        DriveForwardTime(-DRIVE_POWER, 500);
 
         StopDriving();
 
@@ -119,11 +122,22 @@ public class ABlue1 extends LinearOpMode {
         Thread.sleep(time);
     }
 
+
     public void SpinLeft (double power, long time) throws InterruptedException
     {
         SpinRight(-power, time);
     }
 
+
+    //Drops or grabs Glyph
+    public void Drop (double power, long time) throws InterruptedException
+    {
+        r.servoClamp.setPosition(0.2);
+    }
+    public void Grab (double power, long time) throws InterruptedException
+    {
+        r.servoClamp.setPosition(0.7);
+    }
 
 /*** Currently no Servo configured in Holonomic Hardware setup
 
