@@ -21,7 +21,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.HardwareSetupMecanum;
 
-@Autonomous(name="Mecanum AutoByTime", group="Phetabot")
+@Autonomous(name="Autonomousred1", group="Phetabot")
 //@Disabled
 public class ARed2 extends LinearOpMode {
 
