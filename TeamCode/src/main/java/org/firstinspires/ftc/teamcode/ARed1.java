@@ -21,7 +21,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.HardwareSetupMecanum;
 
-@Autonomous(name="Ared2", group="Phetabot")
+@Autonomous(name="Ared1", group="Phetabot")
 //@Disabled
 public class ARed1 extends LinearOpMode {
 
@@ -50,7 +50,7 @@ public class ARed1 extends LinearOpMode {
         /************************
          * Autonomous Code Below://!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
          *************************///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        DriveForwardTime(DRIVE_POWER, 2000);
+        DriveForwardTime(DRIVE_POWER, 1060);
         StopDrivingTime(500);
 
         SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
@@ -62,7 +62,7 @@ public class ARed1 extends LinearOpMode {
         Drop(0.2, 500);
         StopDrivingTime(500);
 
-        DriveForwardTime(-DRIVE_POWER, 500);
+        DriveForwardTime(-DRIVE_POWER, 100);
 
         StopDriving();
 

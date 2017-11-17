@@ -53,7 +53,7 @@ public class ABlue2 extends LinearOpMode {
         DriveForwardTime(DRIVE_POWER, 1000);
         StopDrivingTime(500);
 
-        StrafeRight(DRIVE_POWER, 1000); //neg power drives backwards
+        StrafeRight(DRIVE_POWER, 500); //neg power drives backwards
         StopDrivingTime(500);
 
         DriveForwardTime(DRIVE_POWER, 500);
