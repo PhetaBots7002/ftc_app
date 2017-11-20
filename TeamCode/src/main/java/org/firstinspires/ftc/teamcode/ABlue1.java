@@ -50,7 +50,7 @@ public class ABlue1 extends LinearOpMode {
         /************************
          * Autonomous Code Below://!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
          *************************///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        DriveForwardTime(DRIVE_POWER, 1060);
+        DriveForwardTime(DRIVE_POWER, 1150);
         StopDrivingTime(500);
 
         SpinLeft(DRIVE_POWER, 1000); //neg power drives backwards
@@ -59,12 +59,11 @@ public class ABlue1 extends LinearOpMode {
         DriveForwardTime(DRIVE_POWER, 600);
         StopDrivingTime(500);
 
-        Drop(0.2, 500);
+        Drop(0, 800);
+        StopDrivingTime(1000);
+
+        DriveForwardTime(-DRIVE_POWER, 250);
         StopDrivingTime(500);
-
-        DriveForwardTime(-DRIVE_POWER, 100);
-
-        StopDriving();
 
     }//runOpMode
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -132,7 +131,7 @@ public class ABlue1 extends LinearOpMode {
     //Drops or grabs Glyph
     public void Drop (double power, long time) throws InterruptedException
     {
-        r.servoClamp.setPosition(0.2);
+        r.servoClamp.setPosition(0.1);
     }
     public void Grab (double power, long time) throws InterruptedException
     {

@@ -1,11 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
-
-import org.firstinspires.ftc.teamcode.HardwareSetupMecanum;
 
 /*
    Robot wheel mapping:
@@ -19,16 +16,16 @@ import org.firstinspires.ftc.teamcode.HardwareSetupMecanum;
         X           X
           X       X
 */
-@TeleOp(name = "MecanumTeleOp", group = "Phetabot")
-@Disabled
-public class MecanumTeleOp extends OpMode {
+@TeleOp(name = "MecanumTeleOpV2", group = "Phetabot")
+//@Disabled
+public class MecanumTeleOpV2 extends OpMode {
 
     HardwareSetupMecanum r     =   new HardwareSetupMecanum();
 
     /**
      * Constructor
      */
-    public MecanumTeleOp() {
+    public MecanumTeleOpV2() {
 
     }
 
@@ -73,12 +70,12 @@ public class MecanumTeleOp extends OpMode {
         //Lift commands, if encoder clicks more than 0, then can lift with left_stick_y.
         //If encoder clicks greater than 1500, than dont move.
 
-        if (gamepad2.right_bumper && r.motorLift.getCurrentPosition() > 0.0) //bumper pressed AND encoder greater that lower limit
+        if (gamepad2.left_trigger > 0.0 && gamepad2.right_trigger == 0.0 && r.motorLift.getCurrentPosition() > 0.0) // encoder greater that lower limit
         {
-            r.motorLift.setPower(-gamepad2.right_trigger / 2.0); // let trigger run -motor UP
+            r.motorLift.setPower(-gamepad2.left_trigger / 2.0); // let trigger run -motor UP
         }
 //
-        else if (!gamepad2.right_bumper && r.motorLift.getCurrentPosition() < 5100.0) //bumper NOT pressed AND encoder less than Max limit
+        else if (gamepad2.right_trigger > 0.0 && gamepad2.left_trigger == 0.0 && r.motorLift.getCurrentPosition() < 5100.0) //encoder less than Max limit
         {
             r.motorLift.setPower(gamepad2.right_trigger / 2.0); //let trigger run +motor DOWN
         }

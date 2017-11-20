@@ -19,11 +19,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.HardwareSetupMecanum;
-
-@Autonomous(name="Ared2", group="Phetabot")
+@Autonomous(name="Ablue2Color", group="Phetabot")
 //@Disabled
-public class ARed2 extends LinearOpMode {
+public class ABlue2Colorsensor extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -32,7 +30,7 @@ public class ARed2 extends LinearOpMode {
     /**
      * Constructor
      */
-    public ARed2() {
+    public ABlue2Colorsensor() {
     }
 
     @Override
@@ -53,14 +51,14 @@ public class ARed2 extends LinearOpMode {
         DriveForwardTime(DRIVE_POWER, 600);
         StopDrivingTime(500);
 
-        StrafeLeft(DRIVE_POWER, 565); //neg power drives backwards
+        StrafeRight(DRIVE_POWER, 500); //neg power drives backwards
         StopDrivingTime(500);
 
         DriveForwardTime(DRIVE_POWER, 500);
         StopDrivingTime(500);
 
-        Drop(0, 1000);
-        StopDrivingTime(500);
+        Drop(0.2, 500);
+        StopDrivingTime(1000);
 
         DriveForwardTime(-DRIVE_POWER, 100);
 
@@ -129,7 +127,7 @@ public class ARed2 extends LinearOpMode {
     //Drops or grabs Glyph
     public void Drop (double power, long time) throws InterruptedException
     {
-        r.servoClamp.setPosition(0.1);
+        r.servoClamp.setPosition(0.2);
     }
     public void Grab (double power, long time) throws InterruptedException
     {
