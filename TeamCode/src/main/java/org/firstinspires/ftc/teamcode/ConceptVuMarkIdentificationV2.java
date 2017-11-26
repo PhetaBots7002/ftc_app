@@ -1,36 +1,8 @@
-/* Copyright (c) 2017 FIRST. All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted (subject to the limitations in the disclaimer below) provided that
- * the following conditions are met:
- *
- * Redistributions of source code must retain the above copyright notice, this list
- * of conditions and the following disclaimer.
- *
- * Redistributions in binary form must reproduce the above copyright notice, this
- * list of conditions and the following disclaimer in the documentation and/or
- * other materials provided with the distribution.
- *
- * Neither the name of FIRST nor the names of its contributors may be used to endorse or
- * promote products derived from this software without specific prior written permission.
- *
- * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS
- * LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.ConceptVuforiaNavigation;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -50,34 +22,20 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 /**
  * This OpMode illustrates the basics of using the Vuforia engine to determine
  * the identity of Vuforia VuMarks encountered on the field. The code is structured as
- * a LinearOpMode. It shares much structure with {@link ConceptVuforiaNavigation}; we do not here
- * duplicate the core Vuforia documentation found there, but rather instead focus on the
- * differences between the use of Vuforia for navigation vs VuMark identification.
+ * a LinearOpMode.
  *
- * @see ConceptVuforiaNavigation
- * @see VuforiaLocalizer
- * @see VuforiaTrackableDefaultListener
- * see  ftc_app/doc/tutorial/FTC_FieldCoordinateSystemDefinition.pdf
- * <p>
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list.
- * <p>
+ *
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained in {@link ConceptVuforiaNavigation}.
  */
 
-@Autonomous(name="VuforiaAutonomousV2", group ="Phetabot")
-//@Disabled
+@Autonomous(name="VuMark 2", group ="Concept")
+@Disabled
 public class ConceptVuMarkIdentificationV2 extends LinearOpMode {
 
-    private ElapsedTime runtime = new ElapsedTime();
-
-
-    HardwareSetupMecanum robot = new HardwareSetupMecanum();
-
-    public ConceptVuMarkIdentificationV2() {
-    }
-
+    HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
 
     public static final String TAG = "Vuforia VuMark Sample";
 
@@ -89,10 +47,9 @@ public class ConceptVuMarkIdentificationV2 extends LinearOpMode {
      */
     VuforiaLocalizer vuforia;
 
-    @Override
-    public void runOpMode() throws InterruptedException { //Infer.InferenceException
+    @Override public void runOpMode() throws InterruptedException {
 
-        robot.init(hardwareMap);  //Initialize hardware from the HardwareHolonomic Setup
+        r.init(hardwareMap); // get initializatin of hardware from HardwareSetUp class
 
         /*
          * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
@@ -105,16 +62,7 @@ public class ConceptVuMarkIdentificationV2 extends LinearOpMode {
         // VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
         /*
-         * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
-         * 'parameters.vuforiaLicenseKey' is initialized is for illustration only, and will not function.
-         * A Vuforia 'Development' license key, can be obtained free of charge from the Vuforia developer
-         * web site at https://developer.vuforia.com/license-manager.
-         *
-         * Vuforia license keys are always 380 characters long, and look as if they contain mostly
-         * random data. As an example, here is a example of a fragment of a valid key:
-         *      ... yIgIzTqZ4mWjk9wd3cZO9T1axEqzuhxoGlfOOI2dRzKS4T0hQ8kT ...
-         * Once you've obtained a license key, copy the string from the Vuforia web site
-         * and paste it in to your code onthe next line, between the double quotes.
+         * licence key for rreynolds
          */
         parameters.vuforiaLicenseKey = "AYvZYCv/////AAAAGcq+NLqQak55ndA8c/UZSNyBVvxcRtiV+muNZrfuXQj38UFKNMDyndfU3J8h95GCDmnCJZf5rEfxbLbdsACtw23yyQAPGiKKHk8GpugjeBT89+Nb5t9vmBn8LgVNPK5SpXcCWP7Ae7Te53Hf3kmwl0STZPFAXU4TGmicC4MUKRcZo26wRGxV4uP9ISgjB8b8N5RkDouhVB6HTG8TC3NUM6AEOPY6W47NImC5Fl/0iCV+6x4+lSwKwqv5uZE2tiYpZpj7UVekeo5NLXhsqAIJqH2Tgb1IoGs5VD2RuPYNuRznIePoNUO5l+jxloy4EFSIyogD4FYOfMwwW/BILD1FuHJ0jEmdZ/hPJUb9iOlp5MBz";
 
@@ -123,7 +71,7 @@ public class ConceptVuMarkIdentificationV2 extends LinearOpMode {
          * Here we chose the back (HiRes) camera (for greater range), but
          * for a competition robot, the front camera might be more convenient.
          */
-        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;// change to front
+        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
         this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
 
         /**
@@ -148,108 +96,47 @@ public class ConceptVuMarkIdentificationV2 extends LinearOpMode {
              * See if any of the instances of {@link relicTemplate} are currently visible.
              * {@link RelicRecoveryVuMark} is an enum which can have the following values:
              * UNKNOWN, LEFT, CENTER, and RIGHT. When a VuMark is visible, something other than
-             * UNKNOWN will be returned by {@link RelicRecoveryVuMark#from(VuforiaTrackable)}.
+             * UNKNOWN will be returned, else 'NOT VISIBLE' will display
              */
-            RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
 
-            if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
+            RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
 
-                /* Found an instance of the template. In the actual game, you will probably
-                 * loop until this condition occurs, then move on to act accordingly depending
-                 * on which VuMark was visible. */
+            if (vuMark != RelicRecoveryVuMark.UNKNOWN) // if vuMark is NOT UNKNOWN run autoCode for value seen
+            {
+
                 telemetry.addData("VuMark", "%s visible", vuMark);
+                telemetry.update();
 
-                /* For fun, we also exhibit the navigational pose. In the Relic Recovery game,
-                 * it is perhaps unlikely that you will actually need to act on this pose information, but
-                 * we illustrate it nevertheless, for completeness. */
-                OpenGLMatrix pose = ((VuforiaTrackableDefaultListener) relicTemplate.getListener()).getPose();
-                telemetry.addData("Pose", format(pose));
+                // This simple example code runs a different motor for 1 sec then turns it off
+                // for each TemplateID found.
+                // the run motor test can be replaced by your desired autonomous code.
 
-                /* We further illustrate how to decompose the pose into useful rotational and
-                 * translational components */
-                if (pose != null) {
-                    VectorF trans = pose.getTranslation();
-                    Orientation rot = Orientation.getOrientation(pose, AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
-
-                    // Extract the X, Y, and Z components of the offset of the target relative to the robot
-                    double tX = trans.get(0);
-                    double tY = trans.get(1);
-                    double tZ = trans.get(2);
-
-                    // Extract the rotational components of the target relative to the robot
-                    double rX = rot.firstAngle;
-                    double rY = rot.secondAngle;
-                    double rZ = rot.thirdAngle;
+                if (vuMark == RelicRecoveryVuMark.LEFT) {
+                    // autonomous code here...
+                   StrafeLeft(DRIVE_POWER, 500);
+                    StopDriving();
                 }
-            }//If UNKNOWN
+                else if (vuMark == RelicRecoveryVuMark.CENTER){
+                    // autonomous code here...
+                    DriveForwardTime(-DRIVE_POWER, 500);
+                    StopDriving();
+                }
+                else if (vuMark == RelicRecoveryVuMark.RIGHT){
+                    // autonomous code here...StrafeRight(DRIVE_POWER, 500);
+                    StrafeRight(DRIVE_POWER, 500);
+                    StopDriving();
+                }
 
-            // If the Pattern is found and Identified as CENTER, RIGHT, or LEFT; To run those programs.
-            //THIS IS WHERE TEH CODES GO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            if (vuMark != RelicRecoveryVuMark.CENTER) {
-                telemetry.addData("VuMark", "%s visible", vuMark);
-                telemetry.update();
-
-                StrafeLeft(DRIVE_POWER, 1000);
-                StopDrivingTime(500);
-                DriveForwardTime(DRIVE_POWER, 1000);
-                StopDrivingTime(500);
-                StrafeRight(DRIVE_POWER, 1000);
-                StopDrivingTime(500);
-                DriveForwardTime(-DRIVE_POWER, 1000);
-                StopDriving();
-
-
-            }//If CENTER
-
-            if (vuMark != RelicRecoveryVuMark.LEFT) {
-                telemetry.addData("VuMark", "%s visible", vuMark);
-                telemetry.update();
-
-                StrafeLeft(DRIVE_POWER, 1000);
-                StopDrivingTime(500);
-                StrafeRight(DRIVE_POWER, 1000);
-                StopDrivingTime(500);
-                StrafeLeft(DRIVE_POWER, 1000);
-                StopDrivingTime(500);
-                StrafeRight(DRIVE_POWER, 1000);
-                StopDriving();
-
-            }//If LEFT
-
-
-            if (vuMark != RelicRecoveryVuMark.RIGHT) {
-                telemetry.addData("VuMark", "%s visible", vuMark);
-                telemetry.update();
-
-                DriveForwardTime(1, 1000);
-                StopDrivingTime(500);
-                SpinRight(DRIVE_POWER, 1000);
-                StopDrivingTime(500);
-                DriveForwardTime(DRIVE_POWER, 1000);
-                StopDrivingTime(500);
-                SpinLeft(DRIVE_POWER, 1000);
-                StopDrivingTime(500);
-                DriveForwardTime(DRIVE_POWER, 1000);
-                StopDriving();
-
-
-            }//If RIGHT
-
-
+                // *** need to figure out how to end opModeIsActive once code has been run
+            }
             else {
-                telemetry.addData("VuMark", "not visible");
+                telemetry.addData("VuMark", "NOT VISIBLE"); // else if vuMark IS UNKNOWN display NOT VISABLE
             }
 
             telemetry.update();
-        }//Whilr OpMode Active
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    }//run OpMode
 
-
-    String format(OpenGLMatrix transformationMatrix) {
-        return (transformationMatrix != null) ? transformationMatrix.formatAsTransform() : "null";
-    }
+        }//OpModeIsActive
+    }//runOpMode
 
 
 
@@ -257,68 +144,71 @@ public class ConceptVuMarkIdentificationV2 extends LinearOpMode {
     //set Drive Power variable
     double DRIVE_POWER = 1.0;
 
-    public void DriveForward(double power) {
+    public void DriveForward(double power)
+    {
         // write the values to the motors
-        robot.motorFrontRight.setPower(power);//still need to test motor directions for desired movement
-        robot.motorFrontLeft.setPower(power);
-        robot.motorBackRight.setPower(power);
-        robot.motorBackLeft.setPower(power);
+        r.motorFrontRight.setPower(power);//still need to test motor directions for desired movement
+        r.motorFrontLeft.setPower(-power);
+        r.motorBackRight.setPower(power);
+        r.motorBackLeft.setPower(-power);
     }
 
-    public void DriveForwardTime(double power, long time) throws InterruptedException {
+    public void DriveForwardTime(double power, long time) throws InterruptedException
+    {
         DriveForward(power);
         Thread.sleep(time);
     }
 
-    public void StopDriving() {
+    public void StopDriving()
+    {
         DriveForward(0);
     }
 
-    public void StopDrivingTime(long time) throws InterruptedException {
+    public void StopDrivingTime(long time) throws InterruptedException
+    {
         DriveForwardTime(0, time);
     }
 
-    public void StrafeLeft(double power, long time) throws InterruptedException {
+    public void StrafeLeft(double power, long time) throws InterruptedException// Robot Slides to the left
+    {
         // write the values to the motors
-        robot.motorFrontRight.setPower(power);
-        robot.motorFrontLeft.setPower(-power);
-        robot.motorBackRight.setPower(-power);
-        robot.motorBackLeft.setPower(power);
+        r.motorFrontRight.setPower(power);
+        r.motorFrontLeft.setPower(power);
+        r.motorBackRight.setPower(-power);
+        r.motorBackLeft.setPower(-power);
         Thread.sleep(time);
     }
 
-    public void StrafeRight(double power, long time) throws InterruptedException {
+    public void StrafeRight(double power, long time) throws InterruptedException// Robot Slides to the Right
+    {
         StrafeLeft(-power, time);
     }
 
-    public void SpinRight(double power, long time) throws InterruptedException {
+    public void SpinRight (double power, long time) throws InterruptedException
+    {
         // write the values to the motors
-        robot.motorFrontRight.setPower(-power);
-        robot.motorFrontLeft.setPower(power);
-        robot.motorBackRight.setPower(-power);
-        robot.motorBackLeft.setPower(power);
+        r.motorFrontRight.setPower(-power);
+        r.motorFrontLeft.setPower(-power);
+        r.motorBackRight.setPower(-power);
+        r.motorBackLeft.setPower(-power);
         Thread.sleep(time);
     }
 
-    public void SpinLeft(double power, long time) throws InterruptedException {
+    public void SpinLeft (double power, long time) throws InterruptedException
+    {
         SpinRight(-power, time);
     }
 
-
-    /*** Currently no Servo configured in Holonomic Hardware setup
-
-     public void RaiseArm()
-     {
-     robot.armServo.setPosition(.8); //note: uses servo instead of motor.
-     }
-
-     public void LowerArm()
-     {
-     robot.armServo.setPosition(.2);
-     }
-     ***/
-
-}//ConceptVuMarkIdentification
+    //Drops or grabs Glyph
+    public void Drop (double power, long time) throws InterruptedException
+    {
+        r.servoClamp.setPosition(0.1);
+    }
+    public void Grab (double power, long time) throws InterruptedException
+    {
+        r.servoClamp.setPosition(0.3);
+    }
 
 
 
+}//MyConceptVuforia

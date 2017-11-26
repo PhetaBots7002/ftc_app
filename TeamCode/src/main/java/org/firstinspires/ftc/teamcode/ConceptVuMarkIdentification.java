@@ -75,8 +75,8 @@ import org.firstinspires.ftc.teamcode.HardwareSetupMecanum;
  * is explained in {@link ConceptVuforiaNavigation}.
  */
 
-@Autonomous(name="VuforiaAutonomous", group ="Phetabot")
-@Disabled
+@Autonomous(name="VuMark 1", group ="Phetabot")
+//@Disabled
 public class ConceptVuMarkIdentification extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
