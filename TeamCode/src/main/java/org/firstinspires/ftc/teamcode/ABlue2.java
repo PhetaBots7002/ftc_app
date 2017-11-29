@@ -32,7 +32,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  */
 
 @Autonomous(name="Blue2", group ="Concept")
-@Disabled
+//@Disabled
 public class ABlue2 extends LinearOpMode {
 
     HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
@@ -132,38 +132,40 @@ public class ABlue2 extends LinearOpMode {
                 }
                 else if (vuMark == RelicRecoveryVuMark.CENTER){
                     // autonomous code here...
-                    DriveForwardTime(DRIVE_POWER, 1300);
-                    StopDrivingTime(500);
-
-                    SpinLeft(DRIVE_POWER, 1000); //neg power drives backwards
-                    StopDrivingTime(500);
-
                     DriveForwardTime(DRIVE_POWER, 600);
                     StopDrivingTime(500);
 
-                    Drop(0, 800);
+                    StrafeRight(DRIVE_POWER, 500); //neg power drives backwards
+                    StopDrivingTime(500);
+
+                    DriveForwardTime(DRIVE_POWER, 650);
+                    StopDrivingTime(500);
+
+                    Drop(0.2, 500);
                     StopDrivingTime(1000);
 
-                    DriveForwardTime(-DRIVE_POWER, 250);
-                    StopDrivingTime(500);
+                    DriveForwardTime(-DRIVE_POWER, 100);
+
+                    StopDriving();
                     break;
                 }
                 else if (vuMark == RelicRecoveryVuMark.RIGHT){
                     // autonomous code here...StrafeRight(DRIVE_POWER, 500);
-                    DriveForwardTime(DRIVE_POWER, 1450);
+                    DriveForwardTime(DRIVE_POWER, 800);
                     StopDrivingTime(500);
 
-                    SpinLeft(DRIVE_POWER, 1000); //neg power drives backwards
+                    StrafeRight(DRIVE_POWER, 500); //neg power drives backwards
                     StopDrivingTime(500);
 
-                    DriveForwardTime(DRIVE_POWER, 600);
+                    DriveForwardTime(DRIVE_POWER, 500);
                     StopDrivingTime(500);
 
-                    Drop(0, 800);
+                    Drop(0.2, 500);
                     StopDrivingTime(1000);
 
-                    DriveForwardTime(-DRIVE_POWER, 250);
-                    StopDrivingTime(500);
+                    DriveForwardTime(-DRIVE_POWER, 100);
+
+                    StopDriving();
                     break;
                 }
 

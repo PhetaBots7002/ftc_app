@@ -49,7 +49,10 @@ public class HardwareSetupMecanum {
     double SpinRight = 0.7;
     double STOP = 0.5;      //CR servo Stopped
 
-   /* Constructor   // this is not required as JAVA does it for you, but useful if you want to add
+    boolean buttonPressed  = false;  //Keeps track of whether the button was previously pressed or not so we know when it is released
+
+
+    /* Constructor   // this is not required as JAVA does it for you, but useful if you want to add
     * function to this method when called in OpModes.
     */
     public HardwareSetupMecanum() {
@@ -64,8 +67,8 @@ public class HardwareSetupMecanum {
          * MOTOR SECTION
          ************************************************************/
         // Define Motors to match Robot Configuration File
-        motorFrontLeft = hwMap.dcMotor.get("FL"); //port 1
-        motorFrontRight = hwMap.dcMotor.get("FR");//port 0
+        motorFrontLeft = hwMap.dcMotor.get("FL"); //port 0
+        motorFrontRight = hwMap.dcMotor.get("FR");//port 1
         motorBackLeft = hwMap.dcMotor.get("BL");  //port 2
         motorBackRight = hwMap.dcMotor.get("BR"); //port 3
 

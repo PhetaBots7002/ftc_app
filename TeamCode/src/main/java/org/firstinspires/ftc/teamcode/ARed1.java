@@ -32,7 +32,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  */
 
 @Autonomous(name="Red1", group ="Concept")
-@Disabled
+//@Disabled
 public class ARed1 extends LinearOpMode {
 
     HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
@@ -113,21 +113,20 @@ public class ARed1 extends LinearOpMode {
 
                 if (vuMark == RelicRecoveryVuMark.LEFT) {
                     // autonomous code here...
+                    DriveForwardTime(DRIVE_POWER, 1500);
+                    StopDrivingTime(500);
+
+                    SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
+                    StopDrivingTime(500);
+
                     DriveForwardTime(DRIVE_POWER, 600);
                     StopDrivingTime(500);
 
-                    StrafeRight(DRIVE_POWER, 500); //neg power drives backwards
+                    Drop(0, 500);
                     StopDrivingTime(500);
 
-                    DriveForwardTime(DRIVE_POWER, 500);
+                    DriveForwardTime(-DRIVE_POWER, 250);
                     StopDrivingTime(500);
-
-                    Drop(0.2, 500);
-                    StopDrivingTime(1000);
-
-                    DriveForwardTime(-DRIVE_POWER, 100);
-
-                    StopDriving();
                     break;
                 }
                 else if (vuMark == RelicRecoveryVuMark.CENTER){
@@ -135,14 +134,14 @@ public class ARed1 extends LinearOpMode {
                     DriveForwardTime(DRIVE_POWER, 1300);
                     StopDrivingTime(500);
 
-                    SpinLeft(DRIVE_POWER, 1000); //neg power drives backwards
+                    SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
                     StopDrivingTime(500);
 
                     DriveForwardTime(DRIVE_POWER, 600);
                     StopDrivingTime(500);
 
-                    Drop(0, 800);
-                    StopDrivingTime(1000);
+                    Drop(0, 500);
+                    StopDrivingTime(500);
 
                     DriveForwardTime(-DRIVE_POWER, 250);
                     StopDrivingTime(500);

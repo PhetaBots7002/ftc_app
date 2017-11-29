@@ -32,7 +32,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  */
 
 @Autonomous(name="Red2", group ="Concept")
-@Disabled
+//@Disabled
 public class ARed2 extends LinearOpMode {
 
     HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
@@ -116,7 +116,7 @@ public class ARed2 extends LinearOpMode {
                     DriveForwardTime(DRIVE_POWER, 650);
                     StopDrivingTime(500);
 
-                    StrafeRight(DRIVE_POWER, 500); //neg power drives backwards
+                    StrafeLeft(DRIVE_POWER, 800); //neg power drives backwards
                     StopDrivingTime(500);
 
                     DriveForwardTime(DRIVE_POWER, 500);
@@ -155,7 +155,7 @@ public class ARed2 extends LinearOpMode {
                     StopDrivingTime(500);
 
 
-                    StrafeLeft(DRIVE_POWER, 565); //neg power drives backwards
+                    StrafeLeft(DRIVE_POWER, 350); //neg power drives backwards
                     StopDrivingTime(500);
 
                     DriveForwardTime(DRIVE_POWER, 500);

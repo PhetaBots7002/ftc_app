@@ -61,10 +61,26 @@ public class MecanumTeleOpV2 extends OpMode {
         BackRight = Range.clip(BackRight, -1, 1);
 
         // write the values to the motors
-        r.motorFrontRight.setPower(FrontRight);
-        r.motorFrontLeft.setPower(FrontLeft);
-        r.motorBackLeft.setPower(BackLeft);
-        r.motorBackRight.setPower(BackRight);
+
+
+
+        if(gamepad1.left_trigger!=0)
+        {
+
+                r.motorFrontRight.setPower(FrontRight/4);
+                r.motorFrontLeft.setPower(FrontLeft/4);
+                r.motorBackLeft.setPower(BackLeft/4);
+                r.motorBackRight.setPower(BackRight/4);
+
+        }
+        else
+        {
+            r.motorFrontRight.setPower(FrontRight);
+            r.motorFrontLeft.setPower(FrontLeft);
+            r.motorBackLeft.setPower(BackLeft);
+            r.motorBackRight.setPower(BackRight);
+        }
+
 
 
         //Lift commands, if encoder clicks more than 0, then can lift with left_stick_y.
@@ -161,6 +177,7 @@ public class MecanumTeleOpV2 extends OpMode {
 
         // get the corresponding index for the scaleInput array.
         int index = (int) (dVal * 16.0);
+
 
         // index should be positive.
         if (index < 0) {
