@@ -91,7 +91,7 @@ public class MecanumTeleOpV2 extends OpMode {
             r.motorLift.setPower(-gamepad2.left_trigger / 2.0); // let trigger run -motor UP
         }
 //
-        else if (gamepad2.right_trigger > 0.0 && gamepad2.left_trigger == 0.0 && r.motorLift.getCurrentPosition() < 5100.0) //encoder less than Max limit
+        else if (gamepad2.right_trigger > 0.0 && gamepad2.left_trigger == 0.0 && r.motorLift.getCurrentPosition() < 5390.0) //encoder less than Max limit
         {
             r.motorLift.setPower(gamepad2.right_trigger / 2.0); //let trigger run +motor DOWN
         }
@@ -117,7 +117,7 @@ public class MecanumTeleOpV2 extends OpMode {
         }
 
 //BallKnocker Extention and Retraction.
-  /*      if (gamepad2.dpad_right)
+        if (gamepad2.dpad_right)
         {
             r.servo1.setPosition(r.SpinLeft);
             r.servo2.setPosition(r.SpinRight);
@@ -135,13 +135,13 @@ public class MecanumTeleOpV2 extends OpMode {
 // Thingy Flips down and back up
         if (gamepad2.dpad_down)
         {
-            r.servo180.setPosition(0.25);
+            r.servo180.setPosition(0.5);
         }
         if (gamepad2.dpad_up)
         {
             r.servo180.setPosition(1);
         }
-    */
+
 
 
 
@@ -156,7 +156,7 @@ public class MecanumTeleOpV2 extends OpMode {
         telemetry.addData("b left pwr", "back left pwr: " + String.format("%.2f", BackLeft));
        */
         // Display running time and Encoder value
-        telemetry.addData("Encoder Clicks", + r.motorLift.getCurrentPosition());
+        telemetry.addData("Min=0/ Max=5390/ Encoder Clicks", + r.motorLift.getCurrentPosition());
         telemetry.update();
 
     }

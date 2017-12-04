@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -27,12 +28,13 @@ public class HardwareSetupMecanum {
     public DcMotor motorLift = null;
     //servos
     public Servo servoClamp    = null;
+    public Servo servo1 = null;
+    public Servo servo2 = null;
+    public Servo servo180 = null;
 
-   // public Servo servo1 = null;
-   // public Servo servo2 = null;
-   // public Servo servo180 = null;
     //sensors
         //Add sensors here
+    public ColorSensor colorsensor = null;
 
     /* local OpMode members. */
     HardwareMap hwMap        = null;
@@ -48,6 +50,10 @@ public class HardwareSetupMecanum {
     double SpinLeft = 0.0;
     double SpinRight = 0.7;
     double STOP = 0.5;      //CR servo Stopped
+
+    double Red = 20;
+    double Blue = 20;
+
 
     boolean buttonPressed  = false;  //Keeps track of whether the button was previously pressed or not so we know when it is released
 
@@ -76,9 +82,11 @@ public class HardwareSetupMecanum {
 
         servoClamp = hwMap.servo.get("Clamp");
 
-       // servo1 = hwMap.servo.get("servo1");
-       // servo2 = hwMap.servo.get("servo2");
-       // servo180 = hwMap.servo.get("servo180");
+        servo1 = hwMap.servo.get("servo1");
+        servo2 = hwMap.servo.get("servo2");
+        servo180 = hwMap.servo.get("servo180");
+
+        colorsensor = hwMap.colorSensor.get("color");
 
         // eg: Set the drive motor directions:
         motorLift.setDirection(DcMotor.Direction.FORWARD); // Can change based on motor configuration
@@ -107,9 +115,9 @@ public class HardwareSetupMecanum {
          ************************************************************/
         servoClamp.setPosition(STOP);
 
-      //  servo1.setPosition(STOP);
-       // servo2.setPosition(STOP);
-       // servo180.setPosition(STOP);
+        servo1.setPosition(STOP);
+        servo2.setPosition(STOP);
+        servo180.setPosition(1);
 
 
         /************************************************************

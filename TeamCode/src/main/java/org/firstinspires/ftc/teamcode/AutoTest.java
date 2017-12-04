@@ -31,9 +31,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * is explained in {@link ConceptVuforiaNavigation}.
  */
 
-@Autonomous(name="Blue1", group ="Concept")
+@Autonomous(name="TEST!", group ="Concept")
 //@Disabled
-public class ABlue1 extends LinearOpMode {
+public class AutoTest extends LinearOpMode {
 
     HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
 
@@ -106,25 +106,17 @@ public class ABlue1 extends LinearOpMode {
             if (r.colorsensor.blue()>r.Blue){
                 //do this
 
-                SpinRight(.25, 300);
-                StopDrivingTime(500);
-
-                SpinLeft(.25, 300);
-                StopDrivingTime(500);
+               r.servo180.setPosition(0);
                 // check for red present greater than Target value
             }
             else if (r.colorsensor.red()>r.Red) {
                 //do this
 
-                SpinLeft(.25, 300);
-                StopDrivingTime(500);
-
-                SpinRight(.25, 300);
-                StopDrivingTime(500);
+                r.servo180.setPosition(1);
 
             }
-                // else { //no color sensor reads target value
-                //do this
+            // else { //no color sensor reads target value
+            //do this
 
 
             //}
@@ -142,7 +134,7 @@ public class ABlue1 extends LinearOpMode {
 
             RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
 
-            if (vuMark != RelicRecoveryVuMark.UNKNOWN) // if vuMark is NOT UNKNOWN run autoCode for value seen
+         /*   if (vuMark != RelicRecoveryVuMark.UNKNOWN) // if vuMark is NOT UNKNOWN run autoCode for value seen
             {
 
                 telemetry.addData("VuMark", "%s visible", vuMark);
@@ -213,6 +205,7 @@ public class ABlue1 extends LinearOpMode {
             else {
                 telemetry.addData("VuMark", "NOT VISIBLE"); // else if vuMark IS UNKNOWN display NOT VISABLE
             }
+            */
             telemetry.addData("Red  ", r.colorsensor.red());
             telemetry.addData("Blue ", r.colorsensor.blue());
 
