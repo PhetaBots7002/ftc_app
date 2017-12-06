@@ -84,8 +84,7 @@ public class ABlue1 extends LinearOpMode {
         VuforiaTrackable relicTemplate = relicTrackables.get(0);
         relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
 
-        telemetry.addData(">", "Press Play to start");
-        telemetry.update();
+
         waitForStart();
 
         relicTrackables.activate();
@@ -93,39 +92,51 @@ public class ABlue1 extends LinearOpMode {
         while (opModeIsActive()) {
 
             //Extend ColorSensor to read Particles
-            Reach(r.SpinLeft, r.SpinRight, 200);
-            StopServoTime(500);
-            r.servo180.setPosition(.5);
-            StopServoTime(500);
-            Reach(r.SpinLeft, r.SpinRight, 1000);
-            StopServoTime(500);
+
+           r.servo180.setPosition(.36); //flip down arm
+           // StopServoTime(500); //pause
+           // Reach(r.SpinRight, r.SpinLeft, 1900);//Out
+           // StopServoTime(500);
 
 
 
 
             if (r.colorsensor.blue()>r.Blue){
                 //do this
+                DriveForwardTime(DRIVE_POWER, 100);
 
-                SpinRight(.25, 300);
-                StopDrivingTime(500);
 
-                SpinLeft(.25, 300);
-                StopDrivingTime(500);
+             //   SpinRight(.25, 300);
+             //   StopDrivingTime(500);
+
+              //  SpinLeft(.25, 300);
+              //  StopDrivingTime(500);
+
                 // check for red present greater than Target value
+
+
+
             }
             else if (r.colorsensor.red()>r.Red) {
                 //do this
+                DriveForwardTime(-DRIVE_POWER, 100);
+             //   SpinLeft(.25, 300);
+             //   StopDrivingTime(500);
 
-                SpinLeft(.25, 300);
-                StopDrivingTime(500);
+             //   SpinRight(.25, 300);
+              //  StopDrivingTime(500);
+              // break;
 
-                SpinRight(.25, 300);
-                StopDrivingTime(500);
+
+
 
             }
                 // else { //no color sensor reads target value
                 //do this
+            telemetry.addData("Red  ", r.colorsensor.red());
+            telemetry.addData("Blue ", r.colorsensor.blue());
 
+            telemetry.update();
 
             //}
 
@@ -213,10 +224,7 @@ public class ABlue1 extends LinearOpMode {
             else {
                 telemetry.addData("VuMark", "NOT VISIBLE"); // else if vuMark IS UNKNOWN display NOT VISABLE
             }
-            telemetry.addData("Red  ", r.colorsensor.red());
-            telemetry.addData("Blue ", r.colorsensor.blue());
 
-            telemetry.update();
 
         }//OpModeIsActive
     }//runOpMode
@@ -254,7 +262,7 @@ public class ABlue1 extends LinearOpMode {
 
     public void StopServoTime(long time) throws InterruptedException
     {
-        Reach(0.5 ,0.5 , time);
+        Reach(r.STOP ,r.STOP , time);
 
     }
 
@@ -302,6 +310,7 @@ public class ABlue1 extends LinearOpMode {
     {
         r.servo1.setPosition(spin1);
         r.servo2.setPosition(spin2);
+        Thread.sleep(time);
     }
 
 

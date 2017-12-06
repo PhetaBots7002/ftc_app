@@ -113,7 +113,7 @@ public class ABlue2 extends LinearOpMode {
 
                 if (vuMark == RelicRecoveryVuMark.LEFT) {
                     // autonomous code here...
-                    DriveForwardTime(DRIVE_POWER, 600);
+                    DriveForwardTime(DRIVE_POWER, 800);
                     StopDrivingTime(500);
 
                     StrafeRight(DRIVE_POWER, 500); //neg power drives backwards

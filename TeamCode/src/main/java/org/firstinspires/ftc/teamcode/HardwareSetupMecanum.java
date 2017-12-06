@@ -47,12 +47,12 @@ public class HardwareSetupMecanum {
     //final static double CLOSE = 0;
 
     //CR servo variables
-    double SpinLeft = 0.0;
-    double SpinRight = 0.7;
+    double SpinLeft = 0.1;
+    double SpinRight = 0.9;
     double STOP = 0.5;      //CR servo Stopped
 
-    double Red = 20;
-    double Blue = 20;
+    double Red = 200;
+    double Blue = 200;
 
 
     boolean buttonPressed  = false;  //Keeps track of whether the button was previously pressed or not so we know when it is released
