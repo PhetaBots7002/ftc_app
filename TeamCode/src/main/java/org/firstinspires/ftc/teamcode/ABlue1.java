@@ -94,57 +94,63 @@ public class ABlue1 extends LinearOpMode {
             //Extend ColorSensor to read Particles
 
            r.servo180.setPosition(.36); //flip down arm
-           // StopServoTime(500); //pause
-           // Reach(r.SpinRight, r.SpinLeft, 1900);//Out
-           // StopServoTime(500);
+            Reach(r.SpinRight, r.SpinLeft, 2300);//Out
+            StopServoTime(500);
+
+
+           if (r.colorsensor.blue()<r.Blue);
+            {
+
+                telemetry.addData("Red  ", r.colorsensor.red());
+                telemetry.addData("Blue ", r.colorsensor.blue());
+
+                telemetry.update();
+
+
+                if (r.colorsensor.blue() > r.Blue) {
+                    //do this
+
+                       SpinRight(.25, 300);
+                       StopDrivingTime(500);
+
+                      SpinLeft(.25, 300);
+                      StopDrivingTime(500);
+                    
+
+                    // check for red present greater than Target value
+
+
+                } else if (r.colorsensor.red() > r.Red) {
+                    //do this
+
+                    SpinLeft(.25, 300);
+                    StopDrivingTime(500);
+
+                    SpinRight(.25, 300);
+                    StopDrivingTime(500);
 
 
 
+                }
 
-            if (r.colorsensor.blue()>r.Blue){
-                //do this
-                DriveForwardTime(DRIVE_POWER, 100);
+                else {
+                    telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
 
-
-             //   SpinRight(.25, 300);
-             //   StopDrivingTime(500);
-
-              //  SpinLeft(.25, 300);
-              //  StopDrivingTime(500);
-
-                // check for red present greater than Target value
+                }
 
 
 
             }
-            else if (r.colorsensor.red()>r.Red) {
-                //do this
-                DriveForwardTime(-DRIVE_POWER, 100);
-             //   SpinLeft(.25, 300);
-             //   StopDrivingTime(500);
-
-             //   SpinRight(.25, 300);
-              //  StopDrivingTime(500);
-              // break;
 
 
 
+            r.servo180.setPosition(.98); //flip down arm
+            StopServoTime(500); //pause
+            Reach(r.SpinLeft, r.SpinRight, 3000);//In
+            StopServoTime(500);
+            sleep(5000);
 
-            }
-                // else { //no color sensor reads target value
-                //do this
-            telemetry.addData("Red  ", r.colorsensor.red());
-            telemetry.addData("Blue ", r.colorsensor.blue());
-
-            telemetry.update();
-
-            //}
-
-
-
-
-
-            /**
+            /*
              * See if any of the instances of {@link relicTemplate} are currently visible.
              * {@link RelicRecoveryVuMark} is an enum which can have the following values:
              * UNKNOWN, LEFT, CENTER, and RIGHT. When a VuMark is visible, something other than
