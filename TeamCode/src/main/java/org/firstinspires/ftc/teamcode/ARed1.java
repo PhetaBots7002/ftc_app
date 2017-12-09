@@ -93,7 +93,7 @@ public class ARed1 extends LinearOpMode {
 
 
         //Extend ColorSensor to read Particles
-
+/*
         r.servo180.setPosition(.25); //flip down arm
         Reach(r.SpinRight, r.SpinLeft, 2800);//Out
         StopServoTime(500);
@@ -149,7 +149,7 @@ public class ARed1 extends LinearOpMode {
         StopServoTime(500); //pause
         Reach(r.SpinLeft, r.SpinRight, 3000);//In
         StopServoTime(500);
-
+*/
             /*
              * See if any of the instances of {@link relicTemplate} are currently visible.
              * {@link RelicRecoveryVuMark} is an enum which can have the following values:
@@ -175,59 +175,72 @@ public class ARed1 extends LinearOpMode {
 
         if (vuMark == RelicRecoveryVuMark.LEFT) {
             // autonomous code here...
-            DriveForwardTime(DRIVE_POWER, 1500);
+
+            DriveForwardTime(DRIVE_POWER, 1745);
             StopDrivingTime(500);
 
             SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
             StopDrivingTime(500);
 
-            DriveForwardTime(DRIVE_POWER, 600);
+            DriveForwardTime(DRIVE_POWER, 450);
             StopDrivingTime(500);
 
-            Drop(0, 500);
-            StopDrivingTime(500);
+            Drop(0, 300);
+            StopDrivingTime(1000);
 
-            DriveForwardTime(-DRIVE_POWER, 250);
+            DriveForwardTime(-DRIVE_POWER, 100);
             StopDrivingTime(500);
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER){
             // autonomous code here...
-            DriveForwardTime(DRIVE_POWER, 1300);
+            DriveForwardTime(DRIVE_POWER, 1350);
             StopDrivingTime(500);
 
-            SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
+            SpinRight(DRIVE_POWER, 970); //neg power drives backwards
             StopDrivingTime(500);
 
-            DriveForwardTime(DRIVE_POWER, 600);
+            DriveForwardTime(DRIVE_POWER, 450);
             StopDrivingTime(500);
 
-            Drop(0, 500);
-            StopDrivingTime(500);
+            Drop(0, 300);
+            StopDrivingTime(1000);
 
-            DriveForwardTime(-DRIVE_POWER, 250);
+            DriveForwardTime(-DRIVE_POWER, 100);
             StopDrivingTime(500);
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT){
             // autonomous code here...StrafeRight(DRIVE_POWER, 500);
-            DriveForwardTime(DRIVE_POWER, 1060);
+            DriveForwardTime(DRIVE_POWER, 1000);
             StopDrivingTime(500);
 
-            SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
+            SpinRight(DRIVE_POWER, 950); //neg power drives backwards
             StopDrivingTime(500);
 
-            DriveForwardTime(DRIVE_POWER, 600);
+            DriveForwardTime(DRIVE_POWER, 450);
             StopDrivingTime(500);
 
-            Drop(0, 500);
-            StopDrivingTime(500);
+            Drop(0, 300);
+            StopDrivingTime(1000);
 
-            DriveForwardTime(-DRIVE_POWER, 250);
+            DriveForwardTime(-DRIVE_POWER, 100);
             StopDrivingTime(500);
         }
         else {
-            DriveForwardTime(DRIVE_POWER, 1300);
-        }
+            DriveForwardTime(DRIVE_POWER, 1350);
+            StopDrivingTime(500);
 
+            SpinRight(DRIVE_POWER, 970); //neg power drives backwards
+            StopDrivingTime(500);
+
+            DriveForwardTime(DRIVE_POWER, 450);
+            StopDrivingTime(500);
+
+            Drop(0, 300);
+            StopDrivingTime(1000);
+
+            DriveForwardTime(-DRIVE_POWER, 100);
+            StopDrivingTime(500);
+        }
         // *** need to figure out how to end opModeIsActive once code has been run
 
     }//runOpMode

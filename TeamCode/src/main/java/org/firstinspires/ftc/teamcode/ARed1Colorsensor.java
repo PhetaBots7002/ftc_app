@@ -32,9 +32,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * is explained in {@link ConceptVuforiaNavigation}.
  */
 
-@Autonomous(name="Red2", group ="Concept")
+@Autonomous(name="Red1Color", group ="Concept")
 //@Disabled
-public class ARed2 extends LinearOpMode {
+public class ARed1Colorsensor extends LinearOpMode {
 
     HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
 
@@ -91,65 +91,56 @@ public class ARed2 extends LinearOpMode {
         relicTrackables.activate();
 
 
-
         //Extend ColorSensor to read Particles
-/*
-        r.servo180.setPosition(.25); //flip down arm
-        Reach(r.SpinRight, r.SpinLeft, 2800);//Out
+        Reach(r.SpinRight, r.SpinLeft, 200);
+        r.servo180.setPosition(.32); //flip down arm
+        Reach(r.SpinRight, r.SpinLeft, 2600);//Out
         StopServoTime(500);
+        telemetry.addData("Red  ", r.colorsensor.red());
+        telemetry.addData("Blue ", r.colorsensor.blue());
+
+        telemetry.update();
+
+        if (r.colorsensor.red() > r.Red) {
+            //do this
+
+            SpinLeft(.25, 300);
+            StopDrivingTime(500);
+
+            SpinRight(.25, 300);
+            StopDrivingTime(500);
 
 
-        if (r.colorsensor.blue()<r.Blue)
-        {
+            // check for red present greater than Target value
 
+
+        }
+        else if (r.colorsensor.blue() > r.Blue){
+            //else if (r.colorsensor.red() < r.Red && r.colorsensor.red() >r.Red2) {
+            //do this
+
+            SpinRight(.25, 300);
+            StopDrivingTime(500);
+
+            SpinLeft(.25, 300);
+            StopDrivingTime(500);
+        }
+
+        else {
             telemetry.addData("Red  ", r.colorsensor.red());
             telemetry.addData("Blue ", r.colorsensor.blue());
-
+            telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
             telemetry.update();
-
-
-            if (r.colorsensor.blue() > r.Blue) {
-                //do this
-
-                SpinRight(.25, 300);
-                StopDrivingTime(500);
-
-                SpinLeft(.25, 300);
-                StopDrivingTime(500);
-
-
-                // check for red present greater than Target value
-
-
-            } else if (r.colorsensor.red() > r.Red) {
-                //do this
-
-                SpinLeft(.25, 300);
-                StopDrivingTime(500);
-
-                SpinRight(.25, 300);
-                StopDrivingTime(500);
-
-
-
-            }
-
-            else {
-                telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
-                telemetry.update();
-            }
-
-
-
         }
 
 
 
-        r.servo180.setPosition(.98); //flip down arm
-        StopServoTime(500); //pause
+        //flip down arm
+        //pause
         Reach(r.SpinLeft, r.SpinRight, 3000);//In
+        r.servo180.setPosition(.98);
         StopServoTime(500);
-*/
+        r.servo180.setPosition(.98); //flip down arm
             /*
              * See if any of the instances of {@link relicTemplate} are currently visible.
              * {@link RelicRecoveryVuMark} is an enum which can have the following values:
@@ -175,76 +166,58 @@ public class ARed2 extends LinearOpMode {
 
         if (vuMark == RelicRecoveryVuMark.LEFT) {
             // autonomous code here...
-            DriveForwardTime(DRIVE_POWER, 800);
+
+            DriveForwardTime(DRIVE_POWER, 1150);
             StopDrivingTime(500);
 
-            StrafeLeft(DRIVE_POWER, 1000); //neg power drives backwards
+            SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
             StopDrivingTime(500);
 
-            DriveForwardTime(DRIVE_POWER, 500);
+            DriveForwardTime(DRIVE_POWER, 450);
             StopDrivingTime(500);
 
-            Drop(0.2, 500);
+            Drop(0, 800);
             StopDrivingTime(1000);
 
-            DriveForwardTime(-DRIVE_POWER, 100);
-
-            StopDriving();
-
+            DriveForwardTime(-DRIVE_POWER, 250);
+            StopDrivingTime(500);
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER){
             // autonomous code here...
-            DriveForwardTime(DRIVE_POWER, 800);
+            DriveForwardTime(DRIVE_POWER, 1500);
             StopDrivingTime(500);
 
-            StrafeLeft(DRIVE_POWER, 550); //neg power drives backwards
+            SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
             StopDrivingTime(500);
 
-            DriveForwardTime(DRIVE_POWER, 800);
+            DriveForwardTime(DRIVE_POWER, 450);
             StopDrivingTime(500);
 
-            Drop(0.2, 500);
+            Drop(0, 800);
             StopDrivingTime(1000);
 
-            DriveForwardTime(-DRIVE_POWER, 100);
-
-            StopDriving();
-
+            DriveForwardTime(-DRIVE_POWER, 250);
+            StopDrivingTime(500);
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT){
             // autonomous code here...StrafeRight(DRIVE_POWER, 500);
-            DriveForwardTime(DRIVE_POWER, 800);
+            DriveForwardTime(DRIVE_POWER, 1900);
             StopDrivingTime(500);
 
-            StrafeLeft(DRIVE_POWER, 150); //neg power drives backwards
+            SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
             StopDrivingTime(500);
 
-            DriveForwardTime(DRIVE_POWER, 500);
+            DriveForwardTime(DRIVE_POWER, 450);
             StopDrivingTime(500);
 
-            Drop(0.2, 500);
+            Drop(0, 800);
             StopDrivingTime(1000);
 
-            DriveForwardTime(-DRIVE_POWER, 100);
-
-            StopDriving();
+            DriveForwardTime(-DRIVE_POWER, 250);
+            StopDrivingTime(500);
         }
         else {
-            DriveForwardTime(DRIVE_POWER, 800);
-            StopDrivingTime(500);
-
-            StrafeLeft(DRIVE_POWER, 550); //neg power drives backwards
-            StopDrivingTime(500);
-
-            DriveForwardTime(DRIVE_POWER, 800);
-            StopDrivingTime(500);
-
-            Drop(0.2, 500);
-            StopDrivingTime(1000);
-
-            DriveForwardTime(-DRIVE_POWER, 100);
-
-            StopDriving();
+            DriveForwardTime(DRIVE_POWER, 1300);
         }
         // *** need to figure out how to end opModeIsActive once code has been run
 

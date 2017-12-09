@@ -51,8 +51,8 @@ public class HardwareSetupMecanum {
     double SpinRight = 0.9;
     double STOP = 0.5;      //CR servo Stopped
 
-    double Red = 1200;
-    double Blue = 0;
+    double Red = 60;
+    double Blue = 20;
     double Red2= 30;
 
 

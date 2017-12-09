@@ -32,9 +32,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * is explained in {@link ConceptVuforiaNavigation}.
  */
 
-@Autonomous(name="Blue2ColorTest", group ="Concept")
+@Autonomous(name="Red2Color", group ="Concept")
 //@Disabled
-public class ABlue2Colorsensor extends LinearOpMode {
+public class ARed2Colorsensor extends LinearOpMode {
 
     HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
 
@@ -91,7 +91,6 @@ public class ABlue2Colorsensor extends LinearOpMode {
         relicTrackables.activate();
 
 
-
         //Extend ColorSensor to read Particles
         Reach(r.SpinRight, r.SpinLeft, 200);
         r.servo180.setPosition(.32); //flip down arm
@@ -102,40 +101,41 @@ public class ABlue2Colorsensor extends LinearOpMode {
 
         telemetry.update();
 
-            if (r.colorsensor.red() > r.Red) {
-                //do this
+        if (r.colorsensor.red() > r.Red) {
+            //do this
 
-                SpinRight(.25, 300);
-                StopDrivingTime(500);
+            SpinLeft(.25, 300);
+            StopDrivingTime(500);
 
-                SpinLeft(.25, 300);
-                StopDrivingTime(500);
-
-
-                // check for red present greater than Target value
+            SpinRight(.25, 300);
+            StopDrivingTime(500);
 
 
-            }
-            else if (r.colorsensor.red() < r.Red && r.colorsensor.red() >r.Red2) {
-                //do this
-
-                SpinLeft(.25, 300);
-                StopDrivingTime(500);
-
-                SpinRight(.25, 300);
-                StopDrivingTime(500);
-            }
-
-            else {
-                telemetry.addData("Red  ", r.colorsensor.red());
-                telemetry.addData("Blue ", r.colorsensor.blue());
-                telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
-                telemetry.update();
-            }
+            // check for red present greater than Target value
 
 
+        }
+        else if (r.colorsensor.blue() > r.Blue){
+            //else if (r.colorsensor.red() < r.Red && r.colorsensor.red() >r.Red2) {
+            //do this
 
-       //flip down arm
+            SpinRight(.25, 300);
+            StopDrivingTime(500);
+
+            SpinLeft(.25, 300);
+            StopDrivingTime(500);
+        }
+
+        else {
+            telemetry.addData("Red  ", r.colorsensor.red());
+            telemetry.addData("Blue ", r.colorsensor.blue());
+            telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
+            telemetry.update();
+        }
+
+
+
+        //flip down arm
         //pause
         Reach(r.SpinLeft, r.SpinRight, 3000);//In
         r.servo180.setPosition(.98);
@@ -169,7 +169,7 @@ public class ABlue2Colorsensor extends LinearOpMode {
             DriveForwardTime(DRIVE_POWER, 800);
             StopDrivingTime(500);
 
-            StrafeRight(DRIVE_POWER, 400); //neg power drives backwards
+            StrafeLeft(DRIVE_POWER, 1250); //neg power drives backwards
             StopDrivingTime(500);
 
             DriveForwardTime(DRIVE_POWER, 500);
@@ -188,7 +188,7 @@ public class ABlue2Colorsensor extends LinearOpMode {
             DriveForwardTime(DRIVE_POWER, 800);
             StopDrivingTime(500);
 
-            StrafeRight(DRIVE_POWER, 850); //neg power drives backwards
+            StrafeLeft(DRIVE_POWER, 850); //neg power drives backwards
             StopDrivingTime(500);
 
             DriveForwardTime(DRIVE_POWER, 800);
@@ -207,7 +207,7 @@ public class ABlue2Colorsensor extends LinearOpMode {
             DriveForwardTime(DRIVE_POWER, 800);
             StopDrivingTime(500);
 
-            StrafeRight(DRIVE_POWER, 1250); //neg power drives backwards
+            StrafeLeft(DRIVE_POWER, 400); //neg power drives backwards
             StopDrivingTime(500);
 
             DriveForwardTime(DRIVE_POWER, 500);
@@ -223,9 +223,8 @@ public class ABlue2Colorsensor extends LinearOpMode {
         else {
             DriveForwardTime(DRIVE_POWER, 800);
             StopDrivingTime(500);
-            StrafeRight(DRIVE_POWER, 700);
+            StrafeLeft(DRIVE_POWER, 700);
         }
-
         // *** need to figure out how to end opModeIsActive once code has been run
 
     }//runOpMode

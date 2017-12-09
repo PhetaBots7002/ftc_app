@@ -93,67 +93,53 @@ public class ABlue2 extends LinearOpMode {
 
 
         //Extend ColorSensor to read Particles
-
-        r.servo180.setPosition(.25); //flip down arm
-        Reach(r.SpinRight, r.SpinLeft, 3000);//Out
+        Reach(r.SpinRight, r.SpinLeft, 200);
+        r.servo180.setPosition(.32); //flip down arm
+        Reach(r.SpinRight, r.SpinLeft, 2600);//Out
         StopServoTime(500);
         telemetry.addData("Red  ", r.colorsensor.red());
         telemetry.addData("Blue ", r.colorsensor.blue());
 
         telemetry.update();
 
+        if (r.colorsensor.red() > r.Red) {
+            //do this
 
-        if (r.colorsensor.blue()<r.Blue)
-        {
+            SpinRight(.25, 300);
+            StopDrivingTime(500);
 
+            SpinLeft(.25, 300);
+            StopDrivingTime(500);
+
+
+            // check for red present greater than Target value
+
+
+        }
+        else if (r.colorsensor.blue() > r.Blue){
+            //else if (r.colorsensor.red() < r.Red && r.colorsensor.red() >r.Red2) {
+            //do this
+
+            SpinLeft(.25, 300);
+            StopDrivingTime(500);
+
+            SpinRight(.25, 300);
+            StopDrivingTime(500);
+        }
+
+        else {
             telemetry.addData("Red  ", r.colorsensor.red());
             telemetry.addData("Blue ", r.colorsensor.blue());
-
+            telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
             telemetry.update();
-
-
-            if (r.colorsensor.blue() > r.Blue) {
-                //do this
-
-                SpinRight(.25, 300);
-                StopDrivingTime(500);
-
-                SpinLeft(.25, 300);
-                StopDrivingTime(500);
-
-
-                // check for red present greater than Target value
-
-
-            } else if (r.colorsensor.red() > r.Red) {
-                //do this
-
-                SpinLeft(.25, 300);
-                StopDrivingTime(500);
-
-                SpinRight(.25, 300);
-                StopDrivingTime(500);
-
-
-
-            }
-
-            else {
-                telemetry.addData("Red  ", r.colorsensor.red());
-                telemetry.addData("Blue ", r.colorsensor.blue());
-                telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
-                telemetry.update();
-            }
-
-
-
         }
 
 
 
-        r.servo180.setPosition(.98); //flip down arm
-        StopServoTime(500); //pause
+        //flip down arm
+        //pause
         Reach(r.SpinLeft, r.SpinRight, 3000);//In
+        r.servo180.setPosition(.98);
         StopServoTime(500);
         r.servo180.setPosition(.98); //flip down arm
             /*
@@ -238,7 +224,19 @@ public class ABlue2 extends LinearOpMode {
         else {
             DriveForwardTime(DRIVE_POWER, 800);
             StopDrivingTime(500);
-            StrafeRight(DRIVE_POWER, 700);
+
+            StrafeRight(DRIVE_POWER, 850); //neg power drives backwards
+            StopDrivingTime(500);
+
+            DriveForwardTime(DRIVE_POWER, 800);
+            StopDrivingTime(500);
+
+            Drop(0.2, 500);
+            StopDrivingTime(1000);
+
+            DriveForwardTime(-DRIVE_POWER, 100);
+
+            StopDriving();
         }
 
         // *** need to figure out how to end opModeIsActive once code has been run
