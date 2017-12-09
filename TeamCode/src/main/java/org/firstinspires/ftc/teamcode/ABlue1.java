@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.ConceptVuforiaNavigation;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -89,16 +90,16 @@ public class ABlue1 extends LinearOpMode {
 
         relicTrackables.activate();
 
-        while (opModeIsActive()) {
+
 
             //Extend ColorSensor to read Particles
 
-           r.servo180.setPosition(.36); //flip down arm
-            Reach(r.SpinRight, r.SpinLeft, 2300);//Out
+           r.servo180.setPosition(.25); //flip down arm
+            Reach(r.SpinRight, r.SpinLeft, 3000);//Out
             StopServoTime(500);
 
 
-           if (r.colorsensor.blue()<r.Blue);
+           if (r.colorsensor.blue()<10)
             {
 
                 telemetry.addData("Red  ", r.colorsensor.red());
@@ -115,7 +116,7 @@ public class ABlue1 extends LinearOpMode {
 
                       SpinLeft(.25, 300);
                       StopDrivingTime(500);
-                    
+
 
                     // check for red present greater than Target value
 
@@ -135,7 +136,7 @@ public class ABlue1 extends LinearOpMode {
 
                 else {
                     telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
-
+                    telemetry.update();
                 }
 
 
@@ -146,9 +147,8 @@ public class ABlue1 extends LinearOpMode {
 
             r.servo180.setPosition(.98); //flip down arm
             StopServoTime(500); //pause
-            Reach(r.SpinLeft, r.SpinRight, 3000);//In
+            Reach(r.SpinLeft, r.SpinRight, 3300);//In
             StopServoTime(500);
-            sleep(5000);
 
             /*
              * See if any of the instances of {@link relicTemplate} are currently visible.
@@ -156,11 +156,15 @@ public class ABlue1 extends LinearOpMode {
              * UNKNOWN, LEFT, CENTER, and RIGHT. When a VuMark is visible, something other than
              * UNKNOWN will be returned, else 'NOT VISIBLE' will display
              */
-
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
             RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
-
-            if (vuMark != RelicRecoveryVuMark.UNKNOWN) // if vuMark is NOT UNKNOWN run autoCode for value seen
-            {
+        while (opModeIsActive()&& vuMark == RelicRecoveryVuMark.UNKNOWN && timer.seconds()<5.0) // if vuMark is NOT UNKNOWN run autoCode for value seen
+        {
+            vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
+        }
+                telemetry.addData("Red  ", r.colorsensor.red());
+                telemetry.addData("Blue ", r.colorsensor.blue());
 
                 telemetry.addData("VuMark", "%s visible", vuMark);
                 telemetry.update();
@@ -178,7 +182,7 @@ public class ABlue1 extends LinearOpMode {
                     SpinLeft(DRIVE_POWER, 1000); //neg power drives backwards
                     StopDrivingTime(500);
 
-                    DriveForwardTime(DRIVE_POWER, 600);
+                    DriveForwardTime(DRIVE_POWER, 450);
                     StopDrivingTime(500);
 
                     Drop(0, 800);
@@ -186,17 +190,16 @@ public class ABlue1 extends LinearOpMode {
 
                     DriveForwardTime(-DRIVE_POWER, 250);
                     StopDrivingTime(500);
-                    break;
                 }
                 else if (vuMark == RelicRecoveryVuMark.CENTER){
                     // autonomous code here...
-                    DriveForwardTime(DRIVE_POWER, 1300);
+                    DriveForwardTime(DRIVE_POWER, 1500);
                     StopDrivingTime(500);
 
                     SpinLeft(DRIVE_POWER, 1000); //neg power drives backwards
                     StopDrivingTime(500);
 
-                    DriveForwardTime(DRIVE_POWER, 600);
+                    DriveForwardTime(DRIVE_POWER, 450);
                     StopDrivingTime(500);
 
                     Drop(0, 800);
@@ -204,17 +207,16 @@ public class ABlue1 extends LinearOpMode {
 
                     DriveForwardTime(-DRIVE_POWER, 250);
                     StopDrivingTime(500);
-                    break;
                 }
                 else if (vuMark == RelicRecoveryVuMark.RIGHT){
                     // autonomous code here...StrafeRight(DRIVE_POWER, 500);
-                    DriveForwardTime(DRIVE_POWER, 1450);
+                    DriveForwardTime(DRIVE_POWER, 1900);
                     StopDrivingTime(500);
 
                     SpinLeft(DRIVE_POWER, 1000); //neg power drives backwards
                     StopDrivingTime(500);
 
-                    DriveForwardTime(DRIVE_POWER, 600);
+                    DriveForwardTime(DRIVE_POWER, 450);
                     StopDrivingTime(500);
 
                     Drop(0, 800);
@@ -222,17 +224,13 @@ public class ABlue1 extends LinearOpMode {
 
                     DriveForwardTime(-DRIVE_POWER, 250);
                     StopDrivingTime(500);
-                    break;
+                }
+                else {
+                    DriveForwardTime(DRIVE_POWER, 1300);
                 }
 
                 // *** need to figure out how to end opModeIsActive once code has been run
-            }
-            else {
-                telemetry.addData("VuMark", "NOT VISIBLE"); // else if vuMark IS UNKNOWN display NOT VISABLE
-            }
 
-
-        }//OpModeIsActive
     }//runOpMode
 
 

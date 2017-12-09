@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.ConceptVuforiaNavigation;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -84,97 +85,151 @@ public class ARed1 extends LinearOpMode {
         VuforiaTrackable relicTemplate = relicTrackables.get(0);
         relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
 
-        telemetry.addData(">", "Press Play to start");
-        telemetry.update();
+
         waitForStart();
 
         relicTrackables.activate();
 
-        while (opModeIsActive()) {
 
-            /**
+
+        //Extend ColorSensor to read Particles
+
+        r.servo180.setPosition(.25); //flip down arm
+        Reach(r.SpinRight, r.SpinLeft, 2800);//Out
+        StopServoTime(500);
+
+
+        if (r.colorsensor.blue()<r.Blue)
+        {
+
+            telemetry.addData("Red  ", r.colorsensor.red());
+            telemetry.addData("Blue ", r.colorsensor.blue());
+
+            telemetry.update();
+
+
+            if (r.colorsensor.blue() > r.Blue) {
+                //do this
+
+                SpinRight(.25, 300);
+                StopDrivingTime(500);
+
+                SpinLeft(.25, 300);
+                StopDrivingTime(500);
+
+
+                // check for red present greater than Target value
+
+
+            } else if (r.colorsensor.red() > r.Red) {
+                //do this
+
+                SpinLeft(.25, 300);
+                StopDrivingTime(500);
+
+                SpinRight(.25, 300);
+                StopDrivingTime(500);
+
+
+
+            }
+
+            else {
+                telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
+                telemetry.update();
+            }
+
+
+
+        }
+
+
+
+        r.servo180.setPosition(.98); //flip down arm
+        StopServoTime(500); //pause
+        Reach(r.SpinLeft, r.SpinRight, 3000);//In
+        StopServoTime(500);
+
+            /*
              * See if any of the instances of {@link relicTemplate} are currently visible.
              * {@link RelicRecoveryVuMark} is an enum which can have the following values:
              * UNKNOWN, LEFT, CENTER, and RIGHT. When a VuMark is visible, something other than
              * UNKNOWN will be returned, else 'NOT VISIBLE' will display
              */
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
+        RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
+        while (opModeIsActive()&& vuMark == RelicRecoveryVuMark.UNKNOWN && timer.seconds()<5.0) // if vuMark is NOT UNKNOWN run autoCode for value seen
+        {
+            vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
+        }
+        telemetry.addData("Red  ", r.colorsensor.red());
+        telemetry.addData("Blue ", r.colorsensor.blue());
 
-            RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
+        telemetry.addData("VuMark", "%s visible", vuMark);
+        telemetry.update();
 
-            if (vuMark != RelicRecoveryVuMark.UNKNOWN) // if vuMark is NOT UNKNOWN run autoCode for value seen
-            {
+        // This simple example code runs a different motor for 1 sec then turns it off
+        // for each TemplateID found.
+        // the run motor test can be replaced by your desired autonomous code.
 
-                telemetry.addData("VuMark", "%s visible", vuMark);
-                telemetry.update();
+        if (vuMark == RelicRecoveryVuMark.LEFT) {
+            // autonomous code here...
+            DriveForwardTime(DRIVE_POWER, 1500);
+            StopDrivingTime(500);
 
-                // This simple example code runs a different motor for 1 sec then turns it off
-                // for each TemplateID found.
-                // the run motor test can be replaced by your desired autonomous code.
+            SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
+            StopDrivingTime(500);
 
-                if (vuMark == RelicRecoveryVuMark.LEFT) {
-                    // autonomous code here...
-                    DriveForwardTime(DRIVE_POWER, 1500);
-                    StopDrivingTime(500);
+            DriveForwardTime(DRIVE_POWER, 600);
+            StopDrivingTime(500);
 
-                    SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
-                    StopDrivingTime(500);
+            Drop(0, 500);
+            StopDrivingTime(500);
 
-                    DriveForwardTime(DRIVE_POWER, 600);
-                    StopDrivingTime(500);
+            DriveForwardTime(-DRIVE_POWER, 250);
+            StopDrivingTime(500);
+        }
+        else if (vuMark == RelicRecoveryVuMark.CENTER){
+            // autonomous code here...
+            DriveForwardTime(DRIVE_POWER, 1300);
+            StopDrivingTime(500);
 
-                    Drop(0, 500);
-                    StopDrivingTime(500);
+            SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
+            StopDrivingTime(500);
 
-                    DriveForwardTime(-DRIVE_POWER, 250);
-                    StopDrivingTime(500);
-                    break;
-                }
-                else if (vuMark == RelicRecoveryVuMark.CENTER){
-                    // autonomous code here...
-                    DriveForwardTime(DRIVE_POWER, 1300);
-                    StopDrivingTime(500);
+            DriveForwardTime(DRIVE_POWER, 600);
+            StopDrivingTime(500);
 
-                    SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
-                    StopDrivingTime(500);
+            Drop(0, 500);
+            StopDrivingTime(500);
 
-                    DriveForwardTime(DRIVE_POWER, 600);
-                    StopDrivingTime(500);
+            DriveForwardTime(-DRIVE_POWER, 250);
+            StopDrivingTime(500);
+        }
+        else if (vuMark == RelicRecoveryVuMark.RIGHT){
+            // autonomous code here...StrafeRight(DRIVE_POWER, 500);
+            DriveForwardTime(DRIVE_POWER, 1060);
+            StopDrivingTime(500);
 
-                    Drop(0, 500);
-                    StopDrivingTime(500);
+            SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
+            StopDrivingTime(500);
 
-                    DriveForwardTime(-DRIVE_POWER, 250);
-                    StopDrivingTime(500);
-                    break;
-                }
-                else if (vuMark == RelicRecoveryVuMark.RIGHT){
-                    // autonomous code here...StrafeRight(DRIVE_POWER, 500);
-                    DriveForwardTime(DRIVE_POWER, 1060);
-                    StopDrivingTime(500);
+            DriveForwardTime(DRIVE_POWER, 600);
+            StopDrivingTime(500);
 
-                    SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
-                    StopDrivingTime(500);
+            Drop(0, 500);
+            StopDrivingTime(500);
 
-                    DriveForwardTime(DRIVE_POWER, 600);
-                    StopDrivingTime(500);
+            DriveForwardTime(-DRIVE_POWER, 250);
+            StopDrivingTime(500);
+        }
+        else {
+            DriveForwardTime(DRIVE_POWER, 1300);
+        }
 
-                    Drop(0, 500);
-                    StopDrivingTime(500);
+        // *** need to figure out how to end opModeIsActive once code has been run
 
-                    DriveForwardTime(-DRIVE_POWER, 250);
-                    StopDrivingTime(500);
-                    break;
-                }
-
-                // *** need to figure out how to end opModeIsActive once code has been run
-            }
-            else {
-                telemetry.addData("VuMark", "NOT VISIBLE"); // else if vuMark IS UNKNOWN display NOT VISABLE
-            }
-
-            telemetry.update();
-
-        }//OpModeIsActive
     }//runOpMode
 
 
@@ -206,6 +261,12 @@ public class ARed1 extends LinearOpMode {
     public void StopDrivingTime(long time) throws InterruptedException
     {
         DriveForwardTime(0, time);
+    }
+
+    public void StopServoTime(long time) throws InterruptedException
+    {
+        Reach(r.STOP ,r.STOP , time);
+
     }
 
     public void StrafeLeft(double power, long time) throws InterruptedException// Robot Slides to the left
@@ -248,6 +309,12 @@ public class ARed1 extends LinearOpMode {
         r.servoClamp.setPosition(0.3);
     }
 
+    public void Reach (double spin1, double spin2, long time) throws InterruptedException
+    {
+        r.servo1.setPosition(spin1);
+        r.servo2.setPosition(spin2);
+        Thread.sleep(time);
+    }
 
 
 }//MyConceptVuforia

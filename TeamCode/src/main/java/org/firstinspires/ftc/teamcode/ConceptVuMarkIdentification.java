@@ -76,7 +76,7 @@ import org.firstinspires.ftc.teamcode.HardwareSetupMecanum;
  */
 
 @Autonomous(name="VuMark 1", group ="Phetabot")
-//@Disabled
+@Disabled
 public class ConceptVuMarkIdentification extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
