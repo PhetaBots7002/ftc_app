@@ -93,10 +93,10 @@ public class ABlue1 extends LinearOpMode {
 
 
         //Extend ColorSensor to read Particles
-        Reach(r.SpinRight, r.SpinLeft, 200);
-        r.servo180.setPosition(.32); //flip down arm
-        Reach(r.SpinRight, r.SpinLeft, 2600);//Out
-        StopServoTime(500);
+        r.servoL.setPosition(.5);
+
+
+
         telemetry.addData("Red  ", r.colorsensor.red());
         telemetry.addData("Blue ", r.colorsensor.blue());
 
@@ -138,10 +138,8 @@ public class ABlue1 extends LinearOpMode {
 
         //flip down arm
         //pause
-        Reach(r.SpinLeft, r.SpinRight, 3000);//In
-        r.servo180.setPosition(.98);
-        StopServoTime(500);
-        r.servo180.setPosition(.98); //flip down arm
+        r.servoL.setPosition(1);//In
+
 
             /*
              * See if any of the instances of {@link relicTemplate} are currently visible.
@@ -233,6 +231,7 @@ public class ABlue1 extends LinearOpMode {
 
                     DriveForwardTime(-DRIVE_POWER, 250);
                     StopDrivingTime(500);
+
                 }
 
                 // *** need to figure out how to end opModeIsActive once code has been run
@@ -270,11 +269,7 @@ public class ABlue1 extends LinearOpMode {
         DriveForwardTime(0, time);
     }
 
-    public void StopServoTime(long time) throws InterruptedException
-    {
-        Reach(r.STOP ,r.STOP , time);
 
-    }
 
     public void StrafeLeft(double power, long time) throws InterruptedException// Robot Slides to the left
     {
@@ -316,12 +311,7 @@ public class ABlue1 extends LinearOpMode {
         r.servoClamp.setPosition(0.3);
     }
 
-    public void Reach (double spin1, double spin2, long time) throws InterruptedException
-    {
-        r.servo1.setPosition(spin1);
-        r.servo2.setPosition(spin2);
-        Thread.sleep(time);
-    }
+
 
 
 }//MyConceptVuforia

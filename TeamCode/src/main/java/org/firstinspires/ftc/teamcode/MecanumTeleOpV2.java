@@ -119,28 +119,19 @@ public class MecanumTeleOpV2 extends OpMode {
 //BallKnocker Extention and Retraction.
         if (gamepad2.dpad_left) //IN
         {
-            r.servo1.setPosition(r.SpinLeft);
-            r.servo2.setPosition(r.SpinRight);
+            r.servoR.setPosition(.5);
+
         }
         else if (gamepad2.dpad_right) //OUT
         {
-            r.servo1.setPosition(r.SpinRight);
-            r.servo2.setPosition(r.SpinLeft);
+            r.servoL.setPosition(.5);
         }
         else
         {
-            r.servo1.setPosition(r.STOP);
-            r.servo2.setPosition(r.STOP);
+            r.servoR.setPosition(r.STOP);
+            r.servoL.setPosition(r.STOP);
         }
-// Thingy Flips down and back up
-        if (gamepad2.dpad_down)
-        {
-            r.servo180.setPosition(0.36);
-        }
-        if (gamepad2.dpad_up)
-        {
-            r.servo180.setPosition(0.98);
-        }
+
 
 
 

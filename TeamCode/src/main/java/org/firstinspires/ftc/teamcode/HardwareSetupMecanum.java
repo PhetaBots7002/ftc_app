@@ -28,9 +28,8 @@ public class HardwareSetupMecanum {
     public DcMotor motorLift = null;
     //servos
     public Servo servoClamp    = null;
-    public Servo servo1 = null;
-    public Servo servo2 = null;
-    public Servo servo180 = null;
+    public Servo servoL = null;
+    public Servo servoR = null;
 
     //sensors
         //Add sensors here
@@ -53,7 +52,6 @@ public class HardwareSetupMecanum {
 
     double Red = 60;
     double Blue = 20;
-    double Red2= 30;
 
 
     boolean buttonPressed  = false;  //Keeps track of whether the button was previously pressed or not so we know when it is released
@@ -83,9 +81,8 @@ public class HardwareSetupMecanum {
 
         servoClamp = hwMap.servo.get("Clamp");
 
-        servo1 = hwMap.servo.get("servo1");
-        servo2 = hwMap.servo.get("servo2");
-        servo180 = hwMap.servo.get("servo180");
+        servoR = hwMap.servo.get("servoR");
+        servoL = hwMap.servo.get("servoL");
 
         colorsensor = hwMap.colorSensor.get("color");
 
@@ -116,9 +113,9 @@ public class HardwareSetupMecanum {
          ************************************************************/
         servoClamp.setPosition(STOP);
 
-        servo1.setPosition(STOP);
-        servo2.setPosition(STOP);
-        servo180.setPosition(1);
+        servoL.setPosition(1);
+        servoR.setPosition(1);
+
 
 
         /************************************************************
