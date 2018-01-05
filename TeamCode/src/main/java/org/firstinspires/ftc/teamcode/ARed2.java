@@ -93,63 +93,52 @@ public class ARed2 extends LinearOpMode {
 
 
         //Extend ColorSensor to read Particles
-/*
-        r.servo180.setPosition(.25); //flip down arm
-        Reach(r.SpinRight, r.SpinLeft, 2800);//Out
-        StopServoTime(500);
+        r.servoB.setPosition(1);//Down
 
 
-        if (r.colorsensor.blue()<r.Blue)
-        {
 
-            telemetry.addData("Red  ", r.colorsensor.red());
-            telemetry.addData("Blue ", r.colorsensor.blue());
+        telemetry.addData("Red  ", r.colorR.red());
+        telemetry.addData("Blue ", r.colorB.blue());
 
+        telemetry.update();
+
+        if (r.colorR.red() > r.Blue) {
+            //do this
+
+            SpinRight(.25, 300);
+            StopDrivingTime(500);
+
+            SpinLeft(.25, 300);
+            StopDrivingTime(500);
+
+
+            // check for red present greater than Target value
+
+
+        }
+        else if (r.colorB.blue() > r.Red){
+            //else if (r.colorsensor.red() < r.Red && r.colorsensor.red() >r.Red2) {
+            //do this
+
+            SpinLeft(.25, 300);
+            StopDrivingTime(500);
+
+            SpinRight(.25, 300);
+            StopDrivingTime(500);
+        }
+
+        else {
+            telemetry.addData("Red  ", r.colorR.red());
+            telemetry.addData("Blue ", r.colorB.blue());
+            telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
             telemetry.update();
-
-
-            if (r.colorsensor.blue() > r.Blue) {
-                //do this
-
-                SpinRight(.25, 300);
-                StopDrivingTime(500);
-
-                SpinLeft(.25, 300);
-                StopDrivingTime(500);
-
-
-                // check for red present greater than Target value
-
-
-            } else if (r.colorsensor.red() > r.Red) {
-                //do this
-
-                SpinLeft(.25, 300);
-                StopDrivingTime(500);
-
-                SpinRight(.25, 300);
-                StopDrivingTime(500);
-
-
-
-            }
-
-            else {
-                telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
-                telemetry.update();
-            }
-
-
-
         }
 
 
 
-        r.servo180.setPosition(.98); //flip down arm
-        StopServoTime(500); //pause
-        Reach(r.SpinLeft, r.SpinRight, 3000);//In
-        StopServoTime(500);
-*/
+
+        r.servoB.setPosition(.5);//Up
+
             /*
              * See if any of the instances of {@link relicTemplate} are currently visible.
              * {@link RelicRecoveryVuMark} is an enum which can have the following values:
@@ -163,8 +152,8 @@ public class ARed2 extends LinearOpMode {
         {
             vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
         }
-        telemetry.addData("Red  ", r.colorsensor.red());
-        telemetry.addData("Blue ", r.colorsensor.blue());
+        telemetry.addData("Red  ", r.colorR.red());
+        telemetry.addData("Blue ", r.colorB.blue());
 
         telemetry.addData("VuMark", "%s visible", vuMark);
         telemetry.update();
@@ -281,12 +270,6 @@ public class ARed2 extends LinearOpMode {
         DriveForwardTime(0, time);
     }
 
-    public void StopServoTime(long time) throws InterruptedException
-    {
-        Reach(r.STOP ,r.STOP , time);
-
-    }
-
     public void StrafeLeft(double power, long time) throws InterruptedException// Robot Slides to the left
     {
         // write the values to the motors
@@ -327,12 +310,6 @@ public class ARed2 extends LinearOpMode {
         r.servoClamp.setPosition(0.3);
     }
 
-    public void Reach (double spin1, double spin2, long time) throws InterruptedException
-    {
-        r.servo1.setPosition(spin1);
-        r.servo2.setPosition(spin2);
-        Thread.sleep(time);
-    }
 
 
 }//MyConceptVuforia

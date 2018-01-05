@@ -93,16 +93,16 @@ public class ABlue1 extends LinearOpMode {
 
 
         //Extend ColorSensor to read Particles
-        r.servoL.setPosition(.5);
+        r.servoB.setPosition(.5);//Down
 
 
 
-        telemetry.addData("Red  ", r.colorsensor.red());
-        telemetry.addData("Blue ", r.colorsensor.blue());
+        telemetry.addData("Red  ", r.colorR.red());
+        telemetry.addData("Blue ", r.colorB.blue());
 
         telemetry.update();
 
-        if (r.colorsensor.red() > r.Red) {
+        if (r.colorR.red() > r.Red) {
             //do this
 
             SpinRight(.25, 300);
@@ -116,7 +116,7 @@ public class ABlue1 extends LinearOpMode {
 
 
         }
-        else if (r.colorsensor.blue() > r.Blue){
+        else if (r.colorB.blue() > r.Blue){
             //else if (r.colorsensor.red() < r.Red && r.colorsensor.red() >r.Red2) {
             //do this
 
@@ -128,17 +128,16 @@ public class ABlue1 extends LinearOpMode {
         }
 
         else {
-            telemetry.addData("Red  ", r.colorsensor.red());
-            telemetry.addData("Blue ", r.colorsensor.blue());
+            telemetry.addData("Red  ", r.colorR.red());
+            telemetry.addData("Blue ", r.colorB.blue());
             telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
             telemetry.update();
         }
 
 
 
-        //flip down arm
-        //pause
-        r.servoL.setPosition(1);//In
+
+        r.servoB.setPosition(1);//Up
 
 
             /*
@@ -154,8 +153,8 @@ public class ABlue1 extends LinearOpMode {
         {
             vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
         }
-                telemetry.addData("Red  ", r.colorsensor.red());
-                telemetry.addData("Blue ", r.colorsensor.blue());
+                telemetry.addData("Red  ", r.colorR.red());
+                telemetry.addData("Blue ", r.colorB.blue());
 
                 telemetry.addData("VuMark", "%s visible", vuMark);
                 telemetry.update();

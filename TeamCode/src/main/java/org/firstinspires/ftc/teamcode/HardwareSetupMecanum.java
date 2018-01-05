@@ -28,12 +28,13 @@ public class HardwareSetupMecanum {
     public DcMotor motorLift = null;
     //servos
     public Servo servoClamp    = null;
-    public Servo servoL = null;
+    public Servo servoB = null;
     public Servo servoR = null;
 
     //sensors
         //Add sensors here
-    public ColorSensor colorsensor = null;
+    public ColorSensor colorR = null;
+    public ColorSensor colorB = null;
 
     /* local OpMode members. */
     HardwareMap hwMap        = null;
@@ -82,9 +83,10 @@ public class HardwareSetupMecanum {
         servoClamp = hwMap.servo.get("Clamp");
 
         servoR = hwMap.servo.get("servoR");
-        servoL = hwMap.servo.get("servoL");
+        servoB = hwMap.servo.get("servoB");
 
-        colorsensor = hwMap.colorSensor.get("color");
+        colorB = hwMap.colorSensor.get("colorB");
+        colorR = hwMap.colorSensor.get("colorR");
 
         // eg: Set the drive motor directions:
         motorLift.setDirection(DcMotor.Direction.FORWARD); // Can change based on motor configuration
@@ -113,8 +115,8 @@ public class HardwareSetupMecanum {
          ************************************************************/
         servoClamp.setPosition(STOP);
 
-        servoL.setPosition(1);
         servoR.setPosition(1);
+        servoB.setPosition(0);
 
 
 

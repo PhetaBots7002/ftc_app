@@ -32,7 +32,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  */
 
 @Autonomous(name="TEST!", group ="Concept")
-@Disabled
+//@Disabled
 public class AutoTest extends LinearOpMode {
 
     HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
@@ -92,27 +92,18 @@ public class AutoTest extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            //Extend ColorSensor to read Particles
-            Reach(r.SpinLeft, r.SpinRight, 200);
-            StopServoTime(500);
-            r.servo180.setPosition(.5);
-            StopServoTime(500);
-            Reach(r.SpinLeft, r.SpinRight, 1000);
-            StopServoTime(500);
 
 
-
-
-            if (r.colorsensor.blue()>r.Blue){
+            if (r.colorB.blue()>r.Blue){
                 //do this
 
-               r.servo180.setPosition(0);
+
                 // check for red present greater than Target value
             }
-            else if (r.colorsensor.red()>r.Red) {
+            else if (r.colorR.red()>r.Red) {
                 //do this
 
-                r.servo180.setPosition(1);
+
 
             }
             // else { //no color sensor reads target value
@@ -206,8 +197,8 @@ public class AutoTest extends LinearOpMode {
                 telemetry.addData("VuMark", "NOT VISIBLE"); // else if vuMark IS UNKNOWN display NOT VISABLE
             }
             */
-            telemetry.addData("Red  ", r.colorsensor.red());
-            telemetry.addData("Blue ", r.colorsensor.blue());
+            telemetry.addData("Red  ", r.colorR.red());
+            telemetry.addData("Blue ", r.colorB.blue());
 
             telemetry.update();
 
@@ -245,11 +236,7 @@ public class AutoTest extends LinearOpMode {
         DriveForwardTime(0, time);
     }
 
-    public void StopServoTime(long time) throws InterruptedException
-    {
-        Reach(0.5 ,0.5 , time);
 
-    }
 
     public void StrafeLeft(double power, long time) throws InterruptedException// Robot Slides to the left
     {
@@ -289,12 +276,6 @@ public class AutoTest extends LinearOpMode {
     public void Grab (double power, long time) throws InterruptedException
     {
         r.servoClamp.setPosition(0.3);
-    }
-
-    public void Reach (double spin1, double spin2, long time) throws InterruptedException
-    {
-        r.servo1.setPosition(spin1);
-        r.servo2.setPosition(spin2);
     }
 
 
