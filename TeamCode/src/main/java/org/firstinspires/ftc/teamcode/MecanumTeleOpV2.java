@@ -118,6 +118,9 @@ public class MecanumTeleOpV2 extends OpMode {
 
 //BallKnocker Extention and Retraction.
 
+        {
+            r.servoR.setPosition(.5);
+        }
 
 
 

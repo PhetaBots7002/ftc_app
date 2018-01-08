@@ -101,7 +101,7 @@ public class ABlue2 extends LinearOpMode {
 
         telemetry.update();
 
-        if (r.colorR.red() > r.Red) {
+        if (r.colorB.blue() > r.Blue) {
             //do this
 
             SpinRight(.25, 300);
@@ -115,7 +115,7 @@ public class ABlue2 extends LinearOpMode {
 
 
         }
-        else if (r.colorB.blue() > r.Blue){
+        else if (r.colorR.red() > r.Red){
             //else if (r.colorsensor.red() < r.Red && r.colorsensor.red() >r.Red2) {
             //do this
 
@@ -125,6 +125,7 @@ public class ABlue2 extends LinearOpMode {
             SpinRight(.25, 300);
             StopDrivingTime(500);
         }
+
 
         else {
             telemetry.addData("Red  ", r.colorR.red());
@@ -136,7 +137,7 @@ public class ABlue2 extends LinearOpMode {
 
 
 
-        r.servoB.setPosition(1);//Up
+        r.servoB.setPosition(0);//Up
             /*
              * See if any of the instances of {@link relicTemplate} are currently visible.
              * {@link RelicRecoveryVuMark} is an enum which can have the following values:

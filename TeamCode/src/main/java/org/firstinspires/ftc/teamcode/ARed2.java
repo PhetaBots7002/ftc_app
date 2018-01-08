@@ -93,7 +93,9 @@ public class ARed2 extends LinearOpMode {
 
 
         //Extend ColorSensor to read Particles
-        r.servoB.setPosition(1);//Down
+        r.servoB.setPosition(.3);
+        ServoRWait(1, 1000);
+        r.servoR.setPosition(.5);//Down
 
 
 
@@ -137,7 +139,9 @@ public class ARed2 extends LinearOpMode {
 
 
 
-        r.servoB.setPosition(.5);//Up
+        r.servoB.setPosition(0);
+        ServoRWait(0.5, 1000);
+        r.servoR.setPosition(1);//Up
 
             /*
              * See if any of the instances of {@link relicTemplate} are currently visible.
@@ -310,6 +314,9 @@ public class ARed2 extends LinearOpMode {
         r.servoClamp.setPosition(0.3);
     }
 
-
+    public void ServoRWait (double power, long time) throws InterruptedException
+    {
+        r.servoR.setPosition(power);
+    }
 
 }//MyConceptVuforia
