@@ -93,7 +93,7 @@ public class ABlue1 extends LinearOpMode {
 
 
         //Extend ColorSensor to read Particles
-        r.servoB.setPosition(.5);//Down
+        r.servoB.setPosition(.9);//Down
 
 
 
@@ -137,7 +137,7 @@ public class ABlue1 extends LinearOpMode {
 
 
 
-        r.servoB.setPosition(1);//Up
+        r.servoB.setPosition(0);//Up
 
 
             /*

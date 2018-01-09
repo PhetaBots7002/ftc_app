@@ -118,12 +118,45 @@ public class MecanumTeleOpV2 extends OpMode {
 
 //BallKnocker Extention and Retraction.
 
+        if (gamepad2.dpad_left)
         {
             r.servoR.setPosition(.5);
+        }
+        if (gamepad2.dpad_up)
+        {
+            r.servoR.setPosition(1);
+        }
+        if (gamepad2.dpad_right)
+        {
+            r.servoR.setPosition(.1);
+        }
+        if (gamepad2.dpad_down)
+        {
+            r.servoR.setPosition(0);
         }
 
 
 
+
+
+
+
+        if (gamepad1.dpad_left)
+        {
+            r.servoB.setPosition(.5);
+        }
+        if (gamepad1.dpad_up)
+        {
+            r.servoB.setPosition(0);
+        }
+        if (gamepad1.dpad_right)
+        {
+            r.servoB.setPosition(.9);
+        }
+        if (gamepad1.dpad_down)
+        {
+            r.servoB.setPosition(1);
+        }
 
 
       /*
