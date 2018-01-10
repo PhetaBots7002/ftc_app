@@ -104,7 +104,7 @@ public class ABlue1 extends LinearOpMode {
 
         if (r.colorB.blue() > r.Blue) {
             //do this
-
+            telemetry.update();
             SpinRight(.25, 300);
             StopDrivingTime(500);
 
@@ -119,7 +119,7 @@ public class ABlue1 extends LinearOpMode {
         else if (r.colorR.red() > r.Red){
             //else if (r.colorsensor.red() < r.Red && r.colorsensor.red() >r.Red2) {
             //do this
-
+            telemetry.update();
             SpinLeft(.25, 300);
             StopDrivingTime(500);
 
