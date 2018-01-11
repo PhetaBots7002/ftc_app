@@ -16,16 +16,16 @@ import com.qualcomm.robotcore.util.Range;
         X           X
           X       X
 */
-@TeleOp(name = "MecanumTeleOpV2", group = "Phetabot")
+@TeleOp(name = "MecanumTeleOpV3", group = "Phetabot")
 //@Disabled
-public class MecanumTeleOpV2 extends OpMode {
+public class MecanumTeleOpV3 extends OpMode  {
 
     HardwareSetupMecanum r     =   new HardwareSetupMecanum();
 
     /**
      * Constructor
      */
-    public MecanumTeleOpV2() {
+    public MecanumTeleOpV3() {
 
     }
 
@@ -89,6 +89,11 @@ public class MecanumTeleOpV2 extends OpMode {
         if (gamepad2.left_trigger > 0.0 && gamepad2.right_trigger == 0.0 && r.motorLift.getCurrentPosition() > 0.0) // encoder greater that lower limit
         {
             r.motorLift.setPower(-gamepad2.left_trigger / 2.0); // let trigger run -motor DOWN
+        }
+        else if (gamepad2.left_trigger == 0.0 && gamepad2.right_trigger == 0.0)
+        {
+            r.motorLift.setPower (0.1);
+            Thread.sleep(100);
         }
 //
         else if (gamepad2.right_trigger > 0.0 && gamepad2.left_trigger == 0.0 && r.motorLift.getCurrentPosition() < 5380.0) //encoder less than Max limit
@@ -178,6 +183,16 @@ public class MecanumTeleOpV2 extends OpMode {
     @Override
     public void stop() {
 
+    }
+    public void ArmUp(double power)
+    {
+        // write the values to the motors
+        r.motorLift.setPower(power);//still need to test motor directions for desired movement
+    }
+    public void StopDown(double power, long time) throws InterruptedException
+    {
+        ArmUp(power);
+        Thread.sleep(time);
     }
 
     /*
