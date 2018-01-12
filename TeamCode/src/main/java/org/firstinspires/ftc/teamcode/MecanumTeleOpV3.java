@@ -21,7 +21,9 @@ import com.qualcomm.robotcore.util.Range;
 public class MecanumTeleOpV3 extends OpMode  {
 
     HardwareSetupMecanum r     =   new HardwareSetupMecanum();
-
+    boolean wasLeftButtonDown = false;  //Initialize to false as buttons are generally not pressed at the time the program starts
+    int     liftHoldPosition;
+    double  slopeVal          = 2000.0;
     /**
      * Constructor
      */
@@ -35,7 +37,9 @@ public class MecanumTeleOpV3 extends OpMode  {
         Uses HardwareSetupMecanum and Initializes.
        */
         r.init(hardwareMap);  //Initialize hardware from the Hardware Setup
+        liftHoldPosition = r.motorLift.getCurrentPosition();
     }
+
 
     @Override
     public void loop() {
@@ -67,10 +71,10 @@ public class MecanumTeleOpV3 extends OpMode  {
         if(gamepad1.left_trigger!=0)
         {
 
-                r.motorFrontRight.setPower(FrontRight/4);
-                r.motorFrontLeft.setPower(FrontLeft/4);
-                r.motorBackLeft.setPower(BackLeft/4);
-                r.motorBackRight.setPower(BackRight/4);
+                r.motorFrontRight.setPower(FrontRight/2);
+                r.motorFrontLeft.setPower(FrontLeft/2);
+                r.motorBackLeft.setPower(BackLeft/2);
+                r.motorBackRight.setPower(BackRight/2);
 
         }
         else
@@ -86,7 +90,7 @@ public class MecanumTeleOpV3 extends OpMode  {
         //Lift commands, if encoder clicks more than 0, then can lift with left_stick_y.
         //If encoder clicks greater than 1500, than dont move.
 
-        if (gamepad2.left_trigger > 0.0 && gamepad2.right_trigger == 0.0 && r.motorLift.getCurrentPosition() > 0.0) // encoder greater that lower limit
+        /*if (gamepad2.left_trigger > 0.0 && gamepad2.right_trigger == 0.0 && r.motorLift.getCurrentPosition() > 0.0) // encoder greater that lower limit
         {
             r.motorLift.setPower(-gamepad2.left_trigger / 2.0); // let trigger run -motor DOWN
         }
@@ -99,12 +103,29 @@ public class MecanumTeleOpV3 extends OpMode  {
         else if (gamepad2.right_trigger > 0.0 && gamepad2.left_trigger == 0.0 && r.motorLift.getCurrentPosition() < 5380.0) //encoder less than Max limit
         {
             r.motorLift.setPower(gamepad2.right_trigger / 2.0); //let trigger run +motor UP
+        }*/
+        if (gamepad2.left_trigger > 0.0 && r.motorLift.getCurrentPosition() > 0.0) // encoder greater that lower limit
+        {
+            r.motorLift.setPower(-gamepad2.left_trigger / 2.0); // let trigger run -motor DOWN
+            liftHoldPosition = r.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the lift holding position
+        }
+        else if (gamepad2.right_trigger > 0.0 && r.motorLift.getCurrentPosition() < 5380.0) //encoder less than Max limit
+        {
+            r.motorLift.setPower(gamepad2.right_trigger); //let trigger run +motor UP
+            liftHoldPosition = r.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the lift holding position
+        }
+        else //triggers are released to try to maintain the current position
+        {
+            r.motorLift.setPower((double) (liftHoldPosition - r.motorLift.getCurrentPosition()) / slopeVal); // Not that if the lift is lower than desired position,
+            // the subtraction will be positive and the motor will
+            // attempt to raise the lift. If it is too high it will
+            // be negative and thus try to lower the lift
         }
 
-        else
+        /*else
         {
             r.motorLift.setPower(0.0); // else not trigger, then set to off or some value of 'hold' power
-        }
+        }*/
 
 
  //CR Servo commands
