@@ -97,7 +97,7 @@ public class ABlue1 extends LinearOpMode {
 
 
 
-        telemetry.addData("Red  ", r.colorR.red());
+        telemetry.addData("Red  ", r.colorB.red());
         telemetry.addData("Blue ", r.colorB.blue());
 
         telemetry.update();
@@ -128,7 +128,7 @@ public class ABlue1 extends LinearOpMode {
         }
 
         else {
-            telemetry.addData("Red  ", r.colorR.red());
+            telemetry.addData("Red  ", r.colorB.red());
             telemetry.addData("Blue ", r.colorB.blue());
             telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
             telemetry.update();
@@ -153,7 +153,7 @@ public class ABlue1 extends LinearOpMode {
         {
             vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
         }
-                telemetry.addData("Red  ", r.colorR.red());
+                telemetry.addData("Red  ", r.colorB.red());
                 telemetry.addData("Blue ", r.colorB.blue());
 
                 telemetry.addData("VuMark", "%s visible", vuMark);

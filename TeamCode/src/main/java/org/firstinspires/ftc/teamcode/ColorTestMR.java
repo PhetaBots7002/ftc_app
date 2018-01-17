@@ -52,7 +52,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 @TeleOp(name = "MR Color Test", group = "Yeet")
-//@Disabled
+@Disabled
 public class ColorTestMR extends LinearOpMode {
 
     // Initialize Hardware Device Objects
