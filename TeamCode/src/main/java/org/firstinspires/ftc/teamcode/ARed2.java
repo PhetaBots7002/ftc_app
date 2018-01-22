@@ -95,7 +95,7 @@ public class ARed2 extends LinearOpMode {
         //Extend ColorSensor to read Particles
         r.servoB.setPosition(.5);
         ServoRWait(1, 1000);
-        r.servoR.setPosition(.1);//Down
+        r.servoR.setPosition(.05);//Down
 
 
 
@@ -140,7 +140,7 @@ public class ARed2 extends LinearOpMode {
 
 
         r.servoB.setPosition(0);
-        ServoRWait(0.1, 1000);
+        ServoRWait(0.05, 1000);
         r.servoR.setPosition(1);//Up
 
             /*
