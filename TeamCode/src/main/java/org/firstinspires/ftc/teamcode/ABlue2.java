@@ -93,17 +93,17 @@ public class ABlue2 extends LinearOpMode {
 
         //Extend ColorSensor to read Particles
         r.servoB.setPosition(.95);//Down
+        sleep(2000);
 
 
-
-        telemetry.addData("Red  ", r.colorR.red());
+        telemetry.addData("Red  ", r.colorB.red());
         telemetry.addData("Blue ", r.colorB.blue());
 
         telemetry.update();
 
         if (r.colorB.blue() > r.Blue) {
             //do this
-
+            telemetry.update();
             SpinRight(.25, 300);
             StopDrivingTime(500);
 
@@ -118,7 +118,7 @@ public class ABlue2 extends LinearOpMode {
         else if (r.colorR.red() > r.Red){
             //else if (r.colorsensor.red() < r.Red && r.colorsensor.red() >r.Red2) {
             //do this
-
+            telemetry.update();
             SpinLeft(.25, 300);
             StopDrivingTime(500);
 
@@ -126,9 +126,8 @@ public class ABlue2 extends LinearOpMode {
             StopDrivingTime(500);
         }
 
-
         else {
-            telemetry.addData("Red  ", r.colorR.red());
+            telemetry.addData("Red  ", r.colorB.red());
             telemetry.addData("Blue ", r.colorB.blue());
             telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
             telemetry.update();
@@ -138,6 +137,8 @@ public class ABlue2 extends LinearOpMode {
 
 
         r.servoB.setPosition(0);//Up
+        sleep(1000);
+
             /*
              * See if any of the instances of {@link relicTemplate} are currently visible.
              * {@link RelicRecoveryVuMark} is an enum which can have the following values:

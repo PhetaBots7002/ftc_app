@@ -94,9 +94,9 @@ public class ARed1 extends LinearOpMode {
 
         //Extend ColorSensor to read Particles
         r.servoB.setPosition(.5);
-        ServoRWait(1, 1000);
-        r.servoR.setPosition(.05);//Down
-
+        sleep(500);
+        r.servoR.setPosition(.095);//Down
+        sleep(2000);
 
 
         telemetry.addData("Red  ", r.colorR.red());
@@ -104,9 +104,10 @@ public class ARed1 extends LinearOpMode {
 
         telemetry.update();
 
-        if (r.colorR.red() > r.Blue) {
+        if (r.colorR.red()-r.colorR.blue() > 75) {
+       // if (r.colorR.blue() > r.Blue2) {
             //do this
-
+            telemetry.update();
             SpinRight(.25, 300);
             StopDrivingTime(500);
 
@@ -118,10 +119,11 @@ public class ARed1 extends LinearOpMode {
 
 
         }
-        else if (r.colorB.blue() > r.Red){
+        else if (r.colorR.red()-r.colorR.blue() < 75){
+       // else if (r.colorR.blue() < r.Blue2){
             //else if (r.colorsensor.red() < r.Red && r.colorsensor.red() >r.Red2) {
             //do this
-
+            telemetry.update();
             SpinLeft(.25, 300);
             StopDrivingTime(500);
 
@@ -136,10 +138,11 @@ public class ARed1 extends LinearOpMode {
             telemetry.update();
         }
 
-
+        sleep(1000);
+        r.servoR.setPosition(1);
+        sleep(2000);//Up
         r.servoB.setPosition(0);
-        ServoRWait(0.05, 1000);
-        r.servoR.setPosition(1);//Up
+
             /*
              * See if any of the instances of {@link relicTemplate} are currently visible.
              * {@link RelicRecoveryVuMark} is an enum which can have the following values:
@@ -149,7 +152,7 @@ public class ARed1 extends LinearOpMode {
         ElapsedTime timer = new ElapsedTime();
         timer.reset();
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
-        while (opModeIsActive()&& vuMark == RelicRecoveryVuMark.UNKNOWN && timer.seconds()<5.0) // if vuMark is NOT UNKNOWN run autoCode for value seen
+        while (opModeIsActive()&& vuMark == RelicRecoveryVuMark.UNKNOWN && timer.seconds()<10.0) // if vuMark is NOT UNKNOWN run autoCode for value seen
         {
             vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
         }
