@@ -1,23 +1,16 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.ConceptVuforiaNavigation;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
-import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.firstinspires.ftc.robotcore.external.navigation.VuMarkInstanceId;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 /**
@@ -32,9 +25,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * is explained in {@link ConceptVuforiaNavigation}.
  */
 
-@Autonomous(name="Red1", group ="Concept")
+@Autonomous(name="MR.R Red1", group ="Concept")
 //@Disabled
-public class ARed1 extends LinearOpMode {
+public class MrRColorReader extends LinearOpMode {
 
     HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
 
@@ -98,47 +91,52 @@ public class ARed1 extends LinearOpMode {
         r.servoR.setPosition(.095);//Down
         sleep(3000);
 
+        double READING = 0.0;
+        boolean redBall = false;
 
+        READING = r.colorR.red() - r.colorR.blue(); // take difference between red and blue values
+
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
+
+        //wait for reading to stabalize
+        while ( READING != READING +- 10 && opModeIsActive() &&  timer.seconds() < 5) {
+            //display values while waiting to stabalize
+            telemetry.addData("READING ", READING);
+            telemetry.addData("timer: ", timer.seconds());
+            telemetry.update();
+        }
+
+         // once READING has stabalized, run code based on READING value
+        if (READING > 75){ // if difference is greater than 75, then it's seeing a RED BALL
+            redBall = true; // set redBall to true
+        }
+        // display all reading data
         telemetry.addData("Red  ", r.colorR.red());
         telemetry.addData("Blue ", r.colorB.blue());
-
+        telemetry.addData("READING ", READING);
+        telemetry.addData("Is RedBall ", redBall);
         telemetry.update();
 
-        if (r.colorR.red()-r.colorR.blue() > 75) {
-       // if (r.colorR.blue() > r.Blue2) {
-            //do this
-            telemetry.update();
-            SpinRight(.25, 300);
-            StopDrivingTime(500);
-
+        if (!redBall) {
+            //knock left (keep the ball in sight)
             SpinLeft(.25, 300);
             StopDrivingTime(500);
-
-
-            // check for red present greater than Target value
-
-
-        }
-        else if (r.colorR.red()-r.colorR.blue() < 75){
-       // else if (r.colorR.blue() < r.Blue2){
-            //else if (r.colorsensor.red() < r.Red && r.colorsensor.red() >r.Red2) {
-            //do this
-            telemetry.update();
-            SpinLeft(.25, 300);
-            StopDrivingTime(500);
-
             SpinRight(.25, 300);
             StopDrivingTime(500);
         }
-
         else {
-            telemetry.addData("Red  ", r.colorR.red());
-            telemetry.addData("Blue ", r.colorB.blue());
-            telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
-            telemetry.update();
+            // knock right ( knock off ball in sight)
+            SpinRight(.25, 300);
+            StopDrivingTime(500);
+            SpinLeft(.25, 300);
+            StopDrivingTime(500);
         }
+
+
 
         sleep(1000);
+        //reposition servos up
         r.servoR.setPosition(1);
         sleep(2000);//Up
         r.servoB.setPosition(0);
@@ -149,10 +147,10 @@ public class ARed1 extends LinearOpMode {
              * UNKNOWN, LEFT, CENTER, and RIGHT. When a VuMark is visible, something other than
              * UNKNOWN will be returned, else 'NOT VISIBLE' will display
              */
-        ElapsedTime timer = new ElapsedTime();
+        ElapsedTime timer2 = new ElapsedTime();
         timer.reset();
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
-        while (opModeIsActive()&& vuMark == RelicRecoveryVuMark.UNKNOWN && timer.seconds()<10.0) // if vuMark is NOT UNKNOWN run autoCode for value seen
+        while (opModeIsActive()&& vuMark == RelicRecoveryVuMark.UNKNOWN && timer2.seconds()<10.0) // if vuMark is NOT UNKNOWN run autoCode for value seen
         {
             vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
         }
