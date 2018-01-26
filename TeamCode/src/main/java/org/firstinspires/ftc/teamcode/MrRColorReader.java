@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcontroller.external.samples.ConceptVuforiaNavigation;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.firstinspires.ftc.robotcore.external.navigation.VuMarkInstanceId;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
@@ -83,74 +84,63 @@ public class MrRColorReader extends LinearOpMode {
 
         relicTrackables.activate();
 
+        double REDTHRESHOLD = 70;
+        double BLUETHRESHOLD = 70;
+        int thresholdadjust = 0;
 
 
-        //Extend ColorSensor to read Particles
+
+        //Extend ColorSensorR to read Particles
         r.servoB.setPosition(.5);
         sleep(500);
         r.servoR.setPosition(.095);//Down
         sleep(3000);
 
-        double READING = 0.0;
-        boolean redBall = false;
+        if (r.sensorDistance.getDistance(DistanceUnit.CM) > 2.0) {thresholdadjust = 20;} else {thresholdadjust = 0;}
 
-        READING = r.colorR.red() - r.colorR.blue(); // take difference between red and blue values
-
-        ElapsedTime timer = new ElapsedTime();
-        timer.reset();
-
-        //wait for reading to stabalize
-        while ( READING != READING +- 10 && opModeIsActive() &&  timer.seconds() < 5) {
-            //display values while waiting to stabalize
-            telemetry.addData("READING ", READING);
-            telemetry.addData("timer: ", timer.seconds());
-            telemetry.update();
-        }
-
-         // once READING has stabalized, run code based on READING value
-        if (READING > 75){ // if difference is greater than 75, then it's seeing a RED BALL
-            redBall = true; // set redBall to true
-        }
         // display all reading data
         telemetry.addData("Red  ", r.colorR.red());
         telemetry.addData("Blue ", r.colorB.blue());
-        telemetry.addData("READING ", READING);
-        telemetry.addData("Is RedBall ", redBall);
+
         telemetry.update();
 
-        if (!redBall) {
-            //knock left (keep the ball in sight)
+        if  (r.colorR.red() > r.colorR.blue() && r.colorR.red() >= REDTHRESHOLD )  {
+            //"act on red"
             SpinLeft(.25, 300);
             StopDrivingTime(500);
             SpinRight(.25, 300);
             StopDrivingTime(500);
         }
-        else {
-            // knock right ( knock off ball in sight)
+        else if (r.colorR.blue() > r.colorR.red() && r.colorR.blue() >= BLUETHRESHOLD + thresholdadjust){
+            // "act on blue"
             SpinRight(.25, 300);
             StopDrivingTime(500);
             SpinLeft(.25, 300);
             StopDrivingTime(500);
         }
+        else{
+            // do nothing
+        }
 
 
-
+        // wait one second then reposition servos up
         sleep(1000);
-        //reposition servos up
+
         r.servoR.setPosition(1);
         sleep(2000);//Up
         r.servoB.setPosition(0);
 
-            /*
+            /* MOVE ON TO CHECK VUFORIA IMAGE
              * See if any of the instances of {@link relicTemplate} are currently visible.
              * {@link RelicRecoveryVuMark} is an enum which can have the following values:
              * UNKNOWN, LEFT, CENTER, and RIGHT. When a VuMark is visible, something other than
              * UNKNOWN will be returned, else 'NOT VISIBLE' will display
              */
-        ElapsedTime timer2 = new ElapsedTime();
+        ElapsedTime timer = new ElapsedTime();
         timer.reset();
+
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
-        while (opModeIsActive()&& vuMark == RelicRecoveryVuMark.UNKNOWN && timer2.seconds()<10.0) // if vuMark is NOT UNKNOWN run autoCode for value seen
+        while (opModeIsActive()&& vuMark == RelicRecoveryVuMark.UNKNOWN && timer.seconds()<10.0) // if vuMark is NOT UNKNOWN run autoCode for value seen
         {
             vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
         }

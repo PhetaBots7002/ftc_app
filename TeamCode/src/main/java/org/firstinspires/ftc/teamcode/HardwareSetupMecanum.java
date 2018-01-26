@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -35,6 +36,7 @@ public class HardwareSetupMecanum {
         //Add sensors here
     public ColorSensor colorR = null;
     public ColorSensor colorB = null;
+    public DistanceSensor sensorDistance = null;
 
     /* local OpMode members. */
     HardwareMap hwMap        = null;
@@ -52,7 +54,7 @@ public class HardwareSetupMecanum {
     double STOP = 0.5;      //CR servo Stopped
 
     double Red = 160; //60              120     51
-    double Blue = 60; //20
+    double Blue = 68; //20
     double Red2 = 130; //60
     double Blue2 = 150;  //20
 //159    50
@@ -89,6 +91,9 @@ public class HardwareSetupMecanum {
 
         colorB = hwMap.colorSensor.get("colorB");
         colorR = hwMap.colorSensor.get("colorR");
+
+        // get a reference to the distance sensor that shares the same name.
+        sensorDistance = hwMap.get(DistanceSensor.class, "sensor_color_distance");
 
         // eg: Set the drive motor directions:
         motorLift.setDirection(DcMotor.Direction.FORWARD); // Can change based on motor configuration
