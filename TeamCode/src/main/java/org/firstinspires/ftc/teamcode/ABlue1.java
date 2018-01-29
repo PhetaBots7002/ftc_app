@@ -181,7 +181,7 @@ public class ABlue1 extends LinearOpMode {
                 if (vuMark == RelicRecoveryVuMark.LEFT) {
                     // autonomous code here...
 
-                    DriveForwardTime(DRIVE_POWER, 1150);
+                    DriveForwardTime(DRIVE_POWER, 1100);
                     StopDrivingTime(500);
 
                     SpinLeft(DRIVE_POWER, 1000); //neg power drives backwards
@@ -194,11 +194,14 @@ public class ABlue1 extends LinearOpMode {
                     StopDrivingTime(1000);
 
                     DriveForwardTime(-DRIVE_POWER, 250);
+                    StopDrivingTime(500);
+
+                    SpinLeft(DRIVE_POWER, 2000);
                     StopDrivingTime(500);
                 }
                 else if (vuMark == RelicRecoveryVuMark.CENTER){
                     // autonomous code here...
-                    DriveForwardTime(DRIVE_POWER, 1500);
+                    DriveForwardTime(DRIVE_POWER, 1470);
                     StopDrivingTime(500);
 
                     SpinLeft(DRIVE_POWER, 1000); //neg power drives backwards
@@ -211,6 +214,9 @@ public class ABlue1 extends LinearOpMode {
                     StopDrivingTime(1000);
 
                     DriveForwardTime(-DRIVE_POWER, 250);
+                    StopDrivingTime(500);
+
+                    SpinLeft(DRIVE_POWER, 2000);
                     StopDrivingTime(500);
                 }
                 else if (vuMark == RelicRecoveryVuMark.RIGHT){
@@ -244,6 +250,9 @@ public class ABlue1 extends LinearOpMode {
                     StopDrivingTime(1000);
 
                     DriveForwardTime(-DRIVE_POWER, 250);
+                    StopDrivingTime(500);
+
+                    SpinLeft(DRIVE_POWER, 2000);
                     StopDrivingTime(500);
 
                 }

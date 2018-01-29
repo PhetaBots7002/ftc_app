@@ -184,7 +184,7 @@ public class ABlue2 extends LinearOpMode {
             DriveForwardTime(DRIVE_POWER, 800);
             StopDrivingTime(500);
 
-            StrafeRight(DRIVE_POWER, 400); //neg power drives backwards
+            StrafeRight(DRIVE_POWER, 1920);
             StopDrivingTime(500);
 
             DriveForwardTime(DRIVE_POWER, 500);
@@ -193,10 +193,14 @@ public class ABlue2 extends LinearOpMode {
             Drop(0.2, 500);
             StopDrivingTime(1000);
 
-            DriveForwardTime(-DRIVE_POWER, 100);
+            DriveForwardTime(-DRIVE_POWER, 200);
+            StopDrivingTime(500);
 
-            StopDriving();
+            StrafeRight(DRIVE_POWER, 300);
+            StopDrivingTime(500);
 
+            SpinRight(DRIVE_POWER, 1500);
+            StopDrivingTime(500);
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER){
             // autonomous code here...
