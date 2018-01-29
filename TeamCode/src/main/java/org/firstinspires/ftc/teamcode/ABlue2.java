@@ -184,7 +184,7 @@ public class ABlue2 extends LinearOpMode {
             DriveForwardTime(DRIVE_POWER, 800);
             StopDrivingTime(500);
 
-            StrafeRight(DRIVE_POWER, 1920);
+            StrafeRight(DRIVE_POWER, 190);
             StopDrivingTime(500);
 
             DriveForwardTime(DRIVE_POWER, 500);
@@ -200,14 +200,14 @@ public class ABlue2 extends LinearOpMode {
             StopDrivingTime(500);
 
             SpinRight(DRIVE_POWER, 1500);
-            StopDrivingTime(500);
+            StopDriving();
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER){
             // autonomous code here...
             DriveForwardTime(DRIVE_POWER, 800);
             StopDrivingTime(500);
 
-            StrafeRight(DRIVE_POWER, 850); //neg power drives backwards
+            StrafeRight(DRIVE_POWER, 555); //neg power drives backwards
             StopDrivingTime(500);
 
             DriveForwardTime(DRIVE_POWER, 800);
@@ -218,6 +218,9 @@ public class ABlue2 extends LinearOpMode {
 
             DriveForwardTime(-DRIVE_POWER, 100);
 
+            StopDrivingTime(500);
+
+            SpinRight(DRIVE_POWER, 1500);
             StopDriving();
 
         }
@@ -226,7 +229,7 @@ public class ABlue2 extends LinearOpMode {
             DriveForwardTime(DRIVE_POWER, 800);
             StopDrivingTime(500);
 
-            StrafeRight(DRIVE_POWER, 1250); //neg power drives backwards
+            StrafeRight(DRIVE_POWER, 1015); //neg power drives backwards
             StopDrivingTime(500);
 
             DriveForwardTime(DRIVE_POWER, 500);
@@ -237,13 +240,17 @@ public class ABlue2 extends LinearOpMode {
 
             DriveForwardTime(-DRIVE_POWER, 100);
 
+            StopDrivingTime(500);
+
+            SpinRight(DRIVE_POWER, 1500);
             StopDriving();
         }
         else {
+            // autonomous code here...
             DriveForwardTime(DRIVE_POWER, 800);
             StopDrivingTime(500);
 
-            StrafeRight(DRIVE_POWER, 850); //neg power drives backwards
+            StrafeRight(DRIVE_POWER, 555); //neg power drives backwards
             StopDrivingTime(500);
 
             DriveForwardTime(DRIVE_POWER, 800);
@@ -254,6 +261,9 @@ public class ABlue2 extends LinearOpMode {
 
             DriveForwardTime(-DRIVE_POWER, 100);
 
+            StopDrivingTime(500);
+
+            SpinRight(DRIVE_POWER, 1500);
             StopDriving();
         }
 
