@@ -26,109 +26,139 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * is explained in {@link ConceptVuforiaNavigation}.
  */
 
-@Autonomous(name="MR.R Red1", group ="Concept")
+@Autonomous(name="MR.R colorReader", group ="Concept")
 //@Disabled
 public class MrRColorReader extends LinearOpMode {
 
     HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
 
-    public static final String TAG = "Vuforia VuMark Sample";
-
-    OpenGLMatrix lastLocation = null;
-
-    /**
-     * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
-     * localization engine.
-     */
-    VuforiaLocalizer vuforia;
+//    public static final String TAG = "Vuforia VuMark Sample";
+//
+//    OpenGLMatrix lastLocation = null;
+//
+//    /**
+//     * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
+//     * localization engine.
+//     */
+//    VuforiaLocalizer vuforia;
 
     @Override public void runOpMode() throws InterruptedException {
 
         r.init(hardwareMap); // get initializatin of hardware from HardwareSetUp class
 
-        /*
-         * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
-         * If no camera monitor is desired, use the parameterless constructor instead (commented out below).
-         */
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
 
-        // OR...  Do Not Activate the Camera Monitor View, to save power
-        // VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+//        /*
+//         * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
+//         * If no camera monitor is desired, use the parameterless constructor instead (commented out below).
+//         */
+//        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+//        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
+//
+//        // OR...  Do Not Activate the Camera Monitor View, to save power
+//        // VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+//
+//        /*
+//         * licence key for rreynolds
+//         */
+//        parameters.vuforiaLicenseKey = "AYvZYCv/////AAAAGcq+NLqQak55ndA8c/UZSNyBVvxcRtiV+muNZrfuXQj38UFKNMDyndfU3J8h95GCDmnCJZf5rEfxbLbdsACtw23yyQAPGiKKHk8GpugjeBT89+Nb5t9vmBn8LgVNPK5SpXcCWP7Ae7Te53Hf3kmwl0STZPFAXU4TGmicC4MUKRcZo26wRGxV4uP9ISgjB8b8N5RkDouhVB6HTG8TC3NUM6AEOPY6W47NImC5Fl/0iCV+6x4+lSwKwqv5uZE2tiYpZpj7UVekeo5NLXhsqAIJqH2Tgb1IoGs5VD2RuPYNuRznIePoNUO5l+jxloy4EFSIyogD4FYOfMwwW/BILD1FuHJ0jEmdZ/hPJUb9iOlp5MBz";
+//
+//        /*
+//         * We also indicate which camera on the RC that we wish to use.
+//         * Here we chose the back (HiRes) camera (for greater range), but
+//         * for a competition robot, the front camera might be more convenient.
+//         */
+//        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+//        this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
+//
+//        /**
+//         * Load the data set containing the VuMarks for Relic Recovery. There's only one trackable
+//         * in this data set: all three of the VuMarks in the game were created from this one template,
+//         * but differ in their instance id information.
+//         * @see VuMarkInstanceId
+//         */
+//        VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
+//        VuforiaTrackable relicTemplate = relicTrackables.get(0);
+//        relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
 
-        /*
-         * licence key for rreynolds
-         */
-        parameters.vuforiaLicenseKey = "AYvZYCv/////AAAAGcq+NLqQak55ndA8c/UZSNyBVvxcRtiV+muNZrfuXQj38UFKNMDyndfU3J8h95GCDmnCJZf5rEfxbLbdsACtw23yyQAPGiKKHk8GpugjeBT89+Nb5t9vmBn8LgVNPK5SpXcCWP7Ae7Te53Hf3kmwl0STZPFAXU4TGmicC4MUKRcZo26wRGxV4uP9ISgjB8b8N5RkDouhVB6HTG8TC3NUM6AEOPY6W47NImC5Fl/0iCV+6x4+lSwKwqv5uZE2tiYpZpj7UVekeo5NLXhsqAIJqH2Tgb1IoGs5VD2RuPYNuRznIePoNUO5l+jxloy4EFSIyogD4FYOfMwwW/BILD1FuHJ0jEmdZ/hPJUb9iOlp5MBz";
+        while (!opModeIsActive()) {
+            telemetry.addLine("Red Alliance Sensor--");
+            telemetry.addData("Red Value:  ", r.colorR.red());
+            telemetry.addData("Blue Value: ", r.colorR.blue());
+            telemetry.addData("Distance: ", "(%.2f)", r.sensorDistanceR.getDistance(DistanceUnit.CM));
 
-        /*
-         * We also indicate which camera on the RC that we wish to use.
-         * Here we chose the back (HiRes) camera (for greater range), but
-         * for a competition robot, the front camera might be more convenient.
-         */
-        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
-        this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
-
-        /**
-         * Load the data set containing the VuMarks for Relic Recovery. There's only one trackable
-         * in this data set: all three of the VuMarks in the game were created from this one template,
-         * but differ in their instance id information.
-         * @see VuMarkInstanceId
-         */
-        VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
-        VuforiaTrackable relicTemplate = relicTrackables.get(0);
-        relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
-
-
+            telemetry.addLine("Blue Alliance Sensor--");
+            telemetry.addData("Red Value:  ", r.colorB.red());
+            telemetry.addData("Blue Value: ", r.colorB.blue());
+            telemetry.addData("Distance: ", "(%.2f)", r.sensorDistanceB.getDistance(DistanceUnit.CM));
+            telemetry.update();
+        }
         waitForStart();
 
-        relicTrackables.activate();
-
-        double REDTHRESHOLD = 70;
-        double BLUETHRESHOLD = 70;
-        int thresholdadjust = 0;
-
+ //       relicTrackables.activate();
 
 
         //Extend ColorSensorR to read Particles
-        r.servoB.setPosition(.5);
-        sleep(500);
-        r.servoR.setPosition(.095);//Down
-        sleep(3000);
+//        r.servoB.setPosition(.5);
+//        sleep(500);
+//        r.servoR.setPosition(.3);
+//        sleep(500);
+//        r.servoR.setPosition(.095);//Down
+//        sleep(3000);
 
-        if (r.sensorDistance.getDistance(DistanceUnit.CM) > 2.0) {thresholdadjust = 20;} else {thresholdadjust = 0;}
-
-        // display all reading data
-        telemetry.addData("Red  ", r.colorR.red());
-        telemetry.addData("Blue ", r.colorB.blue());
-
-        telemetry.update();
+        // Set threshold values for red/blue color sensor readings
+        double REDTHRESHOLD = 60;
+        double BLUETHRESHOLD = 50;
 
         if  (r.colorR.red() > r.colorR.blue() && r.colorR.red() >= REDTHRESHOLD )  {
             //"act on red"
-            SpinLeft(.25, 300);
-            StopDrivingTime(500);
-            SpinRight(.25, 300);
-            StopDrivingTime(500);
+
+            // display all reading data
+            telemetry.addLine("saw RED ");
+            telemetry.addLine("Red Alliance Sensor--");
+            telemetry.addData("Red Value:  ", r.colorR.red());
+            telemetry.addData("Blue Value: ", r.colorR.blue());
+            telemetry.addData("Distance: ", "(%.2f)", r.sensorDistanceR.getDistance(DistanceUnit.CM));
+            telemetry.update();
+
+//            SpinLeft(.25, 300);
+//            StopDrivingTime(500);
+//            SpinRight(.25, 300);
+//            StopDrivingTime(500);
         }
-        else if (r.colorR.blue() > r.colorR.red() && r.colorR.blue() >= BLUETHRESHOLD + thresholdadjust){
+       // else if (r.colorR.blue() > r.colorR.red() && r.colorR.blue() >= BLUETHRESHOLD + thresholdadjust){
+        else if (r.colorR.blue() > r.colorR.red() && r.colorR.blue() >= BLUETHRESHOLD ){
             // "act on blue"
-            SpinRight(.25, 300);
-            StopDrivingTime(500);
-            SpinLeft(.25, 300);
-            StopDrivingTime(500);
+            // display all reading data
+            telemetry.addLine("saw BLUE ");
+            telemetry.addLine("Red Alliance Sensor--");
+            telemetry.addData("Red Value:  ", r.colorR.red());
+            telemetry.addData("Blue Value: ", r.colorR.blue());
+            telemetry.addData("Distance: ", "(%.2f)", r.sensorDistanceR.getDistance(DistanceUnit.CM));
+            telemetry.update();
+
+//            SpinRight(.25, 300);
+//            StopDrivingTime(500);
+//            SpinLeft(.25, 300);
+//            StopDrivingTime(500);
         }
         else{
-            // do nothing
+            // reading un-reliable so do no harm
+            // display all reading data
+            telemetry.addLine("READING UN-RELIABLE ");
+            telemetry.addLine("Red Alliance Sensor--");
+            telemetry.addData("Red Value:  ", r.colorR.red());
+            telemetry.addData("Blue Value: ", r.colorR.blue());
+            telemetry.addData("Distance: ", "(%.2f)", r.sensorDistanceR.getDistance(DistanceUnit.CM));
+            telemetry.update();
         }
 
 
         // wait one second then reposition servos up
-        sleep(1000);
+        sleep(10000);
 
-        r.servoR.setPosition(1);
-        sleep(2000);//Up
-        r.servoB.setPosition(0);
+//        r.servoR.setPosition(1);
+//        sleep(2000);//Up
+//        r.servoB.setPosition(0);
 
             /* MOVE ON TO CHECK VUFORIA IMAGE
              * See if any of the instances of {@link relicTemplate} are currently visible.
@@ -136,93 +166,93 @@ public class MrRColorReader extends LinearOpMode {
              * UNKNOWN, LEFT, CENTER, and RIGHT. When a VuMark is visible, something other than
              * UNKNOWN will be returned, else 'NOT VISIBLE' will display
              */
-        ElapsedTime timer = new ElapsedTime();
-        timer.reset();
-
-        RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
-        while (opModeIsActive()&& vuMark == RelicRecoveryVuMark.UNKNOWN && timer.seconds()<10.0) // if vuMark is NOT UNKNOWN run autoCode for value seen
-        {
-            vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
-        }
-        telemetry.addData("Red  ", r.colorR.red());
-        telemetry.addData("Blue ", r.colorB.blue());
-
-        telemetry.addData("VuMark", "%s visible", vuMark);
-        telemetry.update();
-
-        // This simple example code runs a different motor for 1 sec then turns it off
-        // for each TemplateID found.
-        // the run motor test can be replaced by your desired autonomous code.
-
-        if (vuMark == RelicRecoveryVuMark.LEFT) {
-            // autonomous code here...
-
-            DriveForwardTime(DRIVE_POWER, 1745);
-            StopDrivingTime(500);
-
-            SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
-            StopDrivingTime(500);
-
-            DriveForwardTime(DRIVE_POWER, 450);
-            StopDrivingTime(500);
-
-            Drop(0, 300);
-            StopDrivingTime(1000);
-
-            DriveForwardTime(-DRIVE_POWER, 100);
-            StopDrivingTime(500);
-        }
-        else if (vuMark == RelicRecoveryVuMark.CENTER){
-            // autonomous code here...
-            DriveForwardTime(DRIVE_POWER, 1350);
-            StopDrivingTime(500);
-
-            SpinRight(DRIVE_POWER, 970); //neg power drives backwards
-            StopDrivingTime(500);
-
-            DriveForwardTime(DRIVE_POWER, 450);
-            StopDrivingTime(500);
-
-            Drop(0, 300);
-            StopDrivingTime(1000);
-
-            DriveForwardTime(-DRIVE_POWER, 100);
-            StopDrivingTime(500);
-        }
-        else if (vuMark == RelicRecoveryVuMark.RIGHT){
-            // autonomous code here...StrafeRight(DRIVE_POWER, 500);
-            DriveForwardTime(DRIVE_POWER, 1000);
-            StopDrivingTime(500);
-
-            SpinRight(DRIVE_POWER, 950); //neg power drives backwards
-            StopDrivingTime(500);
-
-            DriveForwardTime(DRIVE_POWER, 450);
-            StopDrivingTime(500);
-
-            Drop(0, 300);
-            StopDrivingTime(1000);
-
-            DriveForwardTime(-DRIVE_POWER, 100);
-            StopDrivingTime(500);
-        }
-        else {
-            DriveForwardTime(DRIVE_POWER, 1350);
-            StopDrivingTime(500);
-
-            SpinRight(DRIVE_POWER, 970); //neg power drives backwards
-            StopDrivingTime(500);
-
-            DriveForwardTime(DRIVE_POWER, 450);
-            StopDrivingTime(500);
-
-            Drop(0, 300);
-            StopDrivingTime(1000);
-
-            DriveForwardTime(-DRIVE_POWER, 100);
-            StopDrivingTime(500);
-        }
-        // *** need to figure out how to end opModeIsActive once code has been run
+//        ElapsedTime timer = new ElapsedTime();
+//        timer.reset();
+//
+//        RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
+//        while (opModeIsActive()&& vuMark == RelicRecoveryVuMark.UNKNOWN && timer.seconds()<10.0) // if vuMark is NOT UNKNOWN run autoCode for value seen
+//        {
+//            vuMark = RelicRecoveryVuMark.from(relicTemplate); // vuMark gets value from relicTemplate
+//        }
+//        telemetry.addData("Red  ", r.colorR.red());
+//        telemetry.addData("Blue ", r.colorB.blue());
+//
+//        telemetry.addData("VuMark", "%s visible", vuMark);
+//        telemetry.update();
+//
+//        // This simple example code runs a different motor for 1 sec then turns it off
+//        // for each TemplateID found.
+//        // the run motor test can be replaced by your desired autonomous code.
+//
+//        if (vuMark == RelicRecoveryVuMark.LEFT) {
+//            // autonomous code here...
+//
+//            DriveForwardTime(DRIVE_POWER, 1745);
+//            StopDrivingTime(500);
+//
+//            SpinRight(DRIVE_POWER, 1000); //neg power drives backwards
+//            StopDrivingTime(500);
+//
+//            DriveForwardTime(DRIVE_POWER, 450);
+//            StopDrivingTime(500);
+//
+//            Drop(0, 300);
+//            StopDrivingTime(1000);
+//
+//            DriveForwardTime(-DRIVE_POWER, 100);
+//            StopDrivingTime(500);
+//        }
+//        else if (vuMark == RelicRecoveryVuMark.CENTER){
+//            // autonomous code here...
+//            DriveForwardTime(DRIVE_POWER, 1350);
+//            StopDrivingTime(500);
+//
+//            SpinRight(DRIVE_POWER, 970); //neg power drives backwards
+//            StopDrivingTime(500);
+//
+//            DriveForwardTime(DRIVE_POWER, 450);
+//            StopDrivingTime(500);
+//
+//            Drop(0, 300);
+//            StopDrivingTime(1000);
+//
+//            DriveForwardTime(-DRIVE_POWER, 100);
+//            StopDrivingTime(500);
+//        }
+//        else if (vuMark == RelicRecoveryVuMark.RIGHT){
+//            // autonomous code here...StrafeRight(DRIVE_POWER, 500);
+//            DriveForwardTime(DRIVE_POWER, 1000);
+//            StopDrivingTime(500);
+//
+//            SpinRight(DRIVE_POWER, 950); //neg power drives backwards
+//            StopDrivingTime(500);
+//
+//            DriveForwardTime(DRIVE_POWER, 450);
+//            StopDrivingTime(500);
+//
+//            Drop(0, 300);
+//            StopDrivingTime(1000);
+//
+//            DriveForwardTime(-DRIVE_POWER, 100);
+//            StopDrivingTime(500);
+//        }
+//        else {
+//            DriveForwardTime(DRIVE_POWER, 1350);
+//            StopDrivingTime(500);
+//
+//            SpinRight(DRIVE_POWER, 970); //neg power drives backwards
+//            StopDrivingTime(500);
+//
+//            DriveForwardTime(DRIVE_POWER, 450);
+//            StopDrivingTime(500);
+//
+//            Drop(0, 300);
+//            StopDrivingTime(1000);
+//
+//            DriveForwardTime(-DRIVE_POWER, 100);
+//            StopDrivingTime(500);
+//        }
+//        // *** need to figure out how to end opModeIsActive once code has been run
 
     }//runOpMode
 

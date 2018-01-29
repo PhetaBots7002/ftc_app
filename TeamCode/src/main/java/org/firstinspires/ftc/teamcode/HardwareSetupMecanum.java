@@ -33,10 +33,11 @@ public class HardwareSetupMecanum {
     public Servo servoR = null;
 
     //sensors
-        //Add sensors here
+        //Add sensors here R= red alliance side of robot, B= blue alliance side of robot
     public ColorSensor colorR = null;
     public ColorSensor colorB = null;
-    public DistanceSensor sensorDistance = null;
+    public DistanceSensor sensorDistanceR = null;
+    public DistanceSensor sensorDistanceB = null;
 
     /* local OpMode members. */
     HardwareMap hwMap        = null;
@@ -86,14 +87,20 @@ public class HardwareSetupMecanum {
 
         servoClamp = hwMap.servo.get("Clamp");
 
+        //*** STETSON need to clarify your naming conventions here.
+        //    not sure which one is which
+        //    need to do a better job at labeling wiring and device and HUB ports
+        // ** Note R & B here stand for Red Alliance side and Blue Alliance side of robot (R= right side, B= left side)
+
         servoR = hwMap.servo.get("servoR");
         servoB = hwMap.servo.get("servoB");
-
-        colorB = hwMap.colorSensor.get("colorB");
+                                        
+        colorB = hwMap.colorSensor.get("colorB"); // the blue alliance side???
         colorR = hwMap.colorSensor.get("colorR");
 
-        // get a reference to the distance sensor that shares the same name.
-        sensorDistance = hwMap.get(DistanceSensor.class, "sensor_color_distance");
+        // get a reference to the distance sensor that shares the same name as color sensorR.
+        sensorDistanceR = hwMap.get(DistanceSensor.class, "colorR");
+        sensorDistanceB = hwMap.get(DistanceSensor.class, "colorB");
 
         // eg: Set the drive motor directions:
         motorLift.setDirection(DcMotor.Direction.FORWARD); // Can change based on motor configuration
