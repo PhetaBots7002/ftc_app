@@ -87,62 +87,78 @@ public class ARed2 extends LinearOpMode {
 
 
         waitForStart();
-
+        double REDTHRESHOLD = 60;
+        double BLUETHRESHOLD = 50;
         relicTrackables.activate();
 
 
 
         //Extend ColorSensor to read Particles
         r.servoB.setPosition(.5);
-        ServoRWait(1, 1000);
-        r.servoR.setPosition(.05);//Down
+        sleep(500);
+        r.servoR.setPosition(.095);//Down
+        sleep(3000);
 
 
-
-        telemetry.addData("Red  ", r.colorR.red());
-        telemetry.addData("Blue ", r.colorB.blue());
-
+        telemetry.addLine("Red Alliance Sensor--");
+        telemetry.addData("Red Value:  ", r.colorR.red());
+        telemetry.addData("Blue Value: ", r.colorR.blue());
         telemetry.update();
 
-        if (r.colorR.red() > r.Blue) {
+        if  (r.colorR.red() > r.colorR.blue() && r.colorR.red() >= REDTHRESHOLD )  {
             //do this
-
+            telemetry.addLine("saw RED");
+            telemetry.addLine("Red Alliance Sensor--");
+            telemetry.addData("Red Value:  ", r.colorR.red());
+            telemetry.addData("Blue Value: ", r.colorR.blue());
+            telemetry.update();
             SpinRight(.25, 300);
             StopDrivingTime(500);
-
+            sleep(1000);
+            r.servoR.setPosition(1);//Up
+            sleep(1000);
+            r.servoB.setPosition(0);
+            StopDrivingTime(500);
             SpinLeft(.25, 300);
             StopDrivingTime(500);
-
-
-            // check for red present greater than Target value
 
 
         }
-        else if (r.colorB.blue() > r.Red){
-            //else if (r.colorsensor.red() < r.Red && r.colorsensor.red() >r.Red2) {
-            //do this
 
+        else if (r.colorR.blue() > r.colorR.red() && r.colorR.blue() >= BLUETHRESHOLD ){
+            //do this
+            // display all reading data
+            telemetry.addLine("saw BLUE ");
+            telemetry.addLine("Red Alliance Sensor--");
+            telemetry.addData("Red Value:  ", r.colorR.red());
+            telemetry.addData("Blue Value: ", r.colorR.blue());
+            telemetry.update();
             SpinLeft(.25, 300);
             StopDrivingTime(500);
-
+            sleep(1000);
+            r.servoR.setPosition(1);//Up
+            sleep(1000);
+            r.servoB.setPosition(0);
+            StopDrivingTime(500);
             SpinRight(.25, 300);
             StopDrivingTime(500);
         }
 
         else {
-            telemetry.addData("Red  ", r.colorR.red());
-            telemetry.addData("Blue ", r.colorB.blue());
-            telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
+            // reading un-reliable so do no harm
+            // display all reading data
+            telemetry.addLine("OH WELL, MOVE ON");
+            telemetry.addLine("Red Alliance Sensor--");
+            telemetry.addData("Red Value:  ", r.colorR.red());
+            telemetry.addData("Blue Value: ", r.colorR.blue());
             telemetry.update();
+            sleep(1000);
+            r.servoR.setPosition(1);//Up
+            sleep(1000);
+            r.servoB.setPosition(0);
         }
 
-
-
-
-        r.servoB.setPosition(0);
-        ServoRWait(0.05, 1000);
-        r.servoR.setPosition(1);//Up
-
+        sleep(2000);
             /*
              * See if any of the instances of {@link relicTemplate} are currently visible.
              * {@link RelicRecoveryVuMark} is an enum which can have the following values:

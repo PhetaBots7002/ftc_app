@@ -97,17 +97,25 @@ public class ABlue1 extends LinearOpMode {
         sleep(2000);
 
 
-        telemetry.addData("Red  ", r.colorB.red());
-        telemetry.addData("Blue ", r.colorB.blue());
-
+        telemetry.addLine("Blue Alliance Sensor--");
+        telemetry.addData("Red Value:  ", r.colorB.red());
+        telemetry.addData("Blue Value: ", r.colorB.blue());
         telemetry.update();
 
-        if (r.colorB.blue() > r.Blue) {
+        double REDTHRESHOLD = 60;
+        double BLUETHRESHOLD = 20;
+
+        if (r.colorB.blue() > r.colorB.red() && r.colorB.blue() >= BLUETHRESHOLD ){
             //do this
+            telemetry.addLine("saw BLUE ");
+            telemetry.addLine("Red Alliance Sensor--");
+            telemetry.addData("Red Value:  ", r.colorB.red());
+            telemetry.addData("Blue Value: ", r.colorB.blue());
             telemetry.update();
             SpinRight(.25, 300);
             StopDrivingTime(500);
-
+            r.servoB.setPosition(0);//Up
+            StopDrivingTime(500);
             SpinLeft(.25, 300);
             StopDrivingTime(500);
 
@@ -116,29 +124,36 @@ public class ABlue1 extends LinearOpMode {
 
 
         }
-        else if (r.colorR.red() > r.Red){
+        else if  (r.colorB.red() > r.colorB.blue() && r.colorB.red() >= REDTHRESHOLD )  {
             //else if (r.colorsensor.red() < r.Red && r.colorsensor.red() >r.Red2) {
             //do this
+            // display all reading data
+            telemetry.addLine("saw RED ");
+            telemetry.addLine("Blue Alliance Sensor--");
+            telemetry.addData("Red Value:  ", r.colorB.red());
+            telemetry.addData("Blue Value: ", r.colorB.blue());
             telemetry.update();
             SpinLeft(.25, 300);
             StopDrivingTime(500);
-
+            r.servoB.setPosition(0);//Up
+            StopDrivingTime(500);
             SpinRight(.25, 300);
             StopDrivingTime(500);
         }
 
-        else {
-            telemetry.addData("Red  ", r.colorB.red());
-            telemetry.addData("Blue ", r.colorB.blue());
-            telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
+        else{
+            // reading un-reliable so do no harm
+            // display all reading data
+            telemetry.addLine("OH WELL, MOVE ON");
+            telemetry.addLine("Blue Alliance Sensor--");
+            telemetry.addData("Red Value:  ", r.colorB.red());
+            telemetry.addData("Blue Value: ", r.colorB.blue());
             telemetry.update();
+            sleep(1000);
+            r.servoB.setPosition(0);//Up
         }
 
-
-
-
-        r.servoB.setPosition(0);//Up
-        sleep(1000);
+            sleep(1000);
 
             /*
              * See if any of the instances of {@link relicTemplate} are currently visible.
