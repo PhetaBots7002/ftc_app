@@ -96,7 +96,7 @@ public class ARed1 extends LinearOpMode {
         //Extend ColorSensor to read Particles
         r.servoB.setPosition(.5);
         sleep(500);
-        r.servoR.setPosition(.095);//Down
+        r.servoR.setPosition(0);//Down
         sleep(3000);
 
 
@@ -112,14 +112,14 @@ public class ARed1 extends LinearOpMode {
             telemetry.addData("Red Value:  ", r.colorR.red());
             telemetry.addData("Blue Value: ", r.colorR.blue());
             telemetry.update();
-            SpinRight(.25, 300);
+            SpinLeft(.25, 300);
             StopDrivingTime(500);
             sleep(1000);
             r.servoR.setPosition(1);//Up
             sleep(1000);
             r.servoB.setPosition(0);
             StopDrivingTime(500);
-            SpinLeft(.25, 300);
+            SpinRight(.25, 300);
             StopDrivingTime(500);
 
 
@@ -133,15 +133,16 @@ public class ARed1 extends LinearOpMode {
             telemetry.addData("Red Value:  ", r.colorR.red());
             telemetry.addData("Blue Value: ", r.colorR.blue());
             telemetry.update();
-            SpinLeft(.25, 300);
+            SpinRight(.25, 300);
             StopDrivingTime(500);
             sleep(1000);
             r.servoR.setPosition(1);//Up
             sleep(1000);
             r.servoB.setPosition(0);
             StopDrivingTime(500);
-            SpinRight(.25, 300);
+            SpinLeft(.25, 300);
             StopDrivingTime(500);
+
         }
 
         else {
@@ -199,10 +200,13 @@ public class ARed1 extends LinearOpMode {
 
             DriveForwardTime(-DRIVE_POWER, 100);
             StopDrivingTime(500);
+
+            SpinLeft(DRIVE_POWER, 2000);
+            StopDriving();
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER){
             // autonomous code here...
-            DriveForwardTime(DRIVE_POWER, 1350);
+            DriveForwardTime(DRIVE_POWER, 1325);
             StopDrivingTime(500);
 
             SpinRight(DRIVE_POWER, 970); //neg power drives backwards
@@ -216,10 +220,13 @@ public class ARed1 extends LinearOpMode {
 
             DriveForwardTime(-DRIVE_POWER, 100);
             StopDrivingTime(500);
+
+            SpinLeft(DRIVE_POWER, 2000);
+            StopDriving();
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT){
             // autonomous code here...StrafeRight(DRIVE_POWER, 500);
-            DriveForwardTime(DRIVE_POWER, 1000);
+            DriveForwardTime(DRIVE_POWER, 945);
             StopDrivingTime(500);
 
             SpinRight(DRIVE_POWER, 950); //neg power drives backwards
@@ -233,6 +240,9 @@ public class ARed1 extends LinearOpMode {
 
             DriveForwardTime(-DRIVE_POWER, 100);
             StopDrivingTime(500);
+
+            SpinLeft(DRIVE_POWER, 2000);
+            StopDriving();
         }
         else {
             DriveForwardTime(DRIVE_POWER, 1350);
@@ -249,6 +259,9 @@ public class ARed1 extends LinearOpMode {
 
             DriveForwardTime(-DRIVE_POWER, 100);
             StopDrivingTime(500);
+
+            SpinLeft(DRIVE_POWER, 2000);
+            StopDriving();
         }
         // *** need to figure out how to end opModeIsActive once code has been run
 

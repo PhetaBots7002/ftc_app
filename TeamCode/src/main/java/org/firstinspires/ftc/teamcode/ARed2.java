@@ -231,7 +231,7 @@ public class ARed2 extends LinearOpMode {
             DriveForwardTime(DRIVE_POWER, 800);
             StopDrivingTime(500);
 
-            StrafeLeft(DRIVE_POWER, 197); //neg power drives backwards
+            StrafeLeft(DRIVE_POWER, 140); //neg power drives backwards
             StopDrivingTime(500);
 
             DriveForwardTime(DRIVE_POWER, 500);
@@ -254,7 +254,7 @@ public class ARed2 extends LinearOpMode {
             DriveForwardTime(DRIVE_POWER, 800);
             StopDrivingTime(500);
 
-            StrafeLeft(DRIVE_POWER, 550); //neg power drives backwards
+            StrafeLeft(DRIVE_POWER, 555); //neg power drives backwards
             StopDrivingTime(500);
 
             DriveForwardTime(DRIVE_POWER, 800);
@@ -268,7 +268,6 @@ public class ARed2 extends LinearOpMode {
 
             SpinLeft(DRIVE_POWER, 1500);
             StopDriving();
-
         }
         // *** need to figure out how to end opModeIsActive once code has been run
 
