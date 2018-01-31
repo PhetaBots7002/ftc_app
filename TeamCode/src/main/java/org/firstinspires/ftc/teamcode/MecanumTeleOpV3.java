@@ -24,35 +24,31 @@ public class MecanumTeleOpV3 extends OpMode  {
     boolean wasLeftButtonDown = false;  //Initialize to false as buttons are generally not pressed at the time the program starts
     int     liftHoldPosition;
     double  slopeVal          = 2000.0;
-    /**
-     * Constructor
-     */
+    //Values to hold lift in place
+
     public MecanumTeleOpV3() {
 
     }
 
     @Override
     public void init() {
-      /*
-        Uses HardwareSetupMecanum and Initializes.
-       */
+
         r.init(hardwareMap);  //Initialize hardware from the Hardware Setup
-        liftHoldPosition = r.motorLift.getCurrentPosition();
+        liftHoldPosition = r.motorLift.getCurrentPosition();//Get lift position to hold it there
     }
 
 
     @Override
     public void loop() {
 //First Person View Drive
-            // left stick controls direction
-            // right stick X controls rotation
 
+        // left stick controls direction
+        // right stick X controls rotation
             float gamepad1LeftY = -gamepad1.left_stick_y;
         float gamepad1LeftX = gamepad1.left_stick_x;
         float gamepad1RightX = gamepad1.right_stick_x;
 
         // holonomic formulas
-
         float FrontLeft = -gamepad1LeftY - gamepad1LeftX - gamepad1RightX;  // neg gamepad1LeftY values for LeftMotors reverses direction of opposing motors
         float FrontRight = gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
         float BackRight = gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
@@ -64,10 +60,7 @@ public class MecanumTeleOpV3 extends OpMode  {
         BackLeft = Range.clip(BackLeft, -1, 1);
         BackRight = Range.clip(BackRight, -1, 1);
 
-        // write the values to the motors
-
-
-
+        //If left trigger does NOT equal 0, so if it is pushed down, then cut motor speed in half for finer controls
         if(gamepad1.left_trigger!=0)
         {
 
@@ -77,6 +70,7 @@ public class MecanumTeleOpV3 extends OpMode  {
                 r.motorBackRight.setPower(BackRight/2);
 
         }
+        //Else keep the motors at max speed
         else
         {
             r.motorFrontRight.setPower(FrontRight);
@@ -87,23 +81,6 @@ public class MecanumTeleOpV3 extends OpMode  {
 
 
 
-        //Lift commands, if encoder clicks more than 0, then can lift with left_stick_y.
-        //If encoder clicks greater than 1500, than dont move.
-
-        /*if (gamepad2.left_trigger > 0.0 && gamepad2.right_trigger == 0.0 && r.motorLift.getCurrentPosition() > 0.0) // encoder greater that lower limit
-        {
-            r.motorLift.setPower(-gamepad2.left_trigger / 2.0); // let trigger run -motor DOWN
-        }
-        else if (gamepad2.left_trigger == 0.0 && gamepad2.right_trigger == 0.0)
-        {
-            r.motorLift.setPower (0.1);
-            Thread.sleep(100);
-        }
-//
-        else if (gamepad2.right_trigger > 0.0 && gamepad2.left_trigger == 0.0 && r.motorLift.getCurrentPosition() < 5380.0) //encoder less than Max limit
-        {
-            r.motorLift.setPower(gamepad2.right_trigger / 2.0); //let trigger run +motor UP
-        }*/
         if (gamepad2.left_trigger > 0.0 && r.motorLift.getCurrentPosition() > 0.0) // encoder greater that lower limit
         {
             r.motorLift.setPower(-gamepad2.left_trigger / 2.0); // let trigger run -motor DOWN
@@ -122,11 +99,6 @@ public class MecanumTeleOpV3 extends OpMode  {
             // be negative and thus try to lower the lift
         }
 
-        /*else
-        {
-            r.motorLift.setPower(0.0); // else not trigger, then set to off or some value of 'hold' power
-        }*/
-
 
  //CR Servo commands
         if(gamepad2.b) //button b will spinLeft open
@@ -143,10 +115,10 @@ public class MecanumTeleOpV3 extends OpMode  {
         }
 
 //BallKnocker Extention and Retraction.
-
+//These are just to test the servo positions
         if (gamepad2.dpad_left)
         {
-            r.servoR.setPosition(.5);
+            r.servoB.setPosition(1);
         }
         if (gamepad2.dpad_up)
         {
@@ -154,47 +126,13 @@ public class MecanumTeleOpV3 extends OpMode  {
         }
         if (gamepad2.dpad_right)
         {
-            r.servoR.setPosition(.1);
+            r.servoB.setPosition(0);
         }
         if (gamepad2.dpad_down)
         {
             r.servoR.setPosition(0);
         }
 
-
-
-
-
-
-
-        if (gamepad1.dpad_left)
-        {
-            r.servoB.setPosition(.5);
-        }
-        if (gamepad1.dpad_up)
-        {
-            r.servoB.setPosition(0);
-        }
-        if (gamepad1.dpad_right)
-        {
-            r.servoB.setPosition(.9);
-        }
-        if (gamepad1.dpad_down)
-        {
-            r.servoB.setPosition(1);
-        }
-
-
-      /*
-       * Telemetry for debugging
-       */
-       /* telemetry.addData("Text", "*** Robot Data***");
-        telemetry.addData("Joy XL YL XR",  String.format("%.2f", gamepad1LeftX) + " " + String.format("%.2f", gamepad1LeftY) + " " +  String.format("%.2f", gamepad1RightX));
-        telemetry.addData("f left pwr",  "front left  pwr: " + String.format("%.2f", FrontLeft));
-        telemetry.addData("f right pwr", "front right pwr: " + String.format("%.2f", FrontRight));
-        telemetry.addData("b right pwr", "back right pwr: " + String.format("%.2f", BackRight));
-        telemetry.addData("b left pwr", "back left pwr: " + String.format("%.2f", BackLeft));
-       */
         // Display running time and Encoder value
         telemetry.addData("Min=0/ Max=5380/ Encoder Clicks", + r.motorLift.getCurrentPosition());
         telemetry.update();
@@ -208,7 +146,7 @@ public class MecanumTeleOpV3 extends OpMode  {
     public void ArmUp(double power)
     {
         // write the values to the motors
-        r.motorLift.setPower(power);//still need to test motor directions for desired movement
+        r.motorLift.setPower(power);
     }
     public void StopDown(double power, long time) throws InterruptedException
     {
@@ -251,4 +189,4 @@ public class MecanumTeleOpV3 extends OpMode  {
         return dScale;
     }
 
-}
+}//OpMode

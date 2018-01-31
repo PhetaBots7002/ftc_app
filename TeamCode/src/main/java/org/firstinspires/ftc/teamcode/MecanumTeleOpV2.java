@@ -22,9 +22,7 @@ public class MecanumTeleOpV2 extends OpMode {
 
     HardwareSetupMecanum r     =   new HardwareSetupMecanum();
 
-    /**
-     * Constructor
-     */
+
     public MecanumTeleOpV2() {
 
     }
@@ -63,7 +61,7 @@ public class MecanumTeleOpV2 extends OpMode {
         // write the values to the motors
 
 
-
+//If trigger not 0, then cut motor power down to a quarter speed.  We found this was too slow for strafing
         if(gamepad1.left_trigger!=0)
         {
 
@@ -117,7 +115,7 @@ public class MecanumTeleOpV2 extends OpMode {
         }
 
 //BallKnocker Extention and Retraction.
-
+//Testing Positions
         if (gamepad2.dpad_left)
         {
             r.servoR.setPosition(.5);

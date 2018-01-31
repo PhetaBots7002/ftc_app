@@ -46,26 +46,23 @@ public class HardwareSetupMecanum {
     //Possible servo values: 0.0 - 1.0;  For CRServo 0.5=stop greater or less than will spin in that direction
 
     final static double MOTOR_STOP = 0.0; // sets motor power to zero
-    //final static double OPEN = 1;  //180 Servos not currently used
-    //final static double CLOSE = 0;
+
 
     //CR servo variables
     double SpinLeft = 0.1;
     double SpinRight = 0.9;
     double STOP = 0.5;      //CR servo Stopped
 
-    double Red = 160; //60              120     51
-    double Blue = 68; //20
-    double Red2 = 130; //60
-    double Blue2 = 150;  //20
-//159    50
-//161 58
+    /*    These values are not used anymore, for we found a more reliable way of reading jewels through Thresholds
+    double Red = 160;
+    double Blue = 68;
+    double Red2 = 130;
+    double Blue2 = 150;
+*/
     boolean buttonPressed  = false;  //Keeps track of whether the button was previously pressed or not so we know when it is released
 
 
-    /* Constructor   // this is not required as JAVA does it for you, but useful if you want to add
-    * function to this method when called in OpModes.
-    */
+
     public HardwareSetupMecanum() {
     }
 
@@ -87,9 +84,6 @@ public class HardwareSetupMecanum {
 
         servoClamp = hwMap.servo.get("Clamp");
 
-        //*** STETSON need to clarify your naming conventions here.
-        //    not sure which one is which
-        //    need to do a better job at labeling wiring and device and HUB ports
         // ** Note R & B here stand for Red Alliance side and Blue Alliance side of robot (R= right side, B= left side)
 
         servoR = hwMap.servo.get("servoR");
@@ -108,14 +102,7 @@ public class HardwareSetupMecanum {
         motorLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         motorLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER); // runs motor faster than when set to RUN_USING_ENCODER
-        //motorLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER); // not sure why this happens
 
-
-        // Set the drive motor directions:
-        //motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);   // NOTE: did not need opposing motors reversed.
-        //motorFrontRight.setDirection(DcMotor.Direction.REVERSE);  //       as this is done in the formula of the MecanumTeleOp
-        //motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
-        //motorBackRight.setDirection(DcMotor.Direction.REVERSE);
 
         //Keep the motors from moving during initialize.
         motorFrontLeft.setPower(MOTOR_STOP);
@@ -139,7 +126,7 @@ public class HardwareSetupMecanum {
          ************************************************************/
             //Add sensors
 
-   }
+   }//HardwareMap
 
-}
+}//Class
 

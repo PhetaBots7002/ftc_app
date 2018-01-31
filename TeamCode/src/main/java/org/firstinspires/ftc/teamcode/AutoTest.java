@@ -32,7 +32,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  */
 
 @Autonomous(name="TEST!", group ="Concept")
-//@Disabled
+@Disabled
 public class AutoTest extends LinearOpMode {
 
     HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
@@ -94,18 +94,18 @@ public class AutoTest extends LinearOpMode {
 
 
 
-            if (r.colorB.blue()>r.Blue){
+            //if (r.colorB.blue()>r.Blue){
                 //do this
 
 
                 // check for red present greater than Target value
-            }
-            else if (r.colorR.red()>r.Red) {
+            //}
+            //else if (r.colorR.red()>r.Red) {
                 //do this
 
 
 
-            }
+            //}
             // else { //no color sensor reads target value
             //do this
 

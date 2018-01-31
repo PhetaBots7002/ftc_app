@@ -33,7 +33,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  */
 
 @Autonomous(name="Blue1Test", group ="Concept")
-//@Disabled
+@Disabled
 public class Blue1Test extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
@@ -103,7 +103,7 @@ public class Blue1Test extends LinearOpMode {
 
 
         while (runtime.seconds()>2&&runtime.seconds()<6) {
-            if (r.colorB.blue() > r.Blue) {
+            //if (r.colorB.blue() > r.Blue) {
                 //do this
                 telemetry.update();
                 SpinRight(.25, 300);
@@ -111,8 +111,8 @@ public class Blue1Test extends LinearOpMode {
 
                 SpinLeft(.25, 300);
                 StopDrivingTime(500);
-            }
-            else if (r.colorR.red() > r.Red) {
+            //}
+            //else if (r.colorR.red() > r.Red) {
                 //else if (r.colorsensor.red() < r.Red && r.colorsensor.red() >r.Red2) {
                 //do this
                 telemetry.update();
@@ -121,7 +121,8 @@ public class Blue1Test extends LinearOpMode {
 
                 SpinRight(.25, 300);
                 StopDrivingTime(500);
-            } else {
+            //} else
+                {
                 telemetry.addData("Red  ", r.colorB.red());
                 telemetry.addData("Blue ", r.colorB.blue());
                 telemetry.addData("Color", "NOT VISIBLE"); // else if color IS UNKNOWN display NOT VISABLE
