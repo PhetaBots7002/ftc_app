@@ -22,7 +22,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 
 @Autonomous(name="Blue1", group ="Concept")
-//@Disabled
+@Disabled
 public class ABlue1 extends LinearOpMode {
 
     HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
@@ -64,8 +64,8 @@ public class ABlue1 extends LinearOpMode {
 
 
         waitForStart();
-        double REDTHRESHOLD = 60;//The difference between the blue and red values, set for Red ball
-        double BLUETHRESHOLD = 50;//The difference between the blue and red values, set for Blue ball
+        double REDTHRESHOLD = 30;//The difference between the blue and red values, set for Red ball 60
+        double BLUETHRESHOLD = 20;//The difference between the blue and red values, set for Blue ball 40
         relicTrackables.activate();//Activate the VuMark
 
 
@@ -158,7 +158,7 @@ public class ABlue1 extends LinearOpMode {
         if (vuMark == RelicRecoveryVuMark.LEFT) {
                     // autonomous code here...
 
-                    DriveForwardTime(DRIVE_POWER, 1100);//Drive forward for this amount of seconds
+                    DriveForwardTime(DRIVE_POWER, 1205);//Drive forward for this amount of seconds
                     StopDrivingTime(500);
 
                     SpinLeft(DRIVE_POWER, 1000); //Spin Left for seconds
@@ -213,6 +213,9 @@ public class ABlue1 extends LinearOpMode {
                     StopDrivingTime(1000);
 
                     DriveForwardTime(-DRIVE_POWER, 250);
+                    StopDrivingTime(500);
+
+                    SpinLeft(DRIVE_POWER, 2000);
                     StopDrivingTime(500);
                 }
         //If the picture was NOT read within 10 seconds

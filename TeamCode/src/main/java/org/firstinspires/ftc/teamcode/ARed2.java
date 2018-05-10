@@ -22,7 +22,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 
 @Autonomous(name="Red2", group ="Concept")
-//@Disabled
+@Disabled
 public class ARed2 extends LinearOpMode {
 
     HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
@@ -64,8 +64,8 @@ public class ARed2 extends LinearOpMode {
 
 
         waitForStart();
-        double REDTHRESHOLD = 60;//The difference between the blue and red values, set for Red ball
-        double BLUETHRESHOLD = 50;//The difference between the blue and red values, set for Blue ball
+        double REDTHRESHOLD = 30;//The difference between the blue and red values, set for Red ball 60
+        double BLUETHRESHOLD = 20;//The difference between the blue and red values, set for Blue ball
         relicTrackables.activate();//Activate the VuMark
 
 

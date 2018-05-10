@@ -22,7 +22,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 
 @Autonomous(name="Red1", group ="Concept")
-//@Disabled
+@Disabled
 public class ARed1 extends LinearOpMode {
 
     HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
@@ -64,8 +64,8 @@ public class ARed1 extends LinearOpMode {
 
 
         waitForStart();
-        double REDTHRESHOLD = 60;//The difference between the blue and red values, set for Red ball
-        double BLUETHRESHOLD = 50;//The difference between the blue and red values, set for Blue ball
+        double REDTHRESHOLD = 30;//The difference between the blue and red values, set for Red ball 60
+        double BLUETHRESHOLD = 20;//The difference between the blue and red values, set for Blue ball
         relicTrackables.activate();//Activate the VuMark
 
 
@@ -165,7 +165,7 @@ public class ARed1 extends LinearOpMode {
             // autonomous code here...
 
 
-            DriveForwardTime(DRIVE_POWER, 1745);//Drive forward for this amount of seconds
+            DriveForwardTime(DRIVE_POWER, 1800);//Drive forward for this amount of seconds
             StopDrivingTime(500);//Wait for .5 seconds
 
             SpinRight(DRIVE_POWER, 1000);
@@ -187,7 +187,7 @@ public class ARed1 extends LinearOpMode {
         else if (vuMark == RelicRecoveryVuMark.CENTER){
             // autonomous code here...
 
-            DriveForwardTime(DRIVE_POWER, 1325);//Drive forward for this amount of seconds
+            DriveForwardTime(DRIVE_POWER, 1400);//Drive forward for this amount of seconds
             StopDrivingTime(500);//Wait for .5 seconds
 
             SpinRight(DRIVE_POWER, 970); //Spin Right for seconds
@@ -209,7 +209,7 @@ public class ARed1 extends LinearOpMode {
         else if (vuMark == RelicRecoveryVuMark.RIGHT){
             // autonomous code here...
 
-            DriveForwardTime(DRIVE_POWER, 945);//Drive forward for this amount of seconds
+            DriveForwardTime(DRIVE_POWER, 960);//Drive forward for this amount of seconds
             StopDrivingTime(500);//Wait for .5 seconds
 
             SpinRight(DRIVE_POWER, 950);//Spin Right for seconds
@@ -221,10 +221,10 @@ public class ARed1 extends LinearOpMode {
             Drop(0, 300);//Drop glyph
             StopDrivingTime(1000);//Wait for 1 seconds
 
-            DriveForwardTime(-DRIVE_POWER, 100);//Drive Backwards for this amount of seconds
+            DriveForwardTime(-DRIVE_POWER, 250);//Drive Backwards for this amount of seconds
             StopDrivingTime(500);//Wait for .5 seconds
 
-            SpinLeft(DRIVE_POWER, 2000);//Spin Left for seconds
+            SpinRight(DRIVE_POWER, 2000);//Spin Left for seconds
             StopDriving();
         }
         //If the picture was NOT read within 10 seconds

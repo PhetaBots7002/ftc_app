@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 /*
    Robot wheel mapping:
@@ -17,7 +18,7 @@ import com.qualcomm.robotcore.util.Range;
           X       X
 */
 @TeleOp(name = "MecanumTeleOpV3", group = "Phetabot")
-//@Disabled
+@Disabled
 public class MecanumTeleOpV3 extends OpMode  {
 
     HardwareSetupMecanum r     =   new HardwareSetupMecanum();

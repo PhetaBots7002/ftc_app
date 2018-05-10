@@ -33,7 +33,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  */
 
 @Autonomous(name="Blue2", group ="Concept")
-//@Disabled
+@Disabled
 public class ABlue2 extends LinearOpMode {
 
     HardwareSetupMecanum r = new HardwareSetupMecanum(); //get hardware members from HardwareSetUp class
@@ -75,8 +75,8 @@ public class ABlue2 extends LinearOpMode {
 
 
         waitForStart();
-        double REDTHRESHOLD = 60;//The difference between the blue and red values, set for Red ball
-        double BLUETHRESHOLD = 50;//The difference between the blue and red values, set for Blue ball
+        double REDTHRESHOLD = 30;//The difference between the blue and red values, set for Red ball 60
+        double BLUETHRESHOLD = 20;//The difference between the blue and red values, set for Blue ball 40
         relicTrackables.activate();//Activate the VuMark
 
 
@@ -171,7 +171,7 @@ public class ABlue2 extends LinearOpMode {
             DriveForwardTime(DRIVE_POWER, 800);
             StopDrivingTime(500);
 
-            StrafeRight(DRIVE_POWER, 190);
+            StrafeRight(DRIVE_POWER, 377);
             StopDrivingTime(500);
 
             DriveForwardTime(DRIVE_POWER, 500);
@@ -183,7 +183,7 @@ public class ABlue2 extends LinearOpMode {
             DriveForwardTime(-DRIVE_POWER, 200);
             StopDrivingTime(500);
 
-            StrafeRight(DRIVE_POWER, 300);
+            StrafeRight(DRIVE_POWER, 400);
             StopDrivingTime(500);
 
             SpinRight(DRIVE_POWER, 1500);
@@ -195,7 +195,7 @@ public class ABlue2 extends LinearOpMode {
             DriveForwardTime(DRIVE_POWER, 800);
             StopDrivingTime(500);
 
-            StrafeRight(DRIVE_POWER, 555);
+            StrafeRight(DRIVE_POWER, 800);
             StopDrivingTime(500);
 
             DriveForwardTime(DRIVE_POWER, 800);
