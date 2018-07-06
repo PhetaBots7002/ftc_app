@@ -58,7 +58,7 @@ public class BasicTeleOpShane extends LinearOpMode {
     DcMotor motorLeft = null;
     DcMotor motorRight = null;
     DcMotor motorA1 = null;
-    DcMotor motorA2 = null;
+    //DcMotor motorA2 = null;
 
 
     @Override
@@ -73,8 +73,8 @@ public class BasicTeleOpShane extends LinearOpMode {
          */
         motorLeft  = hardwareMap.dcMotor.get("motorL");
         motorRight = hardwareMap.dcMotor.get("motorR");
-        motorA1 = hardwareMap.dcMotor.get("motorA1");
-        motorA2 = hardwareMap.dcMotor.get("motorA2");
+        motorA1 = hardwareMap.dcMotor.get("motorA");
+        //motorA2 = hardwareMap.dcMotor.get("motorA2");
 
 
         // eg: Set the drive motor directions:
@@ -82,7 +82,7 @@ public class BasicTeleOpShane extends LinearOpMode {
         motorLeft.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         motorRight.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
         motorA1.setDirection(DcMotor.Direction.FORWARD); // Can change based on motor configuration
-        motorA2.setDirection(DcMotor.Direction.FORWARD);
+        //motorA2.setDirection(DcMotor.Direction.FORWARD);
 
 
 
@@ -105,7 +105,7 @@ public class BasicTeleOpShane extends LinearOpMode {
 
             // Arm Control - Uses dual buttons to control motor direction
             motorA1.setPower(gamepad2.right_stick_y);
-            motorA2.setPower(gamepad2.right_stick_y);
+            //motorA2.setPower(gamepad2.right_stick_y);
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
         }
     }
