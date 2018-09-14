@@ -44,6 +44,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  *
  * It is intended to test basic function of program parameters
  *
+ * Note: this Class uses a TestHardwareTeleOp configuration file.
+ *
  * You could make a copy and adjust Configuration to match your bot for use as a basic testing
  * platform.
  */
