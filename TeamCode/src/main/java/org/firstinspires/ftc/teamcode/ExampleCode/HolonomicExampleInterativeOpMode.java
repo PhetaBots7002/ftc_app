@@ -8,8 +8,6 @@ import com.qualcomm.robotcore.util.Range;
 
 /**
  *
- * Created by Maddie, FTC Team 4962, The Rockettes
- * version 1.0 Aug 11, 2016
  * This is an Iterative vs Linear program
  * for TeleOp control with a single controller
  */
@@ -28,16 +26,17 @@ import com.qualcomm.robotcore.util.Range;
         X           X
           X       X
 */
-@TeleOp(name = "Example: HolonomicTeleOp", group = "Examples")
+@TeleOp(name = "Example: HolonomicTeleOp Iterative", group = "Examples")
 @Disabled
-public class HolonomicExample extends OpMode {
+public class HolonomicExampleInterativeOpMode extends OpMode {
 
+    //  DON'T FORGET TO RENAME HARDWARE CONFIG FILE NAME HERE!!!!!!
     HardwareSetupHolonomicExample robot     =   new HardwareSetupHolonomicExample();
 
     /**
      * Constructor
      */
-    public HolonomicExample() {
+    public HolonomicExampleInterativeOpMode() {
 
     }
 
@@ -55,19 +54,19 @@ public class HolonomicExample extends OpMode {
     public void loop() {
 
 
-        // left stick controls direction
-        // right stick X controls rotation
+        // left stick X controls Strafe & Y controls Spin Direction
+        // right stick Y controls drive Forward/Backward
 
-        float gamepad1LeftY = -gamepad1.left_stick_y;
-        float gamepad1LeftX = gamepad1.left_stick_x;
-        float gamepad1RightX = gamepad1.right_stick_x;
+        float gamepad1LeftY = -gamepad1.left_stick_y;   // drives spin left/right
+        float gamepad1LeftX = gamepad1.left_stick_x;    // strafe direction (side to side)
+        float gamepad1RightY = gamepad1.right_stick_y;  //drives forwards and backwards
 
         // holonomic formulas
 
-        float FrontLeft = -gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
-        float FrontRight = gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
-        float BackRight = gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
-        float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
+        float FrontLeft = -gamepad1LeftY - gamepad1LeftX - gamepad1RightY;
+        float FrontRight = gamepad1LeftY - gamepad1LeftX - gamepad1RightY;
+        float BackRight = gamepad1LeftY + gamepad1LeftX - gamepad1RightY;
+        float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightY;
 
         // clip the right/left values so that the values never exceed +/- 1
         FrontRight = Range.clip(FrontRight, -1, 1);
@@ -85,7 +84,7 @@ public class HolonomicExample extends OpMode {
        * Telemetry for debugging
        */
         telemetry.addData("Text", "*** Robot Data***");
-        telemetry.addData("Joy XL YL XR",  String.format("%.2f", gamepad1LeftX) + " " + String.format("%.2f", gamepad1LeftY) + " " +  String.format("%.2f", gamepad1RightX));
+        telemetry.addData("Joy XL YL XR",  String.format("%.2f", gamepad1LeftX) + " " + String.format("%.2f", gamepad1LeftY) + " " +  String.format("%.2f", gamepad1RightY));
         telemetry.addData("f left pwr",  "front left  pwr: " + String.format("%.2f", FrontLeft));
         telemetry.addData("f right pwr", "front right pwr: " + String.format("%.2f", FrontRight));
         telemetry.addData("b right pwr", "back right pwr: " + String.format("%.2f", BackRight));
@@ -94,42 +93,9 @@ public class HolonomicExample extends OpMode {
     }
 
     @Override
-    public void stop() {
+    public void stop()
+    {
 
-    }
-
-    /*
-     * This method scales the joystick input so for low joystick values, the
-     * scaled value is less than linear.  This is to make it easier to drive
-     * the robot more precisely at slower speeds.
-     */
-    double scaleInput(double dVal)  {
-        double[] scaleArray = { 0.0, 0.05, 0.09, 0.10, 0.12, 0.15, 0.18, 0.24,
-                0.30, 0.36, 0.43, 0.50, 0.60, 0.72, 0.85, 1.00, 1.00 };
-
-        // get the corresponding index for the scaleInput array.
-        int index = (int) (dVal * 16.0);
-
-        // index should be positive.
-        if (index < 0) {
-            index = -index;
-        }
-
-        // index cannot exceed size of array minus 1.
-        if (index > 16) {
-            index = 16;
-        }
-
-        // get value from the array.
-        double dScale = 0.0;
-        if (dVal < 0) {
-            dScale = -scaleArray[index];
-        } else {
-            dScale = scaleArray[index];
-        }
-
-        // return scaled value.
-        return dScale;
     }
 
 }
