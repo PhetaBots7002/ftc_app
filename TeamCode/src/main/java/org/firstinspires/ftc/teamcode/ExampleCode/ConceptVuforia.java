@@ -141,9 +141,9 @@ public class ConceptVuforia extends LinearOpMode {
 
                 if (vuMark == RelicRecoveryVuMark.LEFT) {
                     // autonomous code here...
-                    robot.armMotor.setPower(1.0);   // set motors to running
+                    robot.motorSweep.setPower(1.0);   // set motors to running
                     sleep(1000);                    // leave motors running for time
-                    robot.armMotor.setPower(0.0);   // turn motor(s) off
+                    robot.motorSweep.setPower(0.0);   // turn motor(s) off
 
                 }
                 else if (vuMark == RelicRecoveryVuMark.CENTER){

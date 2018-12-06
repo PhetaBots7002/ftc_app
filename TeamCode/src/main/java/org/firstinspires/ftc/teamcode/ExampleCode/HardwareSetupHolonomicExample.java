@@ -34,7 +34,7 @@ public class HardwareSetupHolonomicExample {
     public DcMotor motorBackLeft = null;
 
     //Accessories motors
-    public DcMotor armMotor = null;
+    public DcMotor motorSweep = null;
 
     //servos
         //Add servos here
@@ -74,7 +74,7 @@ public class HardwareSetupHolonomicExample {
         motorBackLeft = hwMap.dcMotor.get("motorBL");
         motorBackRight = hwMap.dcMotor.get("motorBR");
 
-        armMotor = hwMap.dcMotor.get ("armMotor");
+        motorSweep = hwMap.dcMotor.get("motorS");
 
         // Set the drive motor directions:
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
@@ -87,7 +87,7 @@ public class HardwareSetupHolonomicExample {
         motorFrontRight.setPower(MOTOR_STOP);
         motorBackLeft.setPower(MOTOR_STOP);
         motorBackRight.setPower(MOTOR_STOP);
-
+        motorSweep.setPower(MOTOR_STOP);
         /************************************************************
          * SERVO SECTION
          ************************************************************/

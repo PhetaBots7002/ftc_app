@@ -30,7 +30,7 @@ import org.firstinspires.ftc.teamcode.ExampleCode.HardwareSetupHolonomicExample;
         X           X
           X       X
 */
-@TeleOp(name = "HolonomicTeleOp"/*,group = "Examples"*/)
+@TeleOp(name = "MechinumTeleOp"/*,group = "Examples"*/)
 //@Disabled
 public class MyHolonomicExample extends OpMode {
 
@@ -64,6 +64,7 @@ public class MyHolonomicExample extends OpMode {
         float gamepad1LeftY = -gamepad1.left_stick_y;   // drives spin left/right
         float gamepad1LeftX = gamepad1.left_stick_x;    // strafe direction (side to side)
         float gamepad1RightY = gamepad1.right_stick_y;  //drives forwards and backwards
+          //
 
         // holonomic formulas
 
@@ -84,7 +85,28 @@ public class MyHolonomicExample extends OpMode {
         robot.motorBackLeft.setPower(BackLeft);
         robot.motorBackRight.setPower(BackRight);
 
-      /*
+
+        //Sweep Motor
+        if (gamepad2.dpad_up)
+        {
+            robot.motorSweep.setPower(1.0); //sweep in
+        }
+
+        //Sweep Motor
+        if (gamepad2.dpad_down)
+        {
+            robot.motorSweep.setPower(-1.0); //sweep out
+        }
+
+        //Sweep stops
+        if (gamepad2.dpad_right)
+        {
+            robot.motorSweep.setPower(0.0); //sweep stop
+        }
+
+        robot.motorLift.setPower(gamepad2.right_stick_y);
+
+        /*
        * Telemetry for debugging
        */
         telemetry.addData("Text", "*** Robot Data***");
