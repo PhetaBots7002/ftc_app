@@ -37,6 +37,8 @@ public class MyHolonomicExample extends OpMode {
     //  DON'T FORGET TO RENAME HARDWARE CONFIG FILE NAME HERE!!!!!!
     MyHardwareSetupHolonomicExample robot     =   new MyHardwareSetupHolonomicExample();
 
+    int     armHoldPosition;             // reading of arm position when buttons released to hold
+    double  slopeVal         = 2000.0;   // increase or decrease to perfect
     /**
      * Constructor
      */
@@ -102,9 +104,27 @@ public class MyHolonomicExample extends OpMode {
         if (gamepad2.dpad_right)
         {
             robot.motorSweep.setPower(0.0); //sweep stop
+
         }
 
-        robot.motorLift.setPower(gamepad2.right_stick_y);
+
+        if (gamepad2.left_stick_y < 0.0) // holds arm position
+        {
+            robot.motorLift.setPower(gamepad2.left_stick_y ); // let stick drive UP (note this is positive value on joystick)
+            armHoldPosition = robot.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
+        } else if (gamepad2.left_stick_y > 0.0) //encoder less than Max limit
+        {
+            robot.motorLift.setPower(gamepad2.left_stick_y); //let stick drive DOWN (note this is negative value on joystick)
+            armHoldPosition = robot.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
+        } else //triggers are released - try to maintain the current position
+        {
+            robot.motorLift.setPower((double) (armHoldPosition - robot.motorLift.getCurrentPosition()) / slopeVal);   // Note that if the lift is lower than desired position,
+            // the subtraction will be positive and the motor will
+            // attempt to raise the lift. If it is too high it will
+            // be negative and thus try to lower the lift
+            // adjust slopeVal to acheived perfect hold power
+        }
+
 
         /*
        * Telemetry for debugging
