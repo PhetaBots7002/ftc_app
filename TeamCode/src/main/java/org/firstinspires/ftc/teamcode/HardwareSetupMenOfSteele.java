@@ -19,7 +19,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
  *
  */
 
-public class MyHardwareSetupHolonomicExample {
+public class HardwareSetupMenOfSteele {
 
    /* Declare Public OpMode members.
     *these are the null statements to make sure nothing is stored in the variables.
@@ -56,7 +56,7 @@ public class MyHardwareSetupHolonomicExample {
    /* Constructor   // this is not required as JAVA does it for you, but useful if you want to add
     * function to this method when called in OpModes.
     */
-    public MyHardwareSetupHolonomicExample() {
+    public HardwareSetupMenOfSteele() {
     }
 
     //Initialize standard Hardware interfaces

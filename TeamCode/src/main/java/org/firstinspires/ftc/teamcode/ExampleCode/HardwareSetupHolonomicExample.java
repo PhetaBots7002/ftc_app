@@ -32,6 +32,7 @@ public class HardwareSetupHolonomicExample {
     public DcMotor motorFrontLeft = null;
     public DcMotor motorBackRight = null;
     public DcMotor motorBackLeft = null;
+    public DcMotor armMotor = null;
 
     //Accessories motors
     public DcMotor motorSweep = null;
@@ -73,6 +74,7 @@ public class HardwareSetupHolonomicExample {
         motorFrontRight = hwMap.dcMotor.get("motorFR");
         motorBackLeft = hwMap.dcMotor.get("motorBL");
         motorBackRight = hwMap.dcMotor.get("motorBR");
+        armMotor = hwMap.dcMotor.get("armMotor");
 
         motorSweep = hwMap.dcMotor.get("motorS");
 

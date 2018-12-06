@@ -1,11 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
-
-import org.firstinspires.ftc.teamcode.ExampleCode.HardwareSetupHolonomicExample;
 
 
 /**
@@ -30,19 +27,19 @@ import org.firstinspires.ftc.teamcode.ExampleCode.HardwareSetupHolonomicExample;
         X           X
           X       X
 */
-@TeleOp(name = "MechinumTeleOp"/*,group = "Examples"*/)
+@TeleOp(name = "TeleOpMenOfSteele"/*,group = "Examples"*/)
 //@Disabled
-public class MyHolonomicExample extends OpMode {
+public class TeleOp_HolonomicMenOfSteele extends OpMode {
 
     //  DON'T FORGET TO RENAME HARDWARE CONFIG FILE NAME HERE!!!!!!
-    MyHardwareSetupHolonomicExample robot     =   new MyHardwareSetupHolonomicExample();
+    HardwareSetupMenOfSteele robot     =   new HardwareSetupMenOfSteele();
 
     int     armHoldPosition;             // reading of arm position when buttons released to hold
     double  slopeVal         = 2000.0;   // increase or decrease to perfect
     /**
      * Constructor
      */
-    public MyHolonomicExample() {
+    public TeleOp_HolonomicMenOfSteele() {
 
     }
 
