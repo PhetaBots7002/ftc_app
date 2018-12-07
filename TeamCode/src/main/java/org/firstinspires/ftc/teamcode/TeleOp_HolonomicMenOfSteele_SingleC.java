@@ -86,19 +86,19 @@ public class TeleOp_HolonomicMenOfSteele_SingleC extends OpMode {
 
 
         //Sweep Motor
-        if (gamepad2.dpad_up)
+        if (gamepad1.dpad_up)
         {
             robot.motorSweep.setPower(1.0); //sweep in
         }
 
         //Sweep Motor
-        if (gamepad2.dpad_down)
+        if (gamepad1.dpad_down)
         {
             robot.motorSweep.setPower(-1.0); //sweep out
         }
 
         //Sweep stops
-        if (gamepad2.dpad_right)
+        if (gamepad1.dpad_right)
         {
             robot.motorSweep.setPower(0.0); //sweep stop
 
