@@ -27,9 +27,9 @@ import com.qualcomm.robotcore.util.Range;
         X           X
           X       X
 */
-@TeleOp(name = "TeleOpMenOfSteele",group = "TeleOp")
+@TeleOp(name = "SingleTeleOpMenOfSteele",group = "TeleOp")
 //@Disabled
-public class TeleOp_HolonomicMenOfSteele extends OpMode {
+public class TeleOp_HolonomicMenOfSteele_SingleC extends OpMode {
 
 
     HardwareSetupMenOfSteele robot     =   new HardwareSetupMenOfSteele();
@@ -39,7 +39,7 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
     /**
      * Constructor
      */
-    public TeleOp_HolonomicMenOfSteele() {
+    public TeleOp_HolonomicMenOfSteele_SingleC() {
 
     }
 
@@ -105,16 +105,13 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         }
 
 
-        if (gamepad2.left_stick_y < 0.0) // holds arm position
+        if (gamepad1.right_bumper) // holds arm position
         {
-            robot.motorLift.setPower(gamepad2.left_stick_y ); // let stick drive UP (note this is positive value on joystick)
-
+            robot.motorLift.setPower(gamepad1.right_trigger); // let stick drive UP (note this is positive value on joystick)
             armHoldPosition = robot.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
-
-        }
-        else if (gamepad2.left_stick_y > 0.0) //encoder less than Max limit
+        } else if (!gamepad1.right_bumper ) //encoder less than Max limit
         {
-            robot.motorLift.setPower(gamepad2.left_stick_y); //let stick drive DOWN (note this is negative value on joystick)
+            robot.motorLift.setPower(-gamepad1.right_trigger); //let stick drive DOWN (note this is negative value on joystick)
             armHoldPosition = robot.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
         } else // to maintain the current position
         {
