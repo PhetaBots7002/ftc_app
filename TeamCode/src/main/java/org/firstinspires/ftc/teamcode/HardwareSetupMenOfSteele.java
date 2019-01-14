@@ -78,9 +78,9 @@ public class HardwareSetupMenOfSteele {
         motorLift =  hwMap.dcMotor.get("motorLi");
 
         // Set the drive motor directions:
-       // motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
+        motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         //motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
-        //motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
+        motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         //motorBackRight.setDirection(DcMotor.Direction.REVERSE);
 
         //Keep the motors from moving during initialize.

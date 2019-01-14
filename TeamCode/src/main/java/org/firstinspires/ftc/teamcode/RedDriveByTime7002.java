@@ -27,7 +27,7 @@ public class RedDriveByTime7002 extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
     /* Define Hardware setup */
-    HardwareSetupHolonomicExample robot     =   new HardwareSetupHolonomicExample();
+    HardwareSetupMenOfSteele robot     =   new HardwareSetupMenOfSteele();
     /**
      * Constructor
      */
@@ -84,9 +84,9 @@ public class RedDriveByTime7002 extends LinearOpMode {
     {
         // write the values to the motors
         robot.motorFrontRight.setPower(power);//still need to test motor directions for desired movement
-        robot.motorFrontLeft.setPower(power);
+        robot.motorFrontLeft.setPower(-power);
         robot.motorBackRight.setPower(power);
-        robot.motorBackLeft.setPower(power);
+        robot.motorBackLeft.setPower(-power);
     }
 
     public void DriveForwardTime(double power, long time) throws InterruptedException

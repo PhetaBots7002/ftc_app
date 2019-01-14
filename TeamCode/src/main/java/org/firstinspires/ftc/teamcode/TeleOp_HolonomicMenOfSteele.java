@@ -63,7 +63,7 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         float gamepad1LeftY = -gamepad1.left_stick_y;   // drives spin left/right
         float gamepad1LeftX = gamepad1.left_stick_x;    // strafe direction (side to side)
         float gamepad1RightY = gamepad1.right_stick_y;  //drives forwards and backwards
-          //
+
 
         // holonomic formulas
 
@@ -72,7 +72,7 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         float BackRight = gamepad1LeftY + gamepad1LeftX - gamepad1RightY;
         float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightY;
 
-        // clip the right/left values so that the values never exceed +/- 1
+        //        // clip the right/left values so that the values never exceed +/- 1
         FrontRight = Range.clip(FrontRight, -1, 1);
         FrontLeft = Range.clip(FrontLeft, -1, 1);
         BackLeft = Range.clip(BackLeft, -1, 1);
@@ -80,8 +80,8 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
 
         // write the values to the motors
         robot.motorFrontRight.setPower(FrontRight);
-        robot.motorFrontLeft.setPower(FrontLeft);
-        robot.motorBackLeft.setPower(BackLeft);
+        robot.motorFrontLeft.setPower(-FrontLeft);
+        robot.motorBackLeft.setPower(-BackLeft);
         robot.motorBackRight.setPower(BackRight);
 
 
@@ -115,10 +115,10 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         else if (gamepad2.left_stick_y > 0.0) //encoder less than Max limit
         {
             robot.motorLift.setPower(gamepad2.left_stick_y); //let stick drive DOWN (note this is negative value on joystick)
-            armHoldPosition = robot.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
+            //armHoldPosition = robot.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
         } else // to maintain the current position
         {
-            robot.motorLift.setPower((double) (armHoldPosition - robot.motorLift.getCurrentPosition()) / slopeVal);   // Note that if the lift is lower than desired position,
+            //robot.motorLift.setPower((double) (armHoldPosition - robot.motorLift.getCurrentPosition()) / slopeVal);   // Note that if the lift is lower than desired position,
             // the subtraction will be positive and the motor will
             // attempt to raise the lift. If it is too high it will
             // be negative and thus try to lower the lift

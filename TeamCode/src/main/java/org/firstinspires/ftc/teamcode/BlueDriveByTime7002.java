@@ -27,7 +27,7 @@ public class BlueDriveByTime7002 extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
     /* Define Hardware setup */
-    HardwareSetupHolonomicExample robot     =   new HardwareSetupHolonomicExample();
+    HardwareSetupMenOfSteele robot     =   new HardwareSetupMenOfSteele();
     /**
      * Constructor
      */
@@ -51,6 +51,8 @@ public class BlueDriveByTime7002 extends LinearOpMode {
          *************************/
         DriveForwardTime(DRIVE_POWER, 2000);
         StopDrivingTime(1000);
+
+
        /* DriveForwardTime(-DRIVE_POWER, 1000); //neg power drives backwards
         StopDrivingTime(1000);
 
@@ -109,8 +111,8 @@ public class BlueDriveByTime7002 extends LinearOpMode {
     {
         // write the values to the motors
         robot.motorFrontRight.setPower(power);
-        robot.motorFrontLeft.setPower(-power);
-        robot.motorBackRight.setPower(-power);
+        robot.motorFrontLeft.setPower(power);
+        robot.motorBackRight.setPower(power);
         robot.motorBackLeft.setPower(power);
         Thread.sleep(time);
     }
@@ -133,6 +135,16 @@ public class BlueDriveByTime7002 extends LinearOpMode {
     public void SpinLeft (double power, long time) throws InterruptedException
     {
         SpinRight(-power, time);
+    }
+
+    public void liftUp (double power, long time) throws InterruptedException
+    {
+        //robot.motorLift(-power,time);
+    }
+
+    public void liftDown (double power, long time) throws InterruptedException
+    {
+       // robot.motorLift(power,time);
     }
 
 

@@ -27,7 +27,7 @@ public class CratterTime7002 extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
     /* Define Hardware setup */
-    HardwareSetupHolonomicExample robot     =   new HardwareSetupHolonomicExample();
+    HardwareSetupMenOfSteele robot     =   new HardwareSetupMenOfSteele();
     /**
      * Constructor
      */

@@ -80,8 +80,8 @@ public class TeleOp_HolonomicMenOfSteele_SingleC extends OpMode {
 
         // write the values to the motors
         robot.motorFrontRight.setPower(FrontRight);
-        robot.motorFrontLeft.setPower(FrontLeft);
-        robot.motorBackLeft.setPower(BackLeft);
+        robot.motorFrontLeft.setPower(-FrontLeft); // changed left to neg. to try make sure using single teleOP program
+        robot.motorBackLeft.setPower(-BackLeft);
         robot.motorBackRight.setPower(BackRight);
 
 
@@ -109,11 +109,13 @@ public class TeleOp_HolonomicMenOfSteele_SingleC extends OpMode {
         {
             robot.motorLift.setPower(gamepad1.right_trigger); // let stick drive UP (note this is positive value on joystick)
             armHoldPosition = robot.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
-        } else if (!gamepad1.right_bumper ) //encoder less than Max limit
+        }
+        else if (!gamepad1.right_bumper ) //encoder less than Max limit
         {
             robot.motorLift.setPower(-gamepad1.right_trigger); //let stick drive DOWN (note this is negative value on joystick)
             armHoldPosition = robot.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
-        } else // to maintain the current position
+        }
+        else // to maintain the current position
         {
             robot.motorLift.setPower((double) (armHoldPosition - robot.motorLift.getCurrentPosition()) / slopeVal);   // Note that if the lift is lower than desired position,
             // the subtraction will be positive and the motor will

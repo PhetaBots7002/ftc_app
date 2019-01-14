@@ -52,7 +52,7 @@ public class Limit_Switch_Example_TeleOp extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     //motors
 
-    DcMotor motorArm = null;
+    //DcMotor motorArm = null;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -60,20 +60,20 @@ public class Limit_Switch_Example_TeleOp extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-         motorArm = hardwareMap.dcMotor.get("motorArm");
+        /* motorArm = hardwareMap.dcMotor.get("motorArm");
 
         // eg: Set the drive motor directions:
-         motorArm.setDirection(DcMotor.Direction.FORWARD); // Can change based on motor configuration
+         //motorArm.setDirection(DcMotor.Direction.FORWARD); // Can change based on motor configuration
         // reset Encoder to zero
-         motorArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        // motorArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-         motorArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER); // runs motor faster than when set to RUN_USING_ENCODER
+        // motorArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER); // runs motor faster than when set to RUN_USING_ENCODER
          //motorArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER); // not sure why this happens
 
         // Send telemetry message to indicate successful Encoder reset
-        telemetry.addData("Encoder", motorArm.getCurrentPosition());
+       // telemetry.addData("Encoder", motorArm.getCurrentPosition());
         telemetry.update();
-
+        */
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -82,11 +82,11 @@ public class Limit_Switch_Example_TeleOp extends LinearOpMode {
         /************************
          * TeleOp Code Below://
          *************************/
-
+/*
         while (opModeIsActive()) {  // run until the end of the match (driver presses STOP)
             // Display running time and Encoder value
             telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Encoder Clicks", + motorArm.getCurrentPosition());
+            //telemetry.addData("Encoder Clicks", + motorArm.getCurrentPosition());
             telemetry.update();
 
             // Arm Control - Uses dual buttons to control motor direction.
@@ -106,8 +106,8 @@ public class Limit_Switch_Example_TeleOp extends LinearOpMode {
             {
                 motorArm.setPower(0.0); // else not trigger, then set to off or some value of 'hold' power
             }
-
+*/
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
-        }
+
     }
 }
