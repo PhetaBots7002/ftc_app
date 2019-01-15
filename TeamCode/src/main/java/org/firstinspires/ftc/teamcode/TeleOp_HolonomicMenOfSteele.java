@@ -86,7 +86,7 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
 
 
         //Sweep Motor
-        if (gamepad2.dpad_up)
+       /*  if (gamepad2.dpad_up)
         {
             robot.motorSweep.setPower(1.0); //sweep in
         }
@@ -104,7 +104,25 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
 
         }
 
+*/
+       //moves arm
+        if (gamepad2.right_stick_y < 0.0) // holds arm position
+        {
+            robot.motorArm.setPower(gamepad2.right_stick_y ); // let stick drive UP (note this is positive value on joystick)
 
+            armHoldPosition = robot.motorArm.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
+
+        }
+        else if (gamepad2.right_stick_y > 0.0) //encoder less than Max limit
+        {
+            robot.motorArm.setPower(gamepad2.right_stick_y); //let stick drive DOWN (note this is negative value on joystick)
+            //armHoldPosition = robot.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
+        }
+        //else // to maintain the current position
+        {
+
+
+            //moves lift
         if (gamepad2.left_stick_y < 0.0) // holds arm position
         {
             robot.motorLift.setPower(gamepad2.left_stick_y ); // let stick drive UP (note this is positive value on joystick)
@@ -116,8 +134,9 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         {
             robot.motorLift.setPower(gamepad2.left_stick_y); //let stick drive DOWN (note this is negative value on joystick)
             //armHoldPosition = robot.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
-        } else // to maintain the current position
-        {
+        }
+        //else // to maintain the current position
+       // {
             //robot.motorLift.setPower((double) (armHoldPosition - robot.motorLift.getCurrentPosition()) / slopeVal);   // Note that if the lift is lower than desired position,
             // the subtraction will be positive and the motor will
             // attempt to raise the lift. If it is too high it will

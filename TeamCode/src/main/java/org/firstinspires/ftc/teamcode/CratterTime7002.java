@@ -49,7 +49,7 @@ public class CratterTime7002 extends LinearOpMode {
         /************************
          * Autonomous Code Below://
          *************************/
-        DriveForwardTime(DRIVE_POWER, 3000);
+        DriveForwardTime(DRIVE_POWER, 1300);
         StopDrivingTime(1000);
         //DriveForwardTime(-DRIVE_POWER, 1000); //neg power drives backwards
         //StopDrivingTime(1000);

@@ -30,7 +30,7 @@ public class HardwareSetupMenOfSteele {
     public DcMotor motorFrontLeft = null;
     public DcMotor motorBackRight = null;
     public DcMotor motorBackLeft = null;
-    public DcMotor motorSweep = null;
+    public DcMotor motorArm = null;
     public DcMotor motorLift = null;
     //Accessories motors
     //public DcMotor armMotor = null;
@@ -74,7 +74,7 @@ public class HardwareSetupMenOfSteele {
         motorBackRight = hwMap.dcMotor.get("motorBR");
 
         //armMotor = hwMap.dcMotor.get ("armMotor");
-        motorSweep = hwMap.dcMotor.get("motorS");
+        motorArm = hwMap.dcMotor.get("motorA");
         motorLift =  hwMap.dcMotor.get("motorLi");
 
         // Set the drive motor directions:
@@ -88,7 +88,7 @@ public class HardwareSetupMenOfSteele {
         motorFrontRight.setPower(MOTOR_STOP);
         motorBackLeft.setPower(MOTOR_STOP);
         motorBackRight.setPower(MOTOR_STOP);
-        motorSweep.setPower(MOTOR_STOP);
+        motorArm.setPower(MOTOR_STOP);
         motorLift.setPower(MOTOR_STOP);
         /************************************************************
          * SERVO SECTION
