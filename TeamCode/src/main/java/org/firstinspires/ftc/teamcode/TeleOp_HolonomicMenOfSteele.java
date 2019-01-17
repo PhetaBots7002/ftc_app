@@ -121,9 +121,9 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         }
 
 
+        else // to maintain the current position
         //extends arm
 
-        else // to maintain the current position
         {
             robot.motorExtend.setPower((double) (armHoldPosition - robot.motorExtend.getCurrentPosition()) / slopeVal);
         }
