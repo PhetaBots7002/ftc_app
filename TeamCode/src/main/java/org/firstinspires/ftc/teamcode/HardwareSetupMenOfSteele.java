@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-
+import com.qualcomm.robotcore.hardware.Servo;
 
 /**
  * Created by TeameurekaRobotics on 12/30/2016
@@ -34,11 +34,13 @@ public class HardwareSetupMenOfSteele {
     //Accessories motors
     public DcMotor motorArm = null;
     public DcMotor motorLift = null;
-    public DcMotor motorExtend = null;
+    public DcMotor motorExt = null;
     //public DcMotor armMotor = null;
 
     //servos
-        //Add servos here
+    public Servo servoEgg = null;
+    public Servo servoBucket = null;
+
 
     //sensors
         //Add sensors here
@@ -76,9 +78,9 @@ public class HardwareSetupMenOfSteele {
         motorBackRight = hwMap.dcMotor.get("motorBR");
 
         //armMotor = hwMap.dcMotor.get ("armMotor");
-        motorArm = hwMap.dcMotor.get("motorA");
-        motorLift =  hwMap.dcMotor.get("motorLi");
-        motorExtend = hwMap.dcMotor.get("motorE");
+        motorArm = hwMap.dcMotor.get("motorArm");
+        motorLift =  hwMap.dcMotor.get("motorLift");
+        motorExt = hwMap.dcMotor.get("motorExt");
         // Set the drive motor directions:
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         //motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
@@ -92,12 +94,13 @@ public class HardwareSetupMenOfSteele {
         motorBackRight.setPower(MOTOR_STOP);
         motorArm.setPower(MOTOR_STOP);
         motorLift.setPower(MOTOR_STOP);
-        motorExtend.setPower(MOTOR_STOP);
+        motorExt.setPower(MOTOR_STOP);
+
         /************************************************************
          * SERVO SECTION
          ************************************************************/
 
-            //Add servo configuration
+
 
         /************************************************************
          * SENSOR SECTION

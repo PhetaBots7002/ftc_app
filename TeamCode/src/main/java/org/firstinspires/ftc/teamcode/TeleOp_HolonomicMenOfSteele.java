@@ -125,23 +125,23 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         //extends arm
 
         {
-            robot.motorExtend.setPower((double) (armHoldPosition - robot.motorExtend.getCurrentPosition()) / slopeVal);
+            robot.motorExt.setPower((double) (armHoldPosition - robot.motorExt.getCurrentPosition()) / slopeVal);
         }
 
 
         if (gamepad2.right_bumper) // holds arm position
         {
-            robot.motorExtend.setPower(gamepad2.right_trigger); // let stick drive UP (note this is positive value on joystick)
-            armHoldPosition = robot.motorExtend.getCurrentPosition(); // while the Extend is moving, continuously reset the arm holding position
+            robot.motorExt.setPower(gamepad2.right_trigger); // let stick drive UP (note this is positive value on joystick)
+            armHoldPosition = robot.motorExt.getCurrentPosition(); // while the Extend is moving, continuously reset the arm holding position
         }
         else if (!gamepad2.right_bumper ) //encoder less than Max limit
         {
-            robot.motorExtend.setPower(-gamepad2.right_trigger); //let stick drive DOWN (note this is negative value on joystick)
-            armHoldPosition = robot.motorExtend.getCurrentPosition(); // while the Extend is moving, continuously reset the arm holding position
+            robot.motorExt.setPower(-gamepad2.right_trigger); //let stick drive DOWN (note this is negative value on joystick)
+            armHoldPosition = robot.motorExt.getCurrentPosition(); // while the Extend is moving, continuously reset the arm holding position
         }
         else // to maintain the current position
         {
-            robot.motorExtend.setPower((double) (armHoldPosition - robot.motorExtend.getCurrentPosition()) / slopeVal);
+            robot.motorExt.setPower((double) (armHoldPosition - robot.motorExt.getCurrentPosition()) / slopeVal);
             // adjust slopeVal to acheived perfect hold power
         }
 
@@ -169,6 +169,40 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
             // attempt to raise the lift. If it is too high it will
             // be negative and thus try to lower the lift
             // adjust slopeVal to acheived perfect hold power
+        }
+
+
+
+            //bucket control
+        // take ball
+        if (gamepad2.b == true)
+        {
+            robot.servoBucket.setPosition(1.0);
+        }
+        else
+        {
+            robot.servoBucket.setPosition(0.0);
+        }
+
+        //spit out ball
+        if(gamepad2.x == true)
+        {
+            robot.servoBucket.setPosition(-1.0);
+        }
+        else
+        {
+            robot.servoBucket.setPosition(0.0);
+        }
+
+            //control bucket
+        //tilt up
+        if (gamepad2.a)
+        {
+            robot.servoEgg.setPosition(0.5);
+        }
+        else
+        {
+            robot.servoEgg.setPosition(0.0);
         }
 
 
