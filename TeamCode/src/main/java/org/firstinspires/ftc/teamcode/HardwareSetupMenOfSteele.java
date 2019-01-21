@@ -50,13 +50,14 @@ public class HardwareSetupMenOfSteele {
 
     //Create and set default servo positions & MOTOR STOP variables.
     //Possible servo values: 0.0 - 1.0  For CRServo 0.5=stop greater or less than will spin in that direction
-    //final static double CLOSED = 0.2;
-    //final static double OPEN = 0.8;
+    final static double CLOSED = 0.2;
+    final static double OPEN = 0.8;
     final static double MOTOR_STOP = 0.0; // sets motor power to zero
     
     //CR servo variables
-        //Add servo variable here
-
+     double SpinIn = 0.1;
+     double SpinOut = 0.8;
+     double STOP = 0.5;
    /* Constructor   // this is not required as JAVA does it for you, but useful if you want to add
     * function to this method when called in OpModes.
     */
@@ -83,8 +84,8 @@ public class HardwareSetupMenOfSteele {
         motorExt = hwMap.dcMotor.get("motorExt");
 
         servoEgg = hwMap.servo.get("Egg");
-        servoBucket1 = hwMap.servo.get("Bt1");
-        servoBucket2 = hwMap.servo.get("Bt2");
+        servoBucket1 = hwMap.servo.get("servoBt1");
+        servoBucket2 = hwMap.servo.get("servoBt2");
         // Set the drive motor directions:
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         //motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
@@ -103,9 +104,10 @@ public class HardwareSetupMenOfSteele {
         /************************************************************
          * SERVO SECTION
          ************************************************************/
-
-
-
+        
+         servoEgg.setPosition(OPEN);
+         servoBucket1.setPosition(STOP);
+         servoBucket2.setPosition(STOP);
         /************************************************************
          * SENSOR SECTION
          ************************************************************/
