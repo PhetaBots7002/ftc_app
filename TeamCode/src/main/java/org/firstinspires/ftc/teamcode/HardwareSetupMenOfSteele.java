@@ -39,8 +39,8 @@ public class HardwareSetupMenOfSteele {
 
     //servos
     public Servo servoEgg = null;
-    public Servo servoBucket = null;
-
+    public Servo servoBucket1 = null;
+    public Servo servoBucket2 = null;
 
     //sensors
         //Add sensors here
@@ -81,6 +81,10 @@ public class HardwareSetupMenOfSteele {
         motorArm = hwMap.dcMotor.get("motorArm");
         motorLift =  hwMap.dcMotor.get("motorLift");
         motorExt = hwMap.dcMotor.get("motorExt");
+
+        servoEgg = hwMap.servo.get("Egg");
+        servoBucket1 = hwMap.servo.get("Bt1");
+        servoBucket2 = hwMap.servo.get("Bt2");
         // Set the drive motor directions:
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         //motorFrontRight.setDirection(DcMotor.Direction.REVERSE);

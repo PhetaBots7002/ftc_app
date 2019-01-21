@@ -178,22 +178,43 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         // take ball
         if (gamepad2.b == true)
         {
-            robot.servoBucket.setPosition(1.0);
+            robot.servoBucket1.setPosition(1.0);
         }
         else
         {
-            robot.servoBucket.setPosition(0.0);
+            robot.servoBucket1.setPosition(0.0);
         }
 
         //spit out ball
         if(gamepad2.x == true)
         {
-            robot.servoBucket.setPosition(-1.0);
+            robot.servoBucket1.setPosition(-1.0);
         }
         else
         {
-            robot.servoBucket.setPosition(0.0);
+            robot.servoBucket1.setPosition(0.0);
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        if (gamepad2.b == true)
+        {
+            robot.servoBucket2.setPosition(0.0);
+        }
+        else
+        {
+            robot.servoBucket2.setPosition(1.0);
+        }
+
+        //spit out ball
+        if(gamepad2.x == true)
+        {
+            robot.servoBucket2.setPosition(0.0);
+        }
+        else
+        {
+            robot.servoBucket2.setPosition(-1.0);
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////
 
             //control bucket
         //tilt up
