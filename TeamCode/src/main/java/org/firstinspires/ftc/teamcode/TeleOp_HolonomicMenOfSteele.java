@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 
@@ -37,8 +38,12 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
     int     armHoldPosition;             // reading of arm position when buttons released to hold
     double  slopeVal         = 2000.0;   // increase or decrease to perfect
     /**
+     *
+
      * Constructor
      */
+    private ElapsedTime runtime = new ElapsedTime();
+
     public TeleOp_HolonomicMenOfSteele() {
 
     }
@@ -53,9 +58,12 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         robot.init(hardwareMap);  //Initialize hardware from the HardwareHolonomic Setup
     }
 
+
+
     @Override
     public void loop() {
 
+        runtime.reset();
 
         // left stick X controls Strafe & Y controls Spin Direction
         // right stick Y controls drive Forward/Backward
@@ -178,53 +186,56 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         // take ball
         if (gamepad2.b == true)
         {
-            robot.servoBucket1.setPosition(1.0);
+            robot.servoBucket1.setPosition(robot.SpinIn);
         }
         else
         {
-            robot.servoBucket1.setPosition(0.0);
+            robot.servoBucket1.setPosition(robot.STOP);
         }
 
         //spit out ball
         if(gamepad2.x == true)
         {
-            robot.servoBucket1.setPosition(-1.0);
+            robot.servoBucket1.setPosition(robot.SpinOut);
         }
         else
         {
-            robot.servoBucket1.setPosition(0.0);
+            robot.servoBucket1.setPosition(robot.STOP);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         if (gamepad2.b == true)
         {
-            robot.servoBucket2.setPosition(0.0);
+            robot.servoBucket2.setPosition(robot.SpinOut);
         }
         else
         {
-            robot.servoBucket2.setPosition(1.0);
+            robot.servoBucket2.setPosition(robot.STOP);
         }
 
         //spit out ball
         if(gamepad2.x == true)
         {
-            robot.servoBucket2.setPosition(0.0);
+            robot.servoBucket2.setPosition(robot.SpinIn);
         }
         else
         {
-            robot.servoBucket2.setPosition(-1.0);
+            robot.servoBucket2.setPosition(robot.STOP);
         }
+        /////////////////////////////////////////////////////////////////////////////////////////
+
+
         ////////////////////////////////////////////////////////////////////////////////////////
 
             //control bucket
         //tilt up
         if (gamepad2.a)
         {
-            robot.servoEgg.setPosition(0.5);
+            robot.servoEgg.setPosition(robot.OPEN);
         }
         else
         {
-            robot.servoEgg.setPosition(0.0);
+            robot.servoEgg.setPosition(robot.CLOSED);
         }
 
 
@@ -238,6 +249,11 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         telemetry.addData("b right pwr", "back right pwr: " + String.format("%.2f", BackRight));
         telemetry.addData("b left pwr", "back left pwr: " + String.format("%.2f", BackLeft));
 
+        telemetry.addData("Status", "RunTime: " + runtime.toString());
+        telemetry.addData("LiftPosition: ", + robot.motorLift.getCurrentPosition());
+        telemetry.addData("LiftHoldPosition:" , + robot.LiftHoldPosition);
+        telemetry.addData("ArmPosition: ", + robot.motorArm.getCurrentPosition());
+        telemetry.addData("ArmHoldPosition", + robot.ArmHoldPosition);
     }
 
     @Override

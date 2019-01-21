@@ -24,6 +24,8 @@ public class HardwareSetupMenOfSteele {
    /* Declare Public OpMode members.
     *these are the null statements to make sure nothing is stored in the variables.
     */
+    public double LiftHoldPosition;
+    public double ArmHoldPosition;
 
     //Drive motors
     public DcMotor motorFrontRight = null;
@@ -50,14 +52,17 @@ public class HardwareSetupMenOfSteele {
 
     //Create and set default servo positions & MOTOR STOP variables.
     //Possible servo values: 0.0 - 1.0  For CRServo 0.5=stop greater or less than will spin in that direction
-    final static double CLOSED = 0.2;
-    final static double OPEN = 0.8;
+
+    final static double CLOSED = 0.0;
+    final static double OPEN = 0.5;
+    //sets motor power to 0
     final static double MOTOR_STOP = 0.0; // sets motor power to zero
     
     //CR servo variables
      double SpinIn = 0.1;
-     double SpinOut = 0.8;
+     double SpinOut = 0.9;
      double STOP = 0.5;
+     
    /* Constructor   // this is not required as JAVA does it for you, but useful if you want to add
     * function to this method when called in OpModes.
     */
@@ -101,11 +106,14 @@ public class HardwareSetupMenOfSteele {
         motorLift.setPower(MOTOR_STOP);
         motorExt.setPower(MOTOR_STOP);
 
+        motorLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motorArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         /************************************************************
          * SERVO SECTION
          ************************************************************/
         
-         servoEgg.setPosition(OPEN);
+         servoEgg.setPosition(CLOSED);
          servoBucket1.setPosition(STOP);
          servoBucket2.setPosition(STOP);
         /************************************************************
