@@ -139,12 +139,13 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
             robot.motorExt.setPower(-gamepad2.right_trigger); //let stick drive DOWN (note this is negative value on joystick)
             armHoldPosition = robot.motorExt.getCurrentPosition(); // while the Extend is moving, continuously reset the arm holding position
         }
-        else // to maintain the current position
+
+       /* else // to maintain the current position
         {
             robot.motorExt.setPower((double) (armHoldPosition - robot.motorExt.getCurrentPosition()) / slopeVal);
             // adjust slopeVal to acheived perfect hold power
         }
-
+        */
 
 
 
