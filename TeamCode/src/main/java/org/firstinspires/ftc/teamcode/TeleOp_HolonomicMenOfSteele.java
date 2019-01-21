@@ -36,6 +36,7 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
     HardwareSetupMenOfSteele robot     =   new HardwareSetupMenOfSteele();
 
     int     armHoldPosition;             // reading of arm position when buttons released to hold
+    int     liftHoldPosition;
     double  slopeVal         = 2000.0;   // increase or decrease to perfect
     /**
      *
@@ -56,6 +57,11 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
        * configured your robot and created the configuration file.
        */
         robot.init(hardwareMap);  //Initialize hardware from the HardwareHolonomic Setup
+
+        // initialize current position of arm motor
+        liftHoldPosition = robot.motorLift.getCurrentPosition();
+        armHoldPosition = robot.motorArm.getCurrentPosition();
+
     }
 
 
@@ -93,142 +99,86 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         robot.motorBackRight.setPower(BackRight);
 
 
-        //Sweep Motor
-       /*  if (gamepad2.dpad_up)
-        {
-            robot.motorSweep.setPower(1.0); //sweep in
-        }
-
-        //Sweep Motor
-        if (gamepad2.dpad_down)
-        {
-            robot.motorSweep.setPower(-1.0); //sweep out
-        }
-
-        //Sweep stops
-        if (gamepad2.dpad_right)
-        {
-            robot.motorSweep.setPower(0.0); //sweep stop
-
-        }
-
-*/
-
        //moves arm
-        if (gamepad2.right_stick_y < 0.0) // holds arm position
+        if (gamepad2.right_stick_y < 0.0)
         {
             robot.motorArm.setPower(gamepad2.right_stick_y ); // let stick drive UP (note this is positive value on joystick)
-
             armHoldPosition = robot.motorArm.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
 
         }
         else if (gamepad2.right_stick_y > 0.0) //encoder less than Max limit
         {
             robot.motorArm.setPower(gamepad2.right_stick_y); //let stick drive DOWN (note this is negative value on joystick)
-            //armHoldPosition = robot.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
+            armHoldPosition = robot.motorArm.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
         }
-
-
         else // to maintain the current position
-        //extends arm
-
         {
-            robot.motorExt.setPower((double) (armHoldPosition - robot.motorExt.getCurrentPosition()) / slopeVal);
+            robot.motorArm.setPower((double) (armHoldPosition - robot.motorArm.getCurrentPosition()) / slopeVal);
         }
 
-
-        if (gamepad2.right_bumper) // holds arm position
+        // Extend arm
+        if (gamepad2.right_bumper)
         {
             robot.motorExt.setPower(gamepad2.right_trigger); // let stick drive UP (note this is positive value on joystick)
-            armHoldPosition = robot.motorExt.getCurrentPosition(); // while the Extend is moving, continuously reset the arm holding position
         }
         else if (!gamepad2.right_bumper ) //encoder less than Max limit
         {
             robot.motorExt.setPower(-gamepad2.right_trigger); //let stick drive DOWN (note this is negative value on joystick)
-            armHoldPosition = robot.motorExt.getCurrentPosition(); // while the Extend is moving, continuously reset the arm holding position
         }
-
-       /* else // to maintain the current position
+        else
         {
-            robot.motorExt.setPower((double) (armHoldPosition - robot.motorExt.getCurrentPosition()) / slopeVal);
-            // adjust slopeVal to acheived perfect hold power
+            robot.motorExt.setPower(0.0);
         }
-        */
-
 
 
 
             //moves lift
-        if (gamepad2.left_stick_y < 0.0) // holds arm position
+        if (gamepad2.left_stick_y < 0.0)
         {
             robot.motorLift.setPower(gamepad2.left_stick_y ); // let stick drive UP (note this is positive value on joystick)
-
-            armHoldPosition = robot.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
+            liftHoldPosition = robot.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
 
         }
         else if (gamepad2.left_stick_y > 0.0) //encoder less than Max limit
         {
             robot.motorLift.setPower(gamepad2.left_stick_y); //let stick drive DOWN (note this is negative value on joystick)
-            //armHoldPosition = robot.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
+            liftHoldPosition = robot.motorLift.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
         }
         else // to maintain the current position
         {
-            robot.motorLift.setPower((double) (armHoldPosition - robot.motorLift.getCurrentPosition()) / slopeVal);   // Note that if the lift is lower than desired position,
+            robot.motorLift.setPower((double) (liftHoldPosition - robot.motorLift.getCurrentPosition()) / slopeVal);   // Note that if the lift is lower than desired position,
             // the subtraction will be positive and the motor will
             // attempt to raise the lift. If it is too high it will
             // be negative and thus try to lower the lift
             // adjust slopeVal to acheived perfect hold power
         }
 
-
-
-            //bucket control
+        //bucket control
         // take ball
         if (gamepad2.b == true)
         {
             robot.servoBucket1.setPosition(robot.SpinIn);
+            robot.servoBucket2.setPosition(robot.SpinOut);
         }
         else
         {
             robot.servoBucket1.setPosition(robot.STOP);
+            robot.servoBucket2.setPosition(robot.STOP);
         }
 
         //spit out ball
         if(gamepad2.x == true)
         {
             robot.servoBucket1.setPosition(robot.SpinOut);
-        }
-        else
-        {
-            robot.servoBucket1.setPosition(robot.STOP);
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        if (gamepad2.b == true)
-        {
-            robot.servoBucket2.setPosition(robot.SpinOut);
-        }
-        else
-        {
-            robot.servoBucket2.setPosition(robot.STOP);
-        }
-
-        //spit out ball
-        if(gamepad2.x == true)
-        {
             robot.servoBucket2.setPosition(robot.SpinIn);
         }
         else
         {
+            robot.servoBucket1.setPosition(robot.STOP);
             robot.servoBucket2.setPosition(robot.STOP);
         }
-        /////////////////////////////////////////////////////////////////////////////////////////
 
-
-        ////////////////////////////////////////////////////////////////////////////////////////
-
-            //control bucket
-        //tilt up
+        //bucket tilt
         if (gamepad2.a)
         {
             robot.servoEgg.setPosition(robot.OPEN);
@@ -251,9 +201,9 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
 
         telemetry.addData("Status", "RunTime: " + runtime.toString());
         telemetry.addData("LiftPosition: ", + robot.motorLift.getCurrentPosition());
-        telemetry.addData("LiftHoldPosition:" , + robot.LiftHoldPosition);
+        telemetry.addData("LiftHoldPosition:" , + liftHoldPosition);
         telemetry.addData("ArmPosition: ", + robot.motorArm.getCurrentPosition());
-        telemetry.addData("ArmHoldPosition", + robot.ArmHoldPosition);
+        telemetry.addData("ArmHoldPosition", + armHoldPosition);
     }
 
     @Override

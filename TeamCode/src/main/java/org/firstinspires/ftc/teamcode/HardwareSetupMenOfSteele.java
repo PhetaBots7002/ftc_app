@@ -24,8 +24,6 @@ public class HardwareSetupMenOfSteele {
    /* Declare Public OpMode members.
     *these are the null statements to make sure nothing is stored in the variables.
     */
-    public double LiftHoldPosition;
-    public double ArmHoldPosition;
 
     //Drive motors
     public DcMotor motorFrontRight = null;
