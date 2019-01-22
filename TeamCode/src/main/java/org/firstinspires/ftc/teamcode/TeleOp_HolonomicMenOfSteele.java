@@ -160,14 +160,8 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
             robot.servoBucket1.setPosition(robot.SpinIn);
             robot.servoBucket2.setPosition(robot.SpinOut);
         }
-        else
-        {
-            robot.servoBucket1.setPosition(robot.STOP);
-            robot.servoBucket2.setPosition(robot.STOP);
-        }
 
-        //spit out ball
-        if(gamepad2.x)
+        else if(gamepad2.x)
         {
             robot.servoBucket1.setPosition(robot.SpinOut);
             robot.servoBucket2.setPosition(robot.SpinIn);
