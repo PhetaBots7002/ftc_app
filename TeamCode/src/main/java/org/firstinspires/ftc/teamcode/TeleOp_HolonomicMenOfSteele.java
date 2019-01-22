@@ -102,13 +102,13 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
        //moves arm
         if (gamepad2.right_stick_y < 0.0)
         {
-            robot.motorArm.setPower(gamepad2.right_stick_y ); // let stick drive UP (note this is positive value on joystick)
+            robot.motorArm.setPower(-gamepad2.right_stick_y/2 ); // let stick drive UP (note this is positive value on joystick)
             armHoldPosition = robot.motorArm.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
 
         }
         else if (gamepad2.right_stick_y > 0.0) //encoder less than Max limit
         {
-            robot.motorArm.setPower(gamepad2.right_stick_y); //let stick drive DOWN (note this is negative value on joystick)
+            robot.motorArm.setPower(-gamepad2.right_stick_y/2); //let stick drive DOWN (note this is negative value on joystick)
             armHoldPosition = robot.motorArm.getCurrentPosition(); // while the lift is moving, continuously reset the arm holding position
         }
         else // to maintain the current position
@@ -155,7 +155,7 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
 
         //bucket control
         // take ball
-        if (gamepad2.b == true)
+        if (gamepad2.b)
         {
             robot.servoBucket1.setPosition(robot.SpinIn);
             robot.servoBucket2.setPosition(robot.SpinOut);
@@ -167,7 +167,7 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         }
 
         //spit out ball
-        if(gamepad2.x == true)
+        if(gamepad2.x)
         {
             robot.servoBucket1.setPosition(robot.SpinOut);
             robot.servoBucket2.setPosition(robot.SpinIn);
