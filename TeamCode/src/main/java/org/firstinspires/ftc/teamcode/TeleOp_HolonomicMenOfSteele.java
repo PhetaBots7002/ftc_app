@@ -177,7 +177,7 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         {
             robot.servoEgg.setPosition(robot.OPEN);
         }
-        else
+        else if (gamepad2.y)
         {
             robot.servoEgg.setPosition(robot.CLOSED);
         }
