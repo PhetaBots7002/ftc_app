@@ -49,11 +49,28 @@ public class CratterTime7002 extends LinearOpMode {
         /************************
          * Autonomous Code Below://
          *************************/
-        DriveForwardTime(DRIVE_POWER, 1300);
-        StopDrivingTime(1000);
+        Release(1.0);
+       /* setDown(-0.65, 225);
+        StopDrivingTime(1200);
+        StrafeRight(DRIVE_POWER, 900);
+        StopDrivingTime(1200);
+        setDown(0.7, 400);
+        DriveForwardTime(DRIVE_POWER, 700);
+        StopDrivingTime(500);
+        */
+
+     /////////////////////////////////////////////////////////////////////////////
+        //SpinLeft(DRIVE_POWER, 1200);
+        //DriveForwardTime(DRIVE_POWER, 2300);
+        //SpinLeft(DRIVE_POWER, 600);
+        //DriveForwardTime(DRIVE_POWER, 1000);
+        //robot.servoBucket2.setPosition(robot.SpinOut);
+
+
+
         //DriveForwardTime(-DRIVE_POWER, 1000); //neg power drives backwards
         //StopDrivingTime(1000);
-
+        
 
         StopDriving();
 
@@ -118,6 +135,16 @@ public class CratterTime7002 extends LinearOpMode {
         SpinRight(-power, time);
     }
 
+    public void setDown (double power, long time) throws InterruptedException
+    {
+        robot.motorLift.setPower(power);
+        Thread.sleep(time);
+    }
+
+    public void Release (double position) throws InterruptedException
+    {
+        robot.servoRelease.setPosition(position);
+    }
 
 /*** Currently no Servo configured in Holonomic Hardware setup
 

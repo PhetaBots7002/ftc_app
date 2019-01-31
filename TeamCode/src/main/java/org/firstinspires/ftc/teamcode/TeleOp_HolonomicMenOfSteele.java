@@ -131,8 +131,7 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         }
 
 
-
-            //moves lift
+        //moves lift
         if (gamepad2.left_stick_y < 0.0)
         {
             robot.motorLift.setPower(gamepad2.left_stick_y ); // let stick drive UP (note this is positive value on joystick)
@@ -198,7 +197,7 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         telemetry.addData("LiftHoldPosition:" , + liftHoldPosition);
         telemetry.addData("ArmPosition: ", + robot.motorArm.getCurrentPosition());
         telemetry.addData("ArmHoldPosition", + armHoldPosition);
-    }
+}
 
     @Override
     public void stop()

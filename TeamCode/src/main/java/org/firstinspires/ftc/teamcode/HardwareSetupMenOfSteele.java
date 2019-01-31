@@ -41,6 +41,7 @@ public class HardwareSetupMenOfSteele {
     public Servo servoEgg = null;
     public Servo servoBucket1 = null;
     public Servo servoBucket2 = null;
+    public Servo servoRelease = null;
 
     //sensors
         //Add sensors here
@@ -57,8 +58,8 @@ public class HardwareSetupMenOfSteele {
     final static double MOTOR_STOP = 0.0; // sets motor power to zero
     
     //CR servo variables
-     double SpinIn = 0.3;
-     double SpinOut = 0.8;
+     double SpinIn = 0.1;
+     double SpinOut = 0.9;
      double STOP = 0.5;
      
    /* Constructor   // this is not required as JAVA does it for you, but useful if you want to add
@@ -89,6 +90,7 @@ public class HardwareSetupMenOfSteele {
         servoEgg = hwMap.servo.get("Egg");
         servoBucket1 = hwMap.servo.get("servoBt1");
         servoBucket2 = hwMap.servo.get("servoBt2");
+        servoRelease = hwMap.servo.get("ServoRE");
         // Set the drive motor directions:
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         //motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
@@ -112,8 +114,11 @@ public class HardwareSetupMenOfSteele {
          ************************************************************/
         
          servoEgg.setPosition(CLOSED);
+         servoRelease.setPosition(CLOSED);
+
          servoBucket1.setPosition(STOP);
          servoBucket2.setPosition(STOP);
+
         /************************************************************
          * SENSOR SECTION
          ************************************************************/
