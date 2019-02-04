@@ -114,7 +114,7 @@ public class HardwareSetupMenOfSteele {
          ************************************************************/
         
          servoEgg.setPosition(CLOSED);
-         servoRelease.setPosition(CLOSED);
+         servoRelease.setPosition(0.1);
 
          servoBucket1.setPosition(STOP);
          servoBucket2.setPosition(STOP);

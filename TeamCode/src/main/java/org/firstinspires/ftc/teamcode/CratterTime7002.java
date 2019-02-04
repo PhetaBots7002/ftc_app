@@ -49,15 +49,16 @@ public class CratterTime7002 extends LinearOpMode {
         /************************
          * Autonomous Code Below://
          *************************/
-        Release(1.0);
-       /* setDown(-0.65, 225);
+        pullOut(0.9);
+        StopDrivingTime(1000);
+        setDown(-0.65, 225);
         StopDrivingTime(1200);
         StrafeRight(DRIVE_POWER, 900);
         StopDrivingTime(1200);
         setDown(0.7, 400);
         DriveForwardTime(DRIVE_POWER, 700);
         StopDrivingTime(500);
-        */
+
 
      /////////////////////////////////////////////////////////////////////////////
         //SpinLeft(DRIVE_POWER, 1200);
@@ -141,7 +142,7 @@ public class CratterTime7002 extends LinearOpMode {
         Thread.sleep(time);
     }
 
-    public void Release (double position) throws InterruptedException
+    public void pullOut (double position) throws InterruptedException
     {
         robot.servoRelease.setPosition(position);
     }
