@@ -174,13 +174,8 @@ public class TeleOp_HolonomicMenOfSteele extends OpMode {
         //bucket tilt
         if (gamepad2.a)
         {
-            robot.servoEgg.setPosition(robot.OPEN);
+            robot.servoEgg.setPosition(0.9);
         }
-        else if (gamepad2.y)
-        {
-            robot.servoEgg.setPosition(robot.CLOSED);
-        }
-
 
         /*
        * Telemetry for debugging
