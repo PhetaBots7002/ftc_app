@@ -12,17 +12,15 @@
         X           X
           X       X
 */
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.MenOfSteele;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.ExampleCode.HardwareSetupHolonomicExample;
-
-@Autonomous(name="RedByTime7002", group="Concept")
+@Autonomous(name="CratterTime7002", group="Concept")
 //@Disabled
-public class RedDriveByTime7002 extends LinearOpMode {
+public class CratterTime7002 extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -31,7 +29,7 @@ public class RedDriveByTime7002 extends LinearOpMode {
     /**
      * Constructor
      */
-    public RedDriveByTime7002() {
+    public CratterTime7002() {
     }
 
     @Override
@@ -49,28 +47,31 @@ public class RedDriveByTime7002 extends LinearOpMode {
         /************************
          * Autonomous Code Below://
          *************************/
-        DriveForwardTime(DRIVE_POWER, 1000);
-        StopDrivingTime(1000);
-        DriveForwardTime(-DRIVE_POWER, 1000); //neg power drives backwards
-        StopDrivingTime(1000);
+        pullOut(0.9);
+        StopDrivingTime(1600);
+        setDown(-0.10, 5);
+        StopDrivingTime(1200);
+        StrafeRight(DRIVE_POWER, 800);
+        StopDrivingTime(1200);
+        setDown(0.7, 400);
+        DriveForwardTime(DRIVE_POWER, 1500);
+        StopDrivingTime(500);
+        spitOut(0.9, 500);
 
-        StrafeLeft(DRIVE_POWER, 1000);
-        StopDrivingTime(1000);
-        StrafeRight(DRIVE_POWER, 1000);
-        StopDrivingTime(1000);
 
-/* currently no Servo configured on bot
-        RaiseArm();
-*/
-        SpinRight(DRIVE_POWER, 2000);
-        StopDrivingTime(1000);
-        SpinRight(DRIVE_POWER/2, 2000);
-        StopDrivingTime(1000);
 
-        SpinLeft(DRIVE_POWER, 2000);
-        StopDrivingTime(1000);
-        SpinLeft(DRIVE_POWER/2, 2000);
-        StopDrivingTime(1000);
+     /////////////////////////////////////////////////////////////////////////////
+        //SpinLeft(DRIVE_POWER, 1200);
+        //DriveForwardTime(DRIVE_POWER, 2300);
+        //SpinLeft(DRIVE_POWER, 600);
+        //DriveForwardTime(DRIVE_POWER, 1000);
+        //robot.servoBucket2.setPosition(robot.SpinOut);
+
+
+
+        //DriveForwardTime(-DRIVE_POWER, 1000); //neg power drives backwards
+        //StopDrivingTime(1000);
+        
 
         StopDriving();
 
@@ -84,9 +85,9 @@ public class RedDriveByTime7002 extends LinearOpMode {
     {
         // write the values to the motors
         robot.motorFrontRight.setPower(power);//still need to test motor directions for desired movement
-        robot.motorFrontLeft.setPower(-power);
+        robot.motorFrontLeft.setPower(power);
         robot.motorBackRight.setPower(power);
-        robot.motorBackLeft.setPower(-power);
+        robot.motorBackLeft.setPower(power);
     }
 
     public void DriveForwardTime(double power, long time) throws InterruptedException
@@ -135,6 +136,23 @@ public class RedDriveByTime7002 extends LinearOpMode {
         SpinRight(-power, time);
     }
 
+    public void setDown (double power, long time) throws InterruptedException
+    {
+        robot.motorLift.setPower(power);
+        Thread.sleep(time);
+    }
+
+    public void pullOut (double position) throws InterruptedException
+    {
+        robot.servoRelease.setPosition(position);
+    }
+
+    public void spitOut (double position, long time) throws InterruptedException
+    {
+        robot.servoBucket1.setPosition(position);
+        robot.servoBucket2.setPosition(position - 0.5);
+        Thread.sleep(time);
+    }
 
 /*** Currently no Servo configured in Holonomic Hardware setup
 

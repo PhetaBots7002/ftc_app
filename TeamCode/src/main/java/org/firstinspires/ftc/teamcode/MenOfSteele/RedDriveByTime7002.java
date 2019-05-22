@@ -12,17 +12,15 @@
         X           X
           X       X
 */
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.MenOfSteele;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.ExampleCode.HardwareSetupHolonomicExample;
-
-@Autonomous(name="BlueByTime7002", group="Concept")
+@Autonomous(name="RedByTime7002", group="Concept")
 //@Disabled
-public class BlueDriveByTime7002 extends LinearOpMode {
+public class RedDriveByTime7002 extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -31,7 +29,7 @@ public class BlueDriveByTime7002 extends LinearOpMode {
     /**
      * Constructor
      */
-    public BlueDriveByTime7002() {
+    public RedDriveByTime7002() {
     }
 
     @Override
@@ -49,22 +47,20 @@ public class BlueDriveByTime7002 extends LinearOpMode {
         /************************
          * Autonomous Code Below://
          *************************/
-        DriveForwardTime(DRIVE_POWER, 2000);
+        DriveForwardTime(DRIVE_POWER, 1000);
+        StopDrivingTime(1000);
+        DriveForwardTime(-DRIVE_POWER, 1000); //neg power drives backwards
         StopDrivingTime(1000);
 
-
-       /* DriveForwardTime(-DRIVE_POWER, 1000); //neg power drives backwards
-        StopDrivingTime(1000);
-
-       /* StrafeLeft(DRIVE_POWER, 1000);
+        StrafeLeft(DRIVE_POWER, 1000);
         StopDrivingTime(1000);
         StrafeRight(DRIVE_POWER, 1000);
         StopDrivingTime(1000);
-/*
+
 /* currently no Servo configured on bot
         RaiseArm();
 */
-        /*SpinRight(DRIVE_POWER, 2000);
+        SpinRight(DRIVE_POWER, 2000);
         StopDrivingTime(1000);
         SpinRight(DRIVE_POWER/2, 2000);
         StopDrivingTime(1000);
@@ -73,7 +69,7 @@ public class BlueDriveByTime7002 extends LinearOpMode {
         StopDrivingTime(1000);
         SpinLeft(DRIVE_POWER/2, 2000);
         StopDrivingTime(1000);
-*/
+
         StopDriving();
 
     }//runOpMode
@@ -86,9 +82,9 @@ public class BlueDriveByTime7002 extends LinearOpMode {
     {
         // write the values to the motors
         robot.motorFrontRight.setPower(power);//still need to test motor directions for desired movement
-        robot.motorFrontLeft.setPower(power);
+        robot.motorFrontLeft.setPower(-power);
         robot.motorBackRight.setPower(power);
-        robot.motorBackLeft.setPower(power);
+        robot.motorBackLeft.setPower(-power);
     }
 
     public void DriveForwardTime(double power, long time) throws InterruptedException
@@ -111,8 +107,8 @@ public class BlueDriveByTime7002 extends LinearOpMode {
     {
         // write the values to the motors
         robot.motorFrontRight.setPower(power);
-        robot.motorFrontLeft.setPower(power);
-        robot.motorBackRight.setPower(power);
+        robot.motorFrontLeft.setPower(-power);
+        robot.motorBackRight.setPower(-power);
         robot.motorBackLeft.setPower(power);
         Thread.sleep(time);
     }
@@ -135,16 +131,6 @@ public class BlueDriveByTime7002 extends LinearOpMode {
     public void SpinLeft (double power, long time) throws InterruptedException
     {
         SpinRight(-power, time);
-    }
-
-    public void liftUp (double power, long time) throws InterruptedException
-    {
-        //robot.motorLift(-power,time);
-    }
-
-    public void liftDown (double power, long time) throws InterruptedException
-    {
-       // robot.motorLift(power,time);
     }
 
 
